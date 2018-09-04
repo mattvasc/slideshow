@@ -4,9 +4,14 @@ enum Type {
 	bulletlist
 }
 export class Element {
-	constructor (
+	constructor(
 		public type: Type,
 		public data: String,
 		public posX: number,
-		public posY: number ) { }
+		public posY: number) { }
+
+	setPosition(x: number = this.posX, y: number = this.posY) {
+		this.posX = x;
+		this.posY = y;
+	}
 }
