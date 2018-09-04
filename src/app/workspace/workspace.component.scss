@@ -1,25 +1,32 @@
 @import '../../styles.scss';
 
-#quadradao {
+#workspace {
     float: left;
     background-color: lightgrey;
     width: $larg-workspace;
     min-height: $altura-workspace;
     margin: 0;
 }
-#slide{
+#pagina{
     position: relative;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    width: 45%;
+    width: 60%;
     height: 0; 
     padding-bottom: 45%; 
     background-color: white;
 
+    
 }
-#slide p{
+#paragrafo_default{
+    position: absolute;
     
-
-    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+}
+p{
+    position: absolute;
 }
