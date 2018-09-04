@@ -11,5 +11,4 @@ export class ManagePresentationsComponent implements OnInit {
 
 	ngOnInit() {
 	}
-
 }

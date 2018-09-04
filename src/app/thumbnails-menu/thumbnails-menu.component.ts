@@ -15,6 +15,7 @@ export class ThumbnailsMenuComponent implements OnInit {
 
 	}
 	changeCurrentSlide() {
-
+		// workspace.active-slide = x;
+		// worspace.render()
 	}
 }
