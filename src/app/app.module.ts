@@ -9,6 +9,7 @@ import { EditPresentationComponent } from './edit-presentation/edit-presentation
 import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ManagePresentationsComponent } from './manage-presentations/manage-presentations.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { ManagePresentationsComponent } from './manage-presentations/manage-pres
 		EditPresentationComponent,
 		LoginComponent,
 		WorkspaceComponent,
-		ManagePresentationsComponent
+		ManagePresentationsComponent,
+		ToolbarComponent
 	],
 	imports: [
 		BrowserModule,
