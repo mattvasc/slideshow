@@ -1,0 +1,9 @@
+@import '../../styles.scss';
+
+p {
+    float: left;
+    background-color: green;
+    width: $larg-workspace;
+    min-height: $altura-workspace;
+    margin: 0px;
+}

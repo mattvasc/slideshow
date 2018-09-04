@@ -1,0 +1,8 @@
+@import '../../styles.scss';
+
+.thumbnail-body {
+    background-color: coral;
+    width: $larg-thumbnail;
+    min-height: $altura-thumbnail;
+    float: left;
+}
