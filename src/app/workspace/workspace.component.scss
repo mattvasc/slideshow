@@ -1,9 +1,12 @@
 @import '../../styles.scss';
 
 p {
-    float: left;
+    position: absolute;
+    left: 15%;
+    top: 14%;
+    float: right;
     background-color: green;
-    width: $larg-workspace;
-    min-height: $altura-workspace;
+    width: $width-workspace;
+    min-height: $height-workspace;
     margin: 0px;
 }

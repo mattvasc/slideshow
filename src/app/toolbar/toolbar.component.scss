@@ -1,10 +1,11 @@
 @import '../../styles.scss';
 
 .toolbar-tools {
-    float: left;
-    width: $larg-toolbar;
+    position: absolute;
+    left: 15%;
+    width: $width-toolbar;
     background-color: purple;
-    min-height: $altura-toolbar;
+    min-height: $height-toolbar;
     margin-top: 0px;
 }
 

@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-$larg-thumbnail: 15vw;
-$larg-workspace: 100vw - $larg-thumbnail;
-$larg-toolbar: 100vw - $larg-thumbnail;
+$width-thumbnail: 15vw;
+$width-workspace: 100vw - $width-thumbnail;
+$width-toolbar: 100vw - $width-thumbnail;
 
-$altura-toolbar: 14vh;
-$altura-workspace: 100vh - $altura-toolbar;
-$altura-thumbnail: 100vh;
+$height-toolbar: 14vh;
+$height-workspace: 100vh - $height-toolbar;
+$height-thumbnail: 100vh;

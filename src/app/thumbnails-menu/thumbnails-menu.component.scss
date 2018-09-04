@@ -1,8 +1,28 @@
 @import '../../styles.scss';
 
+$width-miniature: 10vw;
+$height-miniature: 13vh;
+$number-of-slides: 7;
+
 .thumbnail-body {
     background-color: coral;
-    width: $larg-thumbnail;
-    min-height: $altura-thumbnail;
+    width: $width-thumbnail;
+    min-height: $height-thumbnail;
+    position: absolute;
     float: left;
+    overflow-y: scroll;
+    overflow: hidden;
+}
+
+.slide {
+    background-color: white;
+    min-width: $width-miniature;
+    min-height: $height-miniature;
+    margin-top: 2vh;
+}
+
+.slide-encapsulation {
+    position: absolute;
+    left: ($width-thumbnail - $width-miniature)/2;
+    top: ($height-thumbnail - $number-of-slides*($height-miniature + 2vh))/2;
 }
