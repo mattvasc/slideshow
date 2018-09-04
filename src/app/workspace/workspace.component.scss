@@ -1,9 +1,25 @@
 @import '../../styles.scss';
 
-p {
+#quadradao {
     float: left;
-    background-color: green;
+    background-color: lightgrey;
     width: $larg-workspace;
     min-height: $altura-workspace;
-    margin: 0px;
+    margin: 0;
+}
+#slide{
+    position: relative;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 45%;
+    height: 0; 
+    padding-bottom: 45%; 
+    background-color: white;
+
+}
+#slide p{
+    
+
+    
 }
