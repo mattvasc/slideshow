@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
-import { Slide, Transition } from '../slide'; 
-import { Element, TypeOfElement } from '../element';
+import { Slide, Transition } from '../slide';
+import { Element } from '../element';
 
 @Component({
 	selector: 'app-toolbar',
@@ -11,6 +11,9 @@ import { Element, TypeOfElement } from '../element';
 export class ToolbarComponent implements OnInit {
 
 	@Input() presentation: Presentation;
+	@Input() activeSlide: number;
+	@Output() public activeSlideChange = new EventEmitter();
+
 	constructor() { }
 
 	ngOnInit() {
@@ -18,5 +21,13 @@ export class ToolbarComponent implements OnInit {
 
 	addNewSlide() {
 		this.presentation.addSlide();
+	}
+	removeSlide() {
+		this.presentation.slides.splice(this.activeSlide, 1);
+		if ( this.activeSlide === this.presentation.slides.length ) {
+			this.activeSlide--;
+			this.activeSlideChange.emit(this.activeSlide);
+		}
+
 	}
 }

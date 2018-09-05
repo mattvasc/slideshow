@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
-import { Slide, Transition } from '../slide'; 
+import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 
 
@@ -10,21 +10,21 @@ import { Element, TypeOfElement } from '../element';
 	styleUrls: ['./thumbnails-menu.component.scss']
 })
 export class ThumbnailsMenuComponent implements OnInit {
-	@Input() presentation;
-	@Input() activeSlide;
+	@Input() presentation: Presentation;
+	@Input() activeSlide: number;
+	@Output() public activeSlideChange = new EventEmitter();
 
 	constructor() { }
 
-	onClick() {
-		console.log(this.presentation);
-	}
 	ngOnInit() {
 		this.activeSlide = 0;
+		this.activeSlideChange.emit(0);
 	}
 	renderList() {
 
 	}
 	changeCurrentSlide(index: number) {
 		this.activeSlide = index;
+		this.activeSlideChange.emit(index);
 	}
 }

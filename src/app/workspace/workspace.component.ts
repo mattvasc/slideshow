@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
-import { Slide, Transition } from '../slide'; 
+import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 
 @Component({
@@ -12,8 +12,8 @@ export class WorkspaceComponent implements OnInit {
 
 	@Input() presentation;
 	@Input() activeSlide;
-
 	constructor() { }
+
 
 	ngOnInit() {
 	}

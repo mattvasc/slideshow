@@ -1,6 +1,7 @@
-<app-thumbnails-menu [presentation]='presentation' [activeSlide]='activeSlide' >
+<button (click)="debug()">debug</button>
+<app-thumbnails-menu [presentation]='presentation' [(activeSlide)]='activeSlide' >
 </app-thumbnails-menu>
-<app-toolbar [presentation]='presentation' >
+<app-toolbar [presentation]='presentation' [(activeSlide)]='activeSlide'>
 </app-toolbar>
-<app-workspace [presentation]='presentation' [activeSlide]='activeSlide'>
+<app-workspace [presentation]='presentation'>
 </app-workspace>

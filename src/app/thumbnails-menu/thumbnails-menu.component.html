@@ -1,4 +1,4 @@
-<div class="thumbnail-body" (click)="onClick()">
+<div class="thumbnail-body">
 
   <div class="slide-encapsulation">
     <div class="slide" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}" (click)="changeCurrentSlide(i)"></div>
