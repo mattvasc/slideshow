@@ -1,6 +1,6 @@
 import { Element } from './element';
 
-enum Transition {
+export enum Transition {
 	default,
 	slideLeft,
 	spinleft
@@ -8,7 +8,7 @@ enum Transition {
 
 
 export class Slide {
-	constructor(public elements: Element[],
+	constructor(public elements: Element[] = [],
 		public transition: Transition = Transition.default,
 		public bgcolor: String = '#FFFFFF') { }
 
