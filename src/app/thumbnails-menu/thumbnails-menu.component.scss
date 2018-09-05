@@ -2,7 +2,6 @@
 
 $width-miniature: 10vw;
 $height-miniature: 13vh;
-$number-of-slides: 7;
 
 .thumbnail-body {
     background-color: coral;
@@ -10,19 +9,28 @@ $number-of-slides: 7;
     min-height: $height-thumbnail;
     position: absolute;
     float: left;
-    overflow-y: scroll;
-    overflow: hidden;
+    overflow: auto;
+    padding-right: 20px;
 }
 
 .slide {
     background-color: white;
     min-width: $width-miniature;
     min-height: $height-miniature;
+    max-width: $width-miniature;
+    max-height: $height-miniature;
     margin-top: 2vh;
 }
 
 .slide-encapsulation {
     position: absolute;
     left: ($width-thumbnail - $width-miniature)/2;
-    top: ($height-thumbnail - $number-of-slides*($height-miniature + 2vh))/2;
+    top: ($height-thumbnail - 5*($height-miniature + 2vh))/2;
+    padding-bottom: 100px;
+}
+
+.slide-active {
+    -webkit-box-shadow:inset 0px 0px 0px 3px gray;
+    -moz-box-shadow:inset 0px 0px 0px 3px gray;
+    box-shadow:inset 0px 0px 0px 3px gray;
 }
