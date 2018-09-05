@@ -17,6 +17,8 @@ $height-miniature: 13vh;
     background-color: white;
     min-width: $width-miniature;
     min-height: $height-miniature;
+    max-width: $width-miniature;
+    max-height: $height-miniature;
     margin-top: 2vh;
 }
 
@@ -28,5 +30,7 @@ $height-miniature: 13vh;
 }
 
 .slide-active {
-    border: solid 3px gray;
+    -webkit-box-shadow:inset 0px 0px 0px 3px gray;
+    -moz-box-shadow:inset 0px 0px 0px 3px gray;
+    box-shadow:inset 0px 0px 0px 3px gray;
 }
