@@ -10,7 +10,7 @@ export class Presentation {
 		public owner: String = 'Not logged Yet',
 		public visibility: Visibility = Visibility.public) { }
 
-	addSlide(X: Slide) {
+	addSlide(X: Slide = new Slide()) {
 		this.slides.push(X);
 	}
 

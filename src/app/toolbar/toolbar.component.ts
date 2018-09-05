@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Presentation } from '../presentation';
 @Component({
 	selector: 'app-toolbar',
 	templateUrl: './toolbar.component.html',
@@ -7,10 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-	@Input() presentation;
+	@Input() presentation: Presentation;
 	constructor() { }
 
 	ngOnInit() {
 	}
 
+	addNewSlide() {
+		this.presentation.addSlide();
+	}
 }
