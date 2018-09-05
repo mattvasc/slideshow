@@ -9,7 +9,18 @@ enum Transition {
 
 export class Slide {
 	constructor(public elements: Element[],
-				public transition: Transition = Transition.default,
-				public bgcolor: String = '#FFFFFF' ) { }
+		public transition: Transition = Transition.default,
+		public bgcolor: String = '#FFFFFF') { }
 
+	addElement(x: Element) {
+		this.elements.push(x);
+	}
+
+	removeElementByIndex(x: number) {
+		this.elements.splice(x, 1);
+	}
+
+	setTransition(x: Transition) {
+		this.transition = x;
+	}
 }

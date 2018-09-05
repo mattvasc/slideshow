@@ -2,5 +2,17 @@ import { Presentation } from './presentation';
 export class User {
 	constructor(name: String,
 		private password: String,
-		presentations: Presentation[] ) {}
+		public presentations: Presentation[] = [] ) {}
+
+	login() {
+		// Mock goes here
+	}
+
+	addPresentation(x: Presentation) {
+		this.presentations.push(x);
+	}
+
+	removePresentationByIndex(x: number) {
+		this.presentations.splice(x, 1);
+	}
 }
