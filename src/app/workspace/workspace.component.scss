@@ -1,12 +1,44 @@
 @import '../../styles.scss';
 
-p {
+
+#workspace {
     position: absolute;
     left: 15%;
     top: 14%;
     float: right;
-    background-color: green;
+    background-color: lightgrey;
     width: $width-workspace;
     min-height: $height-workspace;
     margin: 0px;
+
+  //  float: left;
+//    background-color: lightgrey;
+ //   width: $width-workspace;
+ //   min-height: $height-workspace;
+  //  margin: 0;
+}
+#page{
+    position: relative;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 60%;
+    height: 0; 
+    padding-bottom: 40%; 
+    background-color: white;
+    overflow: hidden;
+
+    
+}
+#paragraph_default{
+    position: absolute;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+    
+}
+p{
+    position: absolute;
 }
