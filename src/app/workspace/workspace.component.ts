@@ -12,12 +12,15 @@ export class WorkspaceComponent implements OnInit {
 
 	@Input() presentation;
 	@Input() activeSlide;
+
+	el: Element = new Element(0, '<p> Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto	Meu texto Meu texto Meu texto Meu texto Meu 	 texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto		Meu texto 		Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto </p>');
+	elements = [];
+	
 	constructor() { }
 
-
 	ngOnInit() {
+		this.elements.push(this.el);
 	}
 	render() {
-		// this.slide.render();
 	}
 }

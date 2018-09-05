@@ -4,12 +4,7 @@
         <p id = "paragraph_default">
 Comece a editar seu slide!
             </p> -->
-        <h1 id="title" (dblclick) ="fireEventEditar($event)" (click)="fireEventMover($event)"> Meu Título</h1>
-        <p> Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto
- Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto
- Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto
-        </p>
-        
+        <div *ngFor="let element of presentation.slides[activeSlide].elements"  [innerHtml]="element.data"></div>
 	</div>
 </div>
 <!-- templates
