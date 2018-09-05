@@ -18,17 +18,14 @@
   //  margin: 0;
 }
 #page{
-    position: relative;
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    position: absolute;
     width: 60%;
     height: 0; 
     padding-bottom: 40%; 
     background-color: white;
     overflow: hidden;
-
-    
+    left: ($width-workspace - 50vw)/2;
+    top: ($height-workspace - 70vh)/2;    
 }
 #paragraph_default{
     position: absolute;
