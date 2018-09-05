@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Presentation, Visibility } from '../presentation';
+import { Slide, Transition } from '../slide'; 
+import { Element, TypeOfElement } from '../element';
+
 
 @Component({
 	selector: 'app-thumbnails-menu',
@@ -11,13 +15,16 @@ export class ThumbnailsMenuComponent implements OnInit {
 
 	constructor() { }
 
+	onClick() {
+		console.log(this.presentation);
+	}
 	ngOnInit() {
+		this.activeSlide = 0;
 	}
 	renderList() {
 
 	}
-	changeCurrentSlide() {
-		// workspace.active-slide = x;
-		// worspace.render()
+	changeCurrentSlide(index: number) {
+		this.activeSlide = index;
 	}
 }

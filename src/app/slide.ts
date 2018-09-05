@@ -12,15 +12,15 @@ export class Slide {
 		public transition: Transition = Transition.default,
 		public bgcolor: String = '#FFFFFF') { }
 
-	addElement(x: Element) {
+	public addElement(x: Element) {
 		this.elements.push(x);
 	}
 
-	removeElementByIndex(x: number) {
+	public removeElementByIndex(x: number) {
 		this.elements.splice(x, 1);
 	}
 
-	setTransition(x: Transition) {
+	public setTransition(x: Transition) {
 		this.transition = x;
 	}
 }

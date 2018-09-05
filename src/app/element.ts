@@ -1,11 +1,11 @@
-export enum Type {
+export enum TypeOfElement {
 	textbox,
 	image,
 	bulletlist
 }
 export class Element {
 	constructor(
-		public type: Type,
+		public type: TypeOfElement,
 		private data: String,
 		private posX: number = 0,
 		private posY: number = 0) { }

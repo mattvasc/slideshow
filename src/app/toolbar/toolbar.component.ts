@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Presentation } from '../presentation';
+import { Presentation, Visibility } from '../presentation';
+import { Slide, Transition } from '../slide'; 
+import { Element, TypeOfElement } from '../element';
+
 @Component({
 	selector: 'app-toolbar',
 	templateUrl: './toolbar.component.html',
