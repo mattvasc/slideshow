@@ -24,9 +24,12 @@ export class ToolbarComponent implements OnInit {
 	}
 	removeSlide() {
 		this.presentation.slides.splice(this.activeSlide, 1);
-		if ( this.activeSlide === this.presentation.slides.length ) {
+		if ( this.activeSlide === this.presentation.slides.length && this.activeSlide !== 0) {
 			this.activeSlide--;
 			this.activeSlideChange.emit(this.activeSlide);
+		}
+		if ( this.presentation.slides.length === 0) {
+			this.addNewSlide();
 		}
 
 	}
