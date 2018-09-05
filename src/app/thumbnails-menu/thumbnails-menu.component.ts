@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ThumbnailsMenuComponent implements OnInit {
 	@Input() presentation;
+	@Input() activeSlide;
 
 	constructor() { }
 

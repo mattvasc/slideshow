@@ -10,8 +10,9 @@ import { Element, Type } from '../element';
 })
 export class EditPresentationComponent implements OnInit {
 
-	constructor() { }
 	public presentation: Presentation;
+	public activeSlide = 0;
+	constructor() { }
 	ngOnInit() {
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
 		const first_slide: Slide = new Slide([], undefined, '#FFAABB');

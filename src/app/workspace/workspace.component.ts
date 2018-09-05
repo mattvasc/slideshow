@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WorkspaceComponent implements OnInit {
 
 	@Input() presentation;
+	@Input() activeSlide;
+
 	constructor() { }
 
 	ngOnInit() {
