@@ -1,7 +1,9 @@
 <div class="thumbnail-body">
 
   <div class="slide-encapsulation">
-    <div class="slide" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}" (click)="changeCurrentSlide(i)"></div>
+    <div class="slide" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}" (click)="changeCurrentSlide(i)">
+      <div *ngFor="let element of presentation.slides[i].elements"  [innerHtml]="element.data"></div>
+    </div>
   </div>
 
 </div>
