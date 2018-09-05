@@ -6,7 +6,9 @@
     width: $width-toolbar;
     background-color: purple;
     min-height: $height-toolbar;
+    max-height: $height-toolbar;
     margin-top: 0px;
+    overflow: hidden;
 }
 
 .toolbar-tabs {
