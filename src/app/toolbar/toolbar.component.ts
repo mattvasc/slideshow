@@ -36,16 +36,27 @@ export class ToolbarComponent implements OnInit {
 	}
 	removeSlide() {
 		this.presentation.slides.splice(this.activeSlide, 1);
-		if ( this.activeSlide === this.presentation.slides.length && this.activeSlide !== 0) {
+		if (this.activeSlide === this.presentation.slides.length && this.activeSlide !== 0) {
 			this.activeSlide--;
 			this.activeSlideChange.emit(this.activeSlide);
 		}
-		if ( this.presentation.slides.length === 0) {
+		if (this.presentation.slides.length === 0) {
 			this.addNewSlide();
 		}
 
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
 
+	}
+
+	removeElement() {
+		this.presentation.slides[this.activeSlide].elements.splice(
+			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
+			1);
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
+	}
+	deleteElement() {
+		console.log('lerigo');
 	}
 }
