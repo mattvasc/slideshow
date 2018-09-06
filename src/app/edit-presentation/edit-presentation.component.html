@@ -1,6 +1,15 @@
-<app-thumbnails-menu [presentation]='presentation' [(activeSlide)]='activeSlide' >
+<app-thumbnails-menu 
+[presentation]='presentation'
+ [(activeSlide)]='activeSlide' 
+ (click)="unselectElement()">
 </app-thumbnails-menu>
-<app-toolbar [presentation]='presentation' [(activeSlide)]='activeSlide'>
+<app-toolbar 
+[presentation]='presentation' 
+[(activeSlide)]='activeSlide'
+[(activeElement)]='activeElement'>
 </app-toolbar>
-<app-workspace [presentation]='presentation' [(activeSlide)]='activeSlide'>
+<app-workspace 
+[presentation]='presentation' 
+[activeSlide]='activeSlide'
+[(activeElement)]='activeElement'>
 </app-workspace>
