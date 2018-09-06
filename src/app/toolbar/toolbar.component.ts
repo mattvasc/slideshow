@@ -14,6 +14,8 @@ export class ToolbarComponent implements OnInit {
 	@Input() activeSlide: number;
 	@Output() public activeSlideChange = new EventEmitter();
 
+	public esconderColorPicker = true;
+
 	constructor() { }
 
 	ngOnInit() {
