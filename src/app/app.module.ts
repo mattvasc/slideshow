@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ManagePresentationsComponent } from './manage-presentations/manage-presentations.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule
+		AppRoutingModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

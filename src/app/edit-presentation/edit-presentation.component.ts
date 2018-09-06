@@ -20,7 +20,7 @@ export class EditPresentationComponent implements OnInit {
 	}
 	ngOnInit() {
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
-		const first_slide: Slide = new Slide([], undefined, '#FFAABB');
+		const first_slide: Slide = new Slide([], undefined, {'red': 196, 'green': 196, 'blue': 196}); // ffaabb
 		first_slide.addElement(new Element(TypeOfElement.textbox, `<h1 id="title" (dblclick) ="fireEventEditar($event)"
 																						(click)="fireEventMover($event)"> Meu Título</h1>`));
 		first_slide.addElement(new Element(TypeOfElement.textbox, `<p> Meu texto Meu texto Meu texto Meu texto Meu texto

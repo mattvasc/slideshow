@@ -1,5 +1,8 @@
 <div id="workspace" >
-	<div id ="page" [style.background-color]="presentation.slides[activeSlide].bgcolor">
-        <div *ngFor="let element of presentation.slides[activeSlide].elements" [style.background-color]="yellow"  [innerHtml]="element.data"></div>
+	<div id ="page" 
+	[style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
+	 ', '+presentation.slides[activeSlide].bgcolor.green +
+	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
+        <div *ngFor="let element of presentation.slides[activeSlide].elements"  [innerHtml]="element.data"></div>
 	</div>
 </div>

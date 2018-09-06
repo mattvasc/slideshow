@@ -10,7 +10,7 @@ export enum Transition {
 export class Slide {
 	constructor(public elements: Element[] = [],
 		public transition: Transition = Transition.default,
-		public bgcolor: String = '#FFFFFF') { }
+		public bgcolor: {'red', 'green', 'blue'} = {'red' : 255, 'green' : 255, 'blue' : 255} ) { }
 
 	public addElement(x: Element) {
 		this.elements.push(x);

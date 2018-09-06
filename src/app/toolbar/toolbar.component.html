@@ -1,6 +1,18 @@
 <div class="toolbar-tools">
   <!-- <div class="toolbar-tabs">tabs</div> -->
   <div class="toolbar-body">
-   <button (click)="addNewSlide()"> Add a new Slide</button>
-   <button (click)="removeSlide()"> Remove Active Slide</button>
-</div>
+    <button (click)="addNewSlide()">Add a new Slide</button>
+    <button (click)="removeSlide()">Remove Active Slide</button>
+    <button (click)="esconderColorPicker = !esconderColorPicker">{{esconderColorPicker ? 'Change Slide background Color' : 'Hide ColorPicker'}}</button>
+    <div #colorpicker [hidden]="esconderColorPicker">
+    <label> Red
+      <input type="range" id="start" name="red" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.red" />
+    </label>
+    <label> Green
+      <input type="range" id="start" name="green" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.green" />
+    </label>
+    <label> Blue
+      <input type="range" id="start" name="blue" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.blue" />
+    </label>
+  </div>
+  </div>
