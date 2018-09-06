@@ -12,17 +12,17 @@ export class EditPresentationComponent implements OnInit {
 
 	public presentation: Presentation;
 	public activeSlide = 0;
+	public activeElement: Element = undefined;
 	public test: any;
 	constructor() { }
 
 	debug() {
-		console.log(this.activeSlide);
+		console.log(this.activeElement);
 	}
 	ngOnInit() {
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
 		const first_slide: Slide = new Slide([], undefined, {'red': 196, 'green': 196, 'blue': 196}); // ffaabb
-		first_slide.addElement(new Element(TypeOfElement.textbox, `<h1 id="title" (dblclick) ="fireEventEditar($event)"
-																						(click)="fireEventMover($event)"> Meu Título</h1>`));
+		first_slide.addElement(new Element(TypeOfElement.textbox, `<h1 id="title"> Meu Título</h1>`));
 		first_slide.addElement(new Element(TypeOfElement.textbox, `<p> Meu texto Meu texto Meu texto Meu texto Meu texto
 		Meu texto Meu texto Meu texto Meu texto Meu texto	Meu texto Meu texto Meu texto Meu texto Meu
 		 texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto		Meu texto
@@ -32,5 +32,7 @@ export class EditPresentationComponent implements OnInit {
 		this.presentation.addSlide(first_slide);
 		console.log(this.presentation);
 	}
-
+	unselectElement() {
+		this.activeElement = undefined;
+	}
 }

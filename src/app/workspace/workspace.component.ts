@@ -11,7 +11,11 @@ import { Element, TypeOfElement } from '../element';
 export class WorkspaceComponent implements OnInit {
 
 	@Input() presentation;
+
 	@Input() activeSlide;
+
+	@Input() activeElement: Element;
+	@Output() public activeElementChange = new EventEmitter();
 
 	constructor() { }
 
@@ -19,6 +23,16 @@ export class WorkspaceComponent implements OnInit {
 	}
 	render() {
 		// this.slide.render();
+	}
+	selectElement(event) {
+		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		this.activeElementChange.emit(this.activeElement);
+	}
+	unselectElement(event) {
+		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
+			this.activeElement = undefined;
+			this.activeElementChange.emit(this.activeElement);
+		}
 	}
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela

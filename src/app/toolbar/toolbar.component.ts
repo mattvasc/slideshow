@@ -11,8 +11,12 @@ import { Element } from '../element';
 export class ToolbarComponent implements OnInit {
 
 	@Input() presentation: Presentation;
+
 	@Input() activeSlide: number;
 	@Output() public activeSlideChange = new EventEmitter();
+
+	@Input() activeElement: Element;
+	@Output() public activeElementChange = new EventEmitter();
 
 	public esconderColorPicker = true;
 
@@ -23,6 +27,12 @@ export class ToolbarComponent implements OnInit {
 
 	addNewSlide() {
 		this.presentation.addSlide();
+		// Jumping to the last created slide:
+		this.activeSlide = this.presentation.slides.length - 1;
+		this.activeSlideChange.emit(this.activeSlide);
+		// Unselecting a element, if any...
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
 	}
 	removeSlide() {
 		this.presentation.slides.splice(this.activeSlide, 1);
@@ -33,6 +43,9 @@ export class ToolbarComponent implements OnInit {
 		if ( this.presentation.slides.length === 0) {
 			this.addNewSlide();
 		}
+
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
 
 	}
 }
