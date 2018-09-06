@@ -1,5 +1,5 @@
 <div id="workspace" >
 	<div id ="page" [style.background-color]="presentation.slides[activeSlide].bgcolor">
-        <div *ngFor="let element of presentation.slides[activeSlide].elements" [style.background-color]="yellow"  [innerHtml]="element.data"></div>
+        <div *ngFor="let element of presentation.slides[activeSlide].elements" [ngStyle]="element.style"  [innerHtml]="element.data"></div>
 	</div>
 </div>

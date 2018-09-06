@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
-import { Element, TypeOfElement } from '../element';
+import { Element, TypeOfElement, StyleOfElement } from '../element';
 
 @Component({
 	selector: 'app-edit-presentation',
@@ -27,7 +27,7 @@ export class EditPresentationComponent implements OnInit {
 		Meu texto Meu texto Meu texto Meu texto Meu texto	Meu texto Meu texto Meu texto Meu texto Meu
 		 texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto		Meu texto
 			Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto
-			Meu texto Meu texto </p>`));
+			Meu texto Meu texto </p>`,0,0,{'font-size': '24px', 'font-weight': 'bold','color': 'blue', }));
 
 		this.presentation.addSlide(first_slide);
 		console.log(this.presentation);
