@@ -1,12 +1,8 @@
 import { Component, OnInit , ViewChild } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
-<<<<<<< HEAD
-import { Element, TypeOfElement } from '../element';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
-=======
 import { Element, TypeOfElement, StyleOfElement } from '../element';
->>>>>>> c62826fa944a2a78f9d0e0979b974599253c00d9
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
 	selector: 'app-edit-presentation',
