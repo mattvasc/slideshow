@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-<div id="workspace" >
 
-=======
 <div id="workspace" (click)="unselectElement($event)" >
->>>>>>> b3ce57cbcec04761db8eaa58e577704a4501a66a
 	<div id ="page" 
 	[style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
-<<<<<<< HEAD
-        <div *ngFor="let element of presentation.slides[activeSlide].elements"  [ngStyle]="element.style" [innerHtml]="element.data"></div>
 
-=======
-        <div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [innerHtml]="element.data" (click)="selectElement($event)"></div>
->>>>>>> b3ce57cbcec04761db8eaa58e577704a4501a66a
+        <div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [ngStyle]="element.style" [innerHtml]="element.data" (click)="selectElement($event)"></div>
+
 	</div>
 </div>
