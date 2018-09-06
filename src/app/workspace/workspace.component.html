@@ -1,24 +1,5 @@
-<div id="workspace">
-	<div id ="page">
-	    <!--  
-        <p id = "paragraph_default">
-Comece a editar seu slide!
-            </p> -->
-        <div *ngFor="let element of presentation.slides[activeSlide].elements"  [innerHtml]="element.data"></div>
+<div id="workspace" >
+	<div id ="page" [style.background-color]="presentation.slides[activeSlide].bgcolor">
+        <div *ngFor="let element of presentation.slides[activeSlide].elements" [style.background-color]="yellow"  [innerHtml]="element.data"></div>
 	</div>
 </div>
-<!-- templates
-<h1></h1>
-<p></p>
-
-<p>
-
-<h1></h1>
-<p></p>
-<img></img>
-
-<ul>
-<li>
-</ul>
-
--->
