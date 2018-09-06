@@ -1,8 +1,12 @@
 import { Component, OnInit , ViewChild } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
+<<<<<<< HEAD
 import { Element, TypeOfElement } from '../element';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+=======
+import { Element, TypeOfElement, StyleOfElement } from '../element';
+>>>>>>> c62826fa944a2a78f9d0e0979b974599253c00d9
 
 @Component({
 	selector: 'app-edit-presentation',
@@ -30,9 +34,9 @@ export class EditPresentationComponent implements OnInit {
 		Meu texto Meu texto Meu texto Meu texto Meu texto	Meu texto Meu texto Meu texto Meu texto Meu
 		 texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto		Meu texto
 			Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto Meu texto
-			Meu texto Meu texto </p>`));
-		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">'));
+			Meu texto Meu texto </p>`, 0, 0, {'font-size': '24px', 'font-weight': 'bold', 'color': 'blue', }));
 
+		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">'));
 		this.presentation.addSlide(first_slide);
 		console.log(this.presentation);
 	}
