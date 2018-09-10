@@ -43,9 +43,11 @@ export class WorkspaceComponent implements OnInit {
 	}
 	selectElement(event) {
 		// poderia procurar ultimo event.target também
-
-		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
-
+		if (event.target.parentElement.id !== 'page') {
+			this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		} else {
+			console.log(event);
+		}
 		this.hideAddNewElementMenu = true;
 		this.hideColorPickerMenu = true;
 
