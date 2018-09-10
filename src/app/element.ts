@@ -1,5 +1,6 @@
 export enum TypeOfElement {
-	textbox,
+	textfield,
+	titlefield,
 	image,
 	bulletlist
 }
@@ -8,7 +9,7 @@ export enum TypeOfElement {
 export class Element {
 	constructor(
 		public type: TypeOfElement,
-		private data: String,
+		public data: String,
 		private posX: number = 0,
 		private posY: number = 0,
 		public style:  {} = {'display': 'inline-block'}
@@ -19,7 +20,4 @@ export class Element {
 		this.posY = y;
 	}
 
-	setData(x: String) {
-		this.data = x;
-	}
 }

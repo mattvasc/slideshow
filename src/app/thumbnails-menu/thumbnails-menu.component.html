@@ -1,12 +1,12 @@
 <div class="thumbnail-body">
-
+<!-- REFATORAR -->
   <div class="slide-encapsulation">
-    <div class="slide" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}" (click)="changeCurrentSlide(i)" 
-    [style.background-color]="'rgb(' + presentation.slides[i].bgcolor.red +
+      <div class="slide miniature" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}"
+        (click)="changeCurrentSlide(i)" [style.background-color]="'rgb(' + presentation.slides[i].bgcolor.red +
     ', '+presentation.slides[i].bgcolor.green +
-     ', ' + presentation.slides[i].bgcolor.blue + ')'">
-      <div *ngFor="let element of presentation.slides[i].elements"  [innerHtml]="element.data"></div>
-    </div>
+     ', ' + presentation.slides[i].bgcolor.blue + ')'" [style.bottom.vh]="fixPosition(i)">
+        <div *ngFor="let element of presentation.slides[i].elements" [innerHtml]="element.data"></div>
+      </div>
   </div>
 
 </div>
