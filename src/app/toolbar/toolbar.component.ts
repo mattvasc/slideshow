@@ -100,4 +100,5 @@ export class ToolbarComponent implements OnInit {
 			this.activeElement.data = `<img src="${returno}"></img>`;
 		}
 	}
+
 }

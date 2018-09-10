@@ -26,14 +26,16 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
+		//poderia procurar ultimo event.target também
 		this.lastActiveElement = this.activeElement;
+		
 		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
-		this.bordaSelecionado(this.lastActiveElement, this.activeElement);
+		this.selectedBorder(this.lastActiveElement, this.activeElement);
 		this.activeElementChange.emit(this.activeElement);
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
-			//this.bordaSelecionado(this.activeElement, false);
+			//this.selectedBorder(this.activeElement, false);
 			if(this.activeElement != undefined) {
 				this.activeElement.style["border-style"] = 'none';
 			}
@@ -44,7 +46,7 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	//bordaSelecionado(activeElement, Boolean) {
-	bordaSelecionado(lastActiveElement, activeElement) {
+	selectedBorder(lastActiveElement, activeElement) {
 		if (lastActiveElement == activeElement){
 			console.log("nada muda");
 		}
