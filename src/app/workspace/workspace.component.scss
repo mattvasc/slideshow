@@ -42,3 +42,7 @@ $sizefont: $sizefontpx/14 + vw;
 p{
     position: absolute;
 }
+
+.selected {
+    border-style: dashed;
+}

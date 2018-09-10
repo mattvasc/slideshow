@@ -18,22 +18,20 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
-	@HostListener('window:keyup', ['$event'])
-	keyEvent(event: KeyboardEvent) {
-		console.log(event);
-
-		if (event.keyCode === 46) {
-			this.removeElement();
-		}
-	}
-
-	lastActiveElement : Element = undefined;
-
 	@Input() hideColorPickerMenu: boolean;
 	@Output() hideColorPickerMenuChange = new EventEmitter();
 
 	@Input() hideAddNewElementMenu: boolean;
 	@Output() hideAddNewElementMenuChange = new EventEmitter();
+
+	@HostListener('window:keyup', ['$event'])
+	keyEvent(event: KeyboardEvent) {
+		if (event.keyCode === 46) {
+			this.removeElement();
+		}
+	}
+
+
 
 
 	constructor() { }
@@ -44,13 +42,10 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
-		//poderia procurar ultimo event.target também
-		this.lastActiveElement = this.activeElement;
-		
-		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
-
-		this.selectedBorder(this.lastActiveElement, this.activeElement);
-
+		// poderia procurar ultimo event.target também
+		if (event.target.parentElement.id !== 'page') {
+			this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		}
 		this.hideAddNewElementMenu = true;
 		this.hideColorPickerMenu = true;
 
@@ -59,17 +54,13 @@ export class WorkspaceComponent implements OnInit {
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 	unselectElement(event) {
-		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
-			//this.selectedBorder(this.activeElement, false);
-			if(this.activeElement != undefined) {
-				this.activeElement.style["border-style"] = 'none';
-			}
+		if (event.target.id === 'page' || event.target.id === 'workspace') {
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
-			
 		}
 	}
 
+<<<<<<< HEAD
 	//bordaSelecionado(activeElement, Boolean) {
 	selectedBorder(lastActiveElement, activeElement) {
 		if (lastActiveElement == activeElement){
@@ -84,6 +75,8 @@ export class WorkspaceComponent implements OnInit {
 		
 		
 	}
+=======
+>>>>>>> 794e264f50099984196185d4cb0d262d4a7747f6
 
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
@@ -100,14 +93,13 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	removeElement() {
-		if(this.activeElement === undefined) return;
+		if (this.activeElement === undefined) {return; }
 
 		this.presentation.slides[this.activeSlide].elements.splice(
 			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
 			1);
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-		console.log(this.activeElement);
 	}
 
 	// funções notáveis
