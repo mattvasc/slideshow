@@ -25,4 +25,18 @@ export class Slide {
 	public setTransition(x: Transition) {
 		this.transition = x;
 	}
+
+	public hexToRGB(hex: String) {
+		if(hex.substring(0,1) == '#') {
+			hex = hex.substring(1);
+		  }
+	   
+		 var rgbColor = {};
+	   
+		 /* Grab each pair (channel) of hex values and parse them to ints using hexadecimal decoding */
+		 this.bgcolor['red'] = parseInt(hex.substring(0,2),16);
+		 this.bgcolor['green'] = parseInt(hex.substring(2,4),16);
+		 this.bgcolor['blue'] = parseInt(hex.substring(4),16);
+		
+	}
 }

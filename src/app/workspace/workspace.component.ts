@@ -74,12 +74,14 @@ export class WorkspaceComponent implements OnInit {
 	selectedBorder(lastActiveElement, activeElement) {
 		if (lastActiveElement == activeElement){
 			console.log("nada muda");
+			this.activeElement.style["border-style"] = 'dotted';
 		}
 		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
 			this.lastActiveElement.style["border-style"] = 'none';
 			console.log("mudou de volta");
+			this.activeElement.style["border-style"] = 'dotted';
 		}
-		this.activeElement.style["border-style"] = 'dotted';
+		
 		
 	}
 
