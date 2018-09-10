@@ -14,6 +14,8 @@ export class EditPresentationComponent implements OnInit {
 	public presentation: Presentation;
 	public activeSlide = 0;
 	public activeElement: Element = undefined;
+	public hideColorPickerMenu = true;
+	public hideAddNewElementMenu = true;
 	public test: any;
 
 	@ViewChild(ToolbarComponent) toolbar: ToolbarComponent;

@@ -15,7 +15,7 @@ export class WorkspaceComponent implements OnInit {
 
 	@Input() activeSlide;
 
-	@Input() activeElement: Element;
+	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
 	@HostListener('window:keyup', ['$event'])
@@ -27,6 +27,15 @@ export class WorkspaceComponent implements OnInit {
 		}
 	}
 
+	lastActiveElement : Element = undefined;
+
+	@Input() hideColorPickerMenu: boolean;
+	@Output() hideColorPickerMenuChange = new EventEmitter();
+
+	@Input() hideAddNewElementMenu: boolean;
+	@Output() hideAddNewElementMenuChange = new EventEmitter();
+
+
 	constructor() { }
 
 	ngOnInit() {
@@ -35,15 +44,45 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
+		//poderia procurar ultimo event.target também
+		this.lastActiveElement = this.activeElement;
+		
 		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+
+		this.selectedBorder(this.lastActiveElement, this.activeElement);
+
+		this.hideAddNewElementMenu = true;
+		this.hideColorPickerMenu = true;
+
 		this.activeElementChange.emit(this.activeElement);
+		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
+		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 	unselectElement(event) {
-		if (event.target.id === 'page' || event.target.id === 'workspace') {
+		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
+			//this.selectedBorder(this.activeElement, false);
+			if(this.activeElement != undefined) {
+				this.activeElement.style["border-style"] = 'none';
+			}
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
+			
 		}
 	}
+
+	//bordaSelecionado(activeElement, Boolean) {
+	selectedBorder(lastActiveElement, activeElement) {
+		if (lastActiveElement == activeElement){
+			console.log("nada muda");
+		}
+		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
+			this.lastActiveElement.style["border-style"] = 'none';
+			console.log("mudou de volta");
+		}
+		this.activeElement.style["border-style"] = 'dotted';
+		
+	}
+
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
 		console.log(e.clientX);
@@ -60,7 +99,7 @@ export class WorkspaceComponent implements OnInit {
 
 	removeElement() {
 		if(this.activeElement === undefined) return;
-		
+
 		this.presentation.slides[this.activeSlide].elements.splice(
 			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
 			1);
