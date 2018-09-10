@@ -26,8 +26,6 @@ export class WorkspaceComponent implements OnInit {
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
-		console.log(event);
-
 		if (event.keyCode === 46) {
 			this.removeElement();
 		}
