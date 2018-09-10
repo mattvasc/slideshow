@@ -6,7 +6,8 @@
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
 
 		<div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
-		[ngStyle]="element.style" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" [innerHtml]="element.data" (click)="selectElement($event)"></div>
+		[ngStyle]="element.style" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
+		[innerHtml]="element.data" (click)="selectElement($event)"></div>
 
 	</div>
 </div>
