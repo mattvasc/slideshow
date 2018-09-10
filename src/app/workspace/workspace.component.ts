@@ -55,13 +55,8 @@ export class WorkspaceComponent implements OnInit {
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
-			// this.selectedBorder(this.activeElement, false);
-			if (this.activeElement !== undefined) {
-				this.activeElement.style['border-style'] = 'none';
-			}
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
-
 		}
 	}
 
