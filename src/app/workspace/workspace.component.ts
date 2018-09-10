@@ -14,9 +14,10 @@ export class WorkspaceComponent implements OnInit {
 
 	@Input() activeSlide;
 
-	@Input() activeElement: Element;
+	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
+	lastActiveElement : Element = undefined;
 	constructor() { }
 
 	ngOnInit() {
@@ -25,15 +26,36 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
+		this.lastActiveElement = this.activeElement;
 		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		this.bordaSelecionado(this.lastActiveElement, this.activeElement);
 		this.activeElementChange.emit(this.activeElement);
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
+			//this.bordaSelecionado(this.activeElement, false);
+			if(this.activeElement != undefined) {
+				this.activeElement.style["border-style"] = 'none';
+			}
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
+			
 		}
 	}
+
+	//bordaSelecionado(activeElement, Boolean) {
+	bordaSelecionado(lastActiveElement, activeElement) {
+		if (lastActiveElement == activeElement){
+			console.log("nada muda");
+		}
+		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
+			this.lastActiveElement.style["border-style"] = 'none';
+			console.log("mudou de volta");
+		}
+		this.activeElement.style["border-style"] = 'dotted';
+		
+	}
+
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
 		console.log(e.clientX);
