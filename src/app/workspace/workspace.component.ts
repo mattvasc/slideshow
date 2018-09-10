@@ -83,7 +83,6 @@ export class WorkspaceComponent implements OnInit {
 			1);
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-		console.log(this.activeElement);
 	}
 
 	// funções notáveis
