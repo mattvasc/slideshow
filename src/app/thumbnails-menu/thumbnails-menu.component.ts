@@ -25,7 +25,7 @@ export class ThumbnailsMenuComponent implements OnInit {
 	}
 
 	fixPosition(i: number) {
-		return 52*i;
+		return 53*i;
 	}
 
 	changeCurrentSlide(index: number) {
