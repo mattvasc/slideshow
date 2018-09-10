@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
-import { Element } from '../element';
+import { Element, TypeOfElement } from '../element';
 
 @Component({
 	selector: 'app-toolbar',
@@ -18,11 +18,30 @@ export class ToolbarComponent implements OnInit {
 	@Input() activeElement: Element;
 	@Output() public activeElementChange = new EventEmitter();
 
-	public esconderColorPicker = true;
+	public hideColorPickerMenu = true;
+	public hideAddNewElementMenu = true;
+	public typeOfElement = TypeOfElement;
 
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	addNewElement(type: TypeOfElement) {
+		switch (type) {
+			case TypeOfElement.textfield:
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.textfield, `<p>Lorem Ipsum</p>`));
+				break;
+			case TypeOfElement.titlefield:
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<h2>Lorem Ipsum</h2>`));
+				break;
+			case TypeOfElement.image:
+				this.presentation.slides[this.activeSlide].addElement(
+					new Element(TypeOfElement.image, `<img src="https://picsum.photos/150/150?image=${Math.floor(Math.random() * 1084)}">`));
+				break;
+			case TypeOfElement.bulletlist:
+				break;
+		}
 	}
 
 	addNewSlide() {
@@ -58,5 +77,27 @@ export class ToolbarComponent implements OnInit {
 	}
 	deleteElement() {
 		console.log('lerigo');
+	}
+	debug() {
+		console.log(this.presentation.slides[
+			this.activeSlide].elements[this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement)].type);
+	}
+	changeText() {
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		const regex = new RegExp( `<${tag}.*>(.*)<\/${tag}>`, 'imu' );
+		console.log(this.activeElement.data.toString());
+		console.log(regex.exec(this.activeElement.data.toString()));
+
+		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
+		if ( returno != null ) {
+			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
+		}
+	}
+	changeImage() {
+		const regex = /src=\"(.*)\"/;
+		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
+		if ( returno != null ) {
+			this.activeElement.data = `<img src="${returno}"></img>`;
+		}
 	}
 }

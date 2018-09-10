@@ -3,10 +3,20 @@
   <div class="toolbar-body">
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
-    <button (click)="esconderColorPicker = !esconderColorPicker">{{esconderColorPicker ? 'Change Slide background Color'
-      : 'Hide ColorPicker'}}
+    <button (click)="hideAddNewElementMenu = !hideAddNewElementMenu; hideColorPickerMenu = true; activeElement=undefined">
+      {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
     </button>
-    <div #colorpicker [hidden]="esconderColorPicker">
+    <button (click)="hideColorPickerMenu = !hideColorPickerMenu; hideAddNewElementMenu = true; activeElement=undefined">
+      {{hideColorPickerMenu ? 'Change Slide background Color' : 'Hide ColorPicker'}}
+    </button>
+    <div [hidden]="hideAddNewElementMenu">
+      <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
+      <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
+      <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
+    </div>
+
+
+    <div #colorpicker [hidden]="hideColorPickerMenu">
       <label> Red
         <input type="range" id="start" name="red" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.red" />
       </label>
@@ -20,9 +30,15 @@
       </label>
     </div>
     <div *ngIf="activeElement">Opções do elemento ativo:
-      <br>
-      <button (click)="removeElement()">Remove Him to the ashes of Hell</button>
+      <div>
+        <div *ngIf="activeElement.type == typeOfElement.image">
+          <button (click)="changeImage()">Change Image</button>
+        </div>
+        <div *ngIf="activeElement.type == typeOfElement.textfield ||
+        activeElement.type == typeOfElement.titlefield">
+          <button (click)="changeText()">Change Text</button>
+        </div>
+        <button (click)="removeElement()">Remove Him to the ashes of Hell</button>
+      </div>
     </div>
-
-
   </div>
