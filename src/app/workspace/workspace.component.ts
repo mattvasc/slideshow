@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
+import { HostListener } from '@angular/core';
 
 @Component({
 	selector: 'app-workspace',
@@ -17,6 +18,15 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element;
 	@Output() public activeElementChange = new EventEmitter();
 
+	@HostListener('window:keyup', ['$event'])
+	keyEvent(event: KeyboardEvent) {
+		console.log(event);
+
+		if (event.keyCode === 46) {
+			this.removeElement();
+		}
+	}
+
 	constructor() { }
 
 	ngOnInit() {
@@ -29,7 +39,7 @@ export class WorkspaceComponent implements OnInit {
 		this.activeElementChange.emit(this.activeElement);
 	}
 	unselectElement(event) {
-		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
+		if (event.target.id === 'page' || event.target.id === 'workspace') {
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
 		}
@@ -47,6 +57,18 @@ export class WorkspaceComponent implements OnInit {
 		console.log(e.clientY);
 		console.log(e.screenY);
 	}
+
+	removeElement() {
+		if(this.activeElement === undefined) return;
+		
+		this.presentation.slides[this.activeSlide].elements.splice(
+			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
+			1);
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
+		console.log(this.activeElement);
+	}
+
 	// funções notáveis
 	// ao clicar fora da pagina do slide, se há slide em modo de edição, renderizar e sair da edição
 	// ao clicar em algum elemento, chamar função

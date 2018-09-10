@@ -5,7 +5,7 @@
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
 
-        <div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [ngStyle]="element.style" [innerHtml]="element.data" (click)="selectElement($event)"></div>
+        <div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [ngStyle]="element.style" [innerHtml]="element.data" (click)="selectElement($event)" (keydown.enter)="removeElement()"></div>
 
 	</div>
 </div>
