@@ -23,6 +23,11 @@ export class ThumbnailsMenuComponent implements OnInit {
 	renderList() {
 
 	}
+
+	fixPosition(i: number) {
+		return 53*i;
+	}
+
 	changeCurrentSlide(index: number) {
 		this.activeSlide = index;
 		this.activeSlideChange.emit(index);
