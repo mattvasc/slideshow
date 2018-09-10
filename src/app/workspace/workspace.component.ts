@@ -17,9 +17,6 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
-
-	lastActiveElement : Element = undefined;
-
 	@Input() hideColorPickerMenu: boolean;
 	@Output() hideColorPickerMenuChange = new EventEmitter();
 
@@ -35,12 +32,9 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
-		//poderia procurar ultimo event.target também
-		this.lastActiveElement = this.activeElement;
-		
-		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		// poderia procurar ultimo event.target também
 
-		this.selectedBorder(this.lastActiveElement, this.activeElement);
+		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 
 		this.hideAddNewElementMenu = true;
 		this.hideColorPickerMenu = true;
@@ -50,29 +44,17 @@ export class WorkspaceComponent implements OnInit {
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 	unselectElement(event) {
-		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
-			//this.selectedBorder(this.activeElement, false);
-			if(this.activeElement != undefined) {
-				this.activeElement.style["border-style"] = 'none';
+		if (event.target.id === 'page' || event.target.id === 'workspace') {
+			// this.selectedBorder(this.activeElement, false);
+			if (this.activeElement !== undefined) {
+				this.activeElement.style['border-style'] = 'none';
 			}
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
-			
+
 		}
 	}
 
-	//bordaSelecionado(activeElement, Boolean) {
-	selectedBorder(lastActiveElement, activeElement) {
-		if (lastActiveElement == activeElement){
-			console.log("nada muda");
-		}
-		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
-			this.lastActiveElement.style["border-style"] = 'none';
-			console.log("mudou de volta");
-		}
-		this.activeElement.style["border-style"] = 'dotted';
-		
-	}
 
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
