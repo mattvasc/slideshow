@@ -3,10 +3,10 @@
   <div class="toolbar-body">
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
-    <button (click)="hideAddNewElementMenu = !hideAddNewElementMenu; hideColorPickerMenu = true; activeElement=undefined">
+    <button (click)="toogleMenu('element')">
       {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
     </button>
-    <button (click)="hideColorPickerMenu = !hideColorPickerMenu; hideAddNewElementMenu = true; activeElement=undefined">
+    <button (click)="toogleMenu('bgcolor')">
       {{hideColorPickerMenu ? 'Change Slide background Color' : 'Hide ColorPicker'}}
     </button>
     <div [hidden]="hideAddNewElementMenu">

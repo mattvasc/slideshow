@@ -17,7 +17,16 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
+
 	lastActiveElement : Element = undefined;
+
+	@Input() hideColorPickerMenu: boolean;
+	@Output() hideColorPickerMenuChange = new EventEmitter();
+
+	@Input() hideAddNewElementMenu: boolean;
+	@Output() hideAddNewElementMenuChange = new EventEmitter();
+
+
 	constructor() { }
 
 	ngOnInit() {
@@ -30,8 +39,15 @@ export class WorkspaceComponent implements OnInit {
 		this.lastActiveElement = this.activeElement;
 		
 		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+
 		this.selectedBorder(this.lastActiveElement, this.activeElement);
+
+		this.hideAddNewElementMenu = true;
+		this.hideColorPickerMenu = true;
+
 		this.activeElementChange.emit(this.activeElement);
+		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
+		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace' ) {

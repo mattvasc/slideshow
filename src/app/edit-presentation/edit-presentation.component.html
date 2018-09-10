@@ -1,16 +1,20 @@
 <!-- <button (click)="debug()">debug</button> -->
 <app-thumbnails-menu 
 [presentation]='presentation'
- [(activeSlide)]='activeSlide' 
+ [(activeSlide)]='activeSlide'
  (click)="unselectElement()">
 </app-thumbnails-menu>
-<app-toolbar 
-[presentation]='presentation' 
+<app-toolbar
+[presentation]='presentation'
 [(activeSlide)]='activeSlide'
+[(hideColorPickerMenu)]="hideColorPickerMenu"
+[(hideAddNewElementMenu)]="hideAddNewElementMenu"
 [(activeElement)]='activeElement'>
 </app-toolbar>
 <app-workspace 
-[presentation]='presentation' 
+[presentation]='presentation'
 [activeSlide]='activeSlide'
+[(hideColorPickerMenu)]="hideColorPickerMenu"
+[(hideAddNewElementMenu)]="hideAddNewElementMenu"
 [(activeElement)]='activeElement'>
 </app-workspace>

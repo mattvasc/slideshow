@@ -18,8 +18,12 @@ export class ToolbarComponent implements OnInit {
 	@Input() activeElement: Element;
 	@Output() public activeElementChange = new EventEmitter();
 
-	public hideColorPickerMenu = true;
-	public hideAddNewElementMenu = true;
+	@Input() hideColorPickerMenu: boolean;
+	@Output() hideColorPickerMenuChange = new EventEmitter();
+
+	@Input() hideAddNewElementMenu: boolean;
+	@Output() hideAddNewElementMenuChange = new EventEmitter();
+
 	public typeOfElement = TypeOfElement;
 
 	constructor() { }
@@ -84,21 +88,38 @@ export class ToolbarComponent implements OnInit {
 	}
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
-		const regex = new RegExp( `<${tag}.*>(.*)<\/${tag}>`, 'imu' );
+		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
 		console.log(this.activeElement.data.toString());
 		console.log(regex.exec(this.activeElement.data.toString()));
 
 		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
-		if ( returno != null ) {
+		if (returno != null) {
 			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
 		}
 	}
 	changeImage() {
 		const regex = /src=\"(.*)\"/;
 		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
-		if ( returno != null ) {
+		if (returno != null) {
 			this.activeElement.data = `<img src="${returno}"></img>`;
 		}
+	}
+	toogleMenu(witch_one) {
+		switch (witch_one) {
+			case 'element':
+				this.hideAddNewElementMenu = !this.hideAddNewElementMenu;
+				this.hideColorPickerMenu = true;
+				break;
+			case 'bgcolor':
+				this.hideColorPickerMenu = !this.hideColorPickerMenu;
+				this.hideAddNewElementMenu = true;
+				break;
+
+		}
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
+		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
+		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 
 }
