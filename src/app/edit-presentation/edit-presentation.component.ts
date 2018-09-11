@@ -24,8 +24,23 @@ export class EditPresentationComponent implements OnInit {
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
-		if (event.which === 122) {
-			this.isFullscreen = !this.isFullscreen;
+		switch (event.which) {
+			case 122: // F11
+				this.isFullscreen = !this.isFullscreen;
+				break;
+			// case 40: // Down Arrow
+			case 37: // Left Arrow
+				if (this.isFullscreen && this.activeSlide > 0) {
+					this.activeSlide--;
+				}
+				break;
+			// case 38: // Up Arrow
+			case 39: //Right Arrow
+				if (this.isFullscreen && this.activeSlide < this.presentation.slides.length - 1) {
+					this.activeSlide++;
+				}
+				break;
+
 		}
 	}
 
