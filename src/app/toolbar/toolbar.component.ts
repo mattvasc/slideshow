@@ -13,22 +13,29 @@ export class ToolbarComponent implements OnInit {
 	@Input() presentation: Presentation;
 
 	@Input() activeSlide: number;
-	@Output() public activeSlideChange = new EventEmitter();
+	@Output() public activeSlideChange: EventEmitter<number> = new EventEmitter();
 
 	@Input() activeElement: Element;
-	@Output() public activeElementChange = new EventEmitter();
+	@Output() public activeElementChange: EventEmitter<Element> = new EventEmitter();
 
 	@Input() hideColorPickerMenu: boolean;
-	@Output() hideColorPickerMenuChange = new EventEmitter();
+	@Output() hideColorPickerMenuChange: EventEmitter<boolean> = new EventEmitter();
 
 	@Input() hideAddNewElementMenu: boolean;
-	@Output() hideAddNewElementMenuChange = new EventEmitter();
+	@Output() hideAddNewElementMenuChange: EventEmitter<boolean> = new EventEmitter();
+
+	@Input() isFullscreen: boolean;
+	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
 	public typeOfElement = TypeOfElement;
 
+	private elem;
+
 	constructor() { }
 
+
 	ngOnInit() {
+		this.elem = document.documentElement;
 	}
 
 	addNewElement(type: TypeOfElement) {
@@ -121,5 +128,22 @@ export class ToolbarComponent implements OnInit {
 		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
+
+	/* Go to fullscreen */
+	goFull() {
+		this.isFullscreen = true;
+		this.isFullscreenChange.emit(this.isFullscreen);
+
+		if (this.elem.requestFullscreen) {
+			this.elem.requestFullscreen();
+		} else if (this.elem.mozRequestFullScreen) { /* Firefox */
+			this.elem.mozRequestFullScreen();
+		} else if (this.elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+			this.elem.webkitRequestFullscreen();
+		} else if (this.elem.msRequestFullscreen) { /* IE/Edge */
+			this.elem.msRequestFullscreen();
+		}
+}
+
 
 }

@@ -2,19 +2,23 @@
 <app-thumbnails-menu 
 [presentation]='presentation'
  [(activeSlide)]='activeSlide'
- (click)="unselectElement()">
-</app-thumbnails-menu>
+ [hidden]="isFullscreen"
+ (click)="unselectElement()"
+ > </app-thumbnails-menu>
 <app-toolbar
 [presentation]='presentation'
 [(activeSlide)]='activeSlide'
 [(hideColorPickerMenu)]="hideColorPickerMenu"
 [(hideAddNewElementMenu)]="hideAddNewElementMenu"
-[(activeElement)]='activeElement'>
-</app-toolbar>
+[(isFullscreen)]="isFullscreen"
+[hidden]="isFullscreen"
+[(activeElement)]='activeElement'
+></app-toolbar>
 <app-workspace 
 [presentation]='presentation'
 [activeSlide]='activeSlide'
 [(hideColorPickerMenu)]="hideColorPickerMenu"
 [(hideAddNewElementMenu)]="hideAddNewElementMenu"
-[(activeElement)]='activeElement'>
-</app-workspace>
+[(activeElement)]='activeElement'
+[(isFullscreen)]="isFullscreen"
+></app-workspace>

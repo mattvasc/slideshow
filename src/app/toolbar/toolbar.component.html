@@ -1,6 +1,7 @@
 <div class="toolbar-tools" (key.enter)="deleteElement()">
   <!-- <div class="toolbar-tabs">tabs</div> -->
   <div class="toolbar-body">
+    <button (click)="goFull()">Present!</button>
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
     <button (click)="toogleMenu('element')">
@@ -17,10 +18,7 @@
 
     <!--
         <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
-
         <input id="slide-background-color" type="color" value="#ff0000" [(ngModel)]="presentation.slides[activeSlide].style['background-color']"/>
-    
-
     -->
     
     <div #colorpicker [hidden]="hideColorPickerMenu">
@@ -39,7 +37,7 @@
       </label>
         
     </div>
-    <div *ngIf="activeElement">Opções do elemento ativo:
+    <div *ngIf="activeElement">Active element Options:
       <div>
         <div *ngIf="activeElement.type == typeOfElement.image">
           <button (click)="changeImage()">Change Image</button>
@@ -47,11 +45,11 @@
         <div *ngIf="activeElement.type == typeOfElement.textfield ||
         activeElement.type == typeOfElement.titlefield">
           <button (click)="changeText()">Change Text</button>
-          <label for="element-background-color">Escolha a cor de fundo do elemento :</label> 
+          <label for="element-background-color">Pick a background color :</label> 
 
           <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
         </div>
-        <button (click)="removeElement()">Remove Him to the ashes of Hell</button>
+        <button (click)="removeElement()">Remove Element</button>
       </div>
     </div>
   </div>

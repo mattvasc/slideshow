@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
-import { HostListener } from '@angular/core';
 
 @Component({
 	selector: 'app-workspace',
@@ -23,6 +22,9 @@ export class WorkspaceComponent implements OnInit {
 
 	@Input() hideAddNewElementMenu: boolean;
 	@Output() hideAddNewElementMenuChange = new EventEmitter();
+
+	@Input() isFullscreen: boolean;
+	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
