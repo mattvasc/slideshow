@@ -128,6 +128,19 @@ export class ToolbarComponent implements OnInit {
 		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
+	hexToRGB(hex) {
+
+		if(hex.substring(0,1) == '#') {
+			hex = hex.substring(1);
+		}
+
+		 var rgbColor = {};
+
+		 this.presentation.slides[this.activeSlide].bgcolor['red'] = parseInt(hex.substring(0,2),16);
+		 this.presentation.slides[this.activeSlide].bgcolor['green'] = parseInt(hex.substring(2,4),16);
+		 this.presentation.slides[this.activeSlide].bgcolor['blue'] = parseInt(hex.substring(4),16);
+		
+	}
 
 	/* Go to fullscreen */
 	goFull() {

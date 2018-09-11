@@ -7,37 +7,16 @@
     <button (click)="toogleMenu('element')">
       {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
     </button>
-    <button (click)="toogleMenu('bgcolor')">
-      {{hideColorPickerMenu ? 'Change Slide background Color' : 'Hide ColorPicker'}}
-    </button>
+    <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
+    <input id="slide-background-color" type="color" value="#ff0000" (change)="hexToRGB($event.target.value)"/>
+
     <div [hidden]="hideAddNewElementMenu">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
     </div>
 
-    <!--
-        <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
-        <input id="slide-background-color" type="color" value="#ff0000" [(ngModel)]="presentation.slides[activeSlide].style['background-color']"/>
-    -->
-    
-    <div #colorpicker [hidden]="hideColorPickerMenu">
-      
-      <label> Red
-        <input type="range" id="start" name="red" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.red" />
-      </label>
-      <label> Green
-        <input type="range" id="start" name="green" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.green"
-        />
-      </label>
-      
-      <label> Blue
-        <input type="range" id="start" name="blue" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.blue"
-        />
-      </label>
-        
-    </div>
-    <div *ngIf="activeElement">Active element Options:
+    <div *ngIf="activeElement">Options for the current element:
       <div>
         <div *ngIf="activeElement.type == typeOfElement.image">
           <button (click)="changeImage()">Change Image</button>
