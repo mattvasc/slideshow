@@ -134,12 +134,25 @@ export class ToolbarComponent implements OnInit {
 			hex = hex.substring(1);
 		}
 
-		 var rgbColor = {};
+		var red = parseInt(hex.substring(0,2),16);
+		var green = parseInt(hex.substring(2,4),16);
+		var blue = parseInt(hex.substring(4),16);
+		var rgb: number[] = [red,green,blue];
+		return rgb;
 
-		 this.presentation.slides[this.activeSlide].bgcolor['red'] = parseInt(hex.substring(0,2),16);
-		 this.presentation.slides[this.activeSlide].bgcolor['green'] = parseInt(hex.substring(2,4),16);
-		 this.presentation.slides[this.activeSlide].bgcolor['blue'] = parseInt(hex.substring(4),16);
 		
+	}
+
+	rgbToHex(rgb){
+		var hex = "#" + ((1 << 24) + (rgb['red'] << 16) + (rgb['green'] << 8) + rgb['blue']).toString(16).slice(1);
+		return hex;
+	}
+
+	setRGB(hex){
+		var colors = this.hexToRGB(hex);
+		this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
+		this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
+		this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
 	}
 
 	/* Go to fullscreen */

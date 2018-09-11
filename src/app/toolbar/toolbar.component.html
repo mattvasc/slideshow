@@ -8,8 +8,8 @@
       {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
     </button>
     <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
-    <input id="slide-background-color" type="color" value="#c4c4c4" (change)="hexToRGB($event.target.value)"/>
-    <button id="slide-background-color-default" (click)="hexToRGB('#c4c4c4')" style="background-color: #c4c4c4">Voltar cor padrão</button>
+    <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)"/>
+    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Voltar cor padrão</button>
 
     <div [hidden]="hideAddNewElementMenu">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
@@ -27,7 +27,7 @@
           <button (click)="changeText()">Change Text</button>
           <label for="element-background-color">Pick up element background color :</label> 
           <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
-          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = '#ff0000'">Remover cor de fundo</button>
+          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remover cor de fundo</button>
 
           
         </div>
