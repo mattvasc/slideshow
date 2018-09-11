@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@a
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
+import { ToolbarActive } from '../toolbar-active.enum';
 
 @Component({
 	selector: 'app-workspace',
@@ -17,14 +18,11 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
-	@Input() hideColorPickerMenu: boolean;
-	@Output() hideColorPickerMenuChange = new EventEmitter();
-
-	@Input() hideAddNewElementMenu: boolean;
-	@Output() hideAddNewElementMenuChange = new EventEmitter();
-
 	@Input() isFullscreen: boolean;
 	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
+
+	@Input() activeToolbarElement: ToolbarActive;
+	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
@@ -48,17 +46,17 @@ export class WorkspaceComponent implements OnInit {
 		if (event.target.parentElement.id !== 'page') {
 			this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 		}
-		this.hideAddNewElementMenu = true;
-		this.hideColorPickerMenu = true;
+		this.activeToolbarElement = ToolbarActive.editElement;
 
 		this.activeElementChange.emit(this.activeElement);
-		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
-		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
+		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
+			this.activeToolbarElement = ToolbarActive.none;
+			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 		}
 	}
 

@@ -3,6 +3,7 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { ToolbarActive } from '../toolbar-active.enum';
 
 @Component({
 	selector: 'app-edit-presentation',
@@ -14,18 +15,33 @@ export class EditPresentationComponent implements OnInit {
 	public presentation: Presentation;
 	public activeSlide = 0;
 	public activeElement: Element = undefined;
-	public hideColorPickerMenu = true;
-	public hideAddNewElementMenu = true;
 	public test: any;
 	private elem;
 	public isFullscreen;
+	// The following enum dictates wich session of the template render
+	public activeToolbarElement: ToolbarActive = ToolbarActive.none;
 
 	@ViewChild(ToolbarComponent) toolbar: ToolbarComponent;
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
-		if (event.which === 122) {
-			this.isFullscreen = !this.isFullscreen;
+		switch (event.which) {
+			case 122: // F11
+				this.isFullscreen = !this.isFullscreen;
+				break;
+			// case 40: // Down Arrow
+			case 37: // Left Arrow
+				if (this.isFullscreen && this.activeSlide > 0) {
+					this.activeSlide--;
+				}
+				break;
+			// case 38: // Up Arrow
+			case 39: //Right Arrow
+				if (this.isFullscreen && this.activeSlide < this.presentation.slides.length - 1) {
+					this.activeSlide++;
+				}
+				break;
+
 		}
 	}
 

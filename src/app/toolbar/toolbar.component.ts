@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
-
+import { ToolbarActive } from '../toolbar-active.enum';
 @Component({
 	selector: 'app-toolbar',
 	templateUrl: './toolbar.component.html',
@@ -27,9 +27,17 @@ export class ToolbarComponent implements OnInit {
 	@Input() isFullscreen: boolean;
 	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
+	@Input() activeToolbarElement: ToolbarActive;
+	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
+
+	// Workaround to use enum on template:
+	public toolbarActive = ToolbarActive;
 	public typeOfElement = TypeOfElement;
+	// End of the workaround
 
 	private elem;
+
+
 
 	constructor() { }
 
@@ -114,8 +122,13 @@ export class ToolbarComponent implements OnInit {
 	toogleMenu(witch_one) {
 		switch (witch_one) {
 			case 'element':
-				this.hideAddNewElementMenu = !this.hideAddNewElementMenu;
-				this.hideColorPickerMenu = true;
+				if (this.activeToolbarElement === ToolbarActive.addElement) {
+					this.activeToolbarElement = ToolbarActive.none;
+				} else {
+					this.activeToolbarElement = ToolbarActive.addElement;
+				}
+
+				this.activeToolbarElementChange.emit(this.activeToolbarElement);
 				break;
 			case 'bgcolor':
 				this.hideColorPickerMenu = !this.hideColorPickerMenu;
@@ -130,7 +143,7 @@ export class ToolbarComponent implements OnInit {
 	}
 	hexToRGB(hex) {
 
-		if(hex.substring(0,1) == '#') {
+		if (hex.substring(0, 1) === '#') {
 			hex = hex.substring(1);
 		}
 
@@ -169,7 +182,7 @@ export class ToolbarComponent implements OnInit {
 		} else if (this.elem.msRequestFullscreen) { /* IE/Edge */
 			this.elem.msRequestFullscreen();
 		}
-}
+	}
 
 
 }

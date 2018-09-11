@@ -2,22 +2,23 @@
   <!-- <div class="toolbar-tabs">tabs</div> -->
   <div class="toolbar-body">
     <button (click)="goFull()">Present!</button>
+    <button>Choose Transition Effect</button>
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
     <button (click)="toogleMenu('element')">
-      {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
+      {{activeToolbarElement === toolbarActive.addElement ? 'Hide Add Element Menu' :'Add a new Element'  }}
     </button>
     <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
     <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)"/>
-    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Voltar cor padrão</button>
+    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button>
 
-    <div [hidden]="hideAddNewElementMenu">
+    <div [hidden]="activeToolbarElement !== toolbarActive.addElement">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
     </div>
 
-    <div *ngIf="activeElement">Options for the current element:
+    <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
       <div>
         <div *ngIf="activeElement.type == typeOfElement.image">
           <button (click)="changeImage()">Change Image</button>
@@ -27,7 +28,7 @@
           <button (click)="changeText()">Change Text</button>
           <label for="element-background-color">Pick up element background color :</label> 
           <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
-          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remover cor de fundo</button>
+          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remove element background color</button>
 
           
         </div>
