@@ -60,23 +60,6 @@ export class WorkspaceComponent implements OnInit {
 		}
 	}
 
-<<<<<<< HEAD
-	//bordaSelecionado(activeElement, Boolean) {
-	selectedBorder(lastActiveElement, activeElement) {
-		if (lastActiveElement == activeElement){
-			console.log("nada muda");
-			this.activeElement.style["border-style"] = 'dotted';
-		}
-		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
-			this.lastActiveElement.style["border-style"] = 'none';
-			console.log("mudou de volta");
-			this.activeElement.style["border-style"] = 'dotted';
-		}
-		
-		
-	}
-=======
->>>>>>> 794e264f50099984196185d4cb0d262d4a7747f6
 
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
