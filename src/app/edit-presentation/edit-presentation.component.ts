@@ -3,6 +3,7 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { ToolbarActive } from '../toolbar-active.enum';
 
 @Component({
 	selector: 'app-edit-presentation',
@@ -14,11 +15,11 @@ export class EditPresentationComponent implements OnInit {
 	public presentation: Presentation;
 	public activeSlide = 0;
 	public activeElement: Element = undefined;
-	public hideColorPickerMenu = true;
-	public hideAddNewElementMenu = true;
 	public test: any;
 	private elem;
 	public isFullscreen;
+	// The following enum dictates wich session of the template render
+	public activeToolbarElement: ToolbarActive = ToolbarActive.none;
 
 	@ViewChild(ToolbarComponent) toolbar: ToolbarComponent;
 

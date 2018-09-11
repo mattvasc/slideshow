@@ -1,5 +1,6 @@
 export enum ToolbarActive {
 	none,
 	transition,
-	element
+	addElement,
+	editElement
 }

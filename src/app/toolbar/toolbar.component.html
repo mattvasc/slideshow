@@ -6,18 +6,18 @@
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
     <button (click)="toogleMenu('element')">
-      {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
+      {{activeToolbarElement === toolbarActive.addElement ? 'Hide Add Element Menu' :'Add a new Element'  }}
     </button>
     <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
     <input id="slide-background-color" type="color" value="#ff0000" (change)="hexToRGB($event.target.value)"/>
 
-    <div [hidden]="hideAddNewElementMenu">
+    <div [hidden]="activeToolbarElement !== toolbarActive.addElement">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
     </div>
 
-    <div *ngIf="activeElement">Options for the current element:
+    <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
       <div>
         <div *ngIf="activeElement.type == typeOfElement.image">
           <button (click)="changeImage()">Change Image</button>
