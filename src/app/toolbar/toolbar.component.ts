@@ -18,12 +18,6 @@ export class ToolbarComponent implements OnInit {
 	@Input() activeElement: Element;
 	@Output() public activeElementChange: EventEmitter<Element> = new EventEmitter();
 
-	@Input() hideColorPickerMenu: boolean;
-	@Output() hideColorPickerMenuChange: EventEmitter<boolean> = new EventEmitter();
-
-	@Input() hideAddNewElementMenu: boolean;
-	@Output() hideAddNewElementMenuChange: EventEmitter<boolean> = new EventEmitter();
-
 	@Input() isFullscreen: boolean;
 	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -33,6 +27,7 @@ export class ToolbarComponent implements OnInit {
 	// Workaround to use enum on template:
 	public toolbarActive = ToolbarActive;
 	public typeOfElement = TypeOfElement;
+	public transition = Transition;
 	// End of the workaround
 
 	private elem;
@@ -44,6 +39,7 @@ export class ToolbarComponent implements OnInit {
 
 	ngOnInit() {
 		this.elem = document.documentElement;
+		console.log(this.transition);
 	}
 
 	addNewElement(type: TypeOfElement) {
@@ -122,24 +118,21 @@ export class ToolbarComponent implements OnInit {
 	toogleMenu(witch_one) {
 		switch (witch_one) {
 			case 'element':
-				if (this.activeToolbarElement === ToolbarActive.addElement) {
-					this.activeToolbarElement = ToolbarActive.none;
-				} else {
-					this.activeToolbarElement = ToolbarActive.addElement;
-				}
-
-				this.activeToolbarElementChange.emit(this.activeToolbarElement);
+				this.activeToolbarElement = (this.activeToolbarElement === ToolbarActive.addElement)
+					? ToolbarActive.none
+					: ToolbarActive.addElement;
 				break;
-			case 'bgcolor':
-				this.hideColorPickerMenu = !this.hideColorPickerMenu;
-				this.hideAddNewElementMenu = true;
+			case 'transition':
+
+				this.activeToolbarElement = (this.activeToolbarElement === ToolbarActive.transition)
+					? ToolbarActive.none
+					: ToolbarActive.transition;
 				break;
 
 		}
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
-		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
+		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 	}
 	hexToRGB(hex) {
 
