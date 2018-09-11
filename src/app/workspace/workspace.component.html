@@ -1,5 +1,8 @@
 
-<div id="workspace" (click)="unselectElement($event)" >
+<div id="workspace" 
+(click)="unselectElement($event)" 
+[class.onFull] = "isFullscreen"
+[class.onEdit] = "!isFullscreen" >
 	<div id ="page" 
 	[style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
