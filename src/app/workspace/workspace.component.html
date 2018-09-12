@@ -1,11 +1,9 @@
 
 <div id="workspace" (click)="unselectElement($event)" >
-	<div id ="page" 
+	<div id ="page" (mouseup)="changePosition($event)" (mouseup)="getPosition($event.target)"
 	[style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
-
-        <div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [ngStyle]="element.style" [innerHtml]="element.data" (click)="selectElement($event)" (keydown.enter)="removeElement()"></div>
-
+        <div draggable="true" *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}" [ngStyle]="element.style" [innerHtml]="element.data" (click)="selectElement($event)" ></div>
 	</div>
 </div>

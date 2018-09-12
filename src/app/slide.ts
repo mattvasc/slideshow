@@ -15,6 +15,9 @@ export class Slide {
 	) { }
 
 	public addElement(x: Element) {
+		x.style['position']='absolute';
+		x.style['top']='35%';
+		x.style['left']='40%';
 		this.elements.push(x);
 	}
 

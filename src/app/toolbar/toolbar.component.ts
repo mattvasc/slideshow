@@ -122,4 +122,10 @@ export class ToolbarComponent implements OnInit {
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
 
+	printPosition() {
+		console.log(this.activeElement.style['left']);
+		this.activeElement.style['left'] = `${this.activeElement.style['left']}%`;
+		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
+		console.log(this.activeElement.style['left']);
+	}
 }

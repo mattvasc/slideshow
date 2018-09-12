@@ -22,9 +22,9 @@
     
 
     -->
-    
+
     <div #colorpicker [hidden]="hideColorPickerMenu">
-      
+
       <label> Red
         <input type="range" id="start" name="red" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.red" />
       </label>
@@ -32,12 +32,12 @@
         <input type="range" id="start" name="green" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.green"
         />
       </label>
-      
+
       <label> Blue
         <input type="range" id="start" name="blue" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.blue"
         />
       </label>
-        
+
     </div>
     <div *ngIf="activeElement">Opções do elemento ativo:
       <div>
@@ -47,11 +47,19 @@
         <div *ngIf="activeElement.type == typeOfElement.textfield ||
         activeElement.type == typeOfElement.titlefield">
           <button (click)="changeText()">Change Text</button>
-          <label for="element-background-color">Escolha a cor de fundo do elemento :</label> 
+          <label for="element-background-color">Escolha a cor de fundo do elemento :</label>
 
-          <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
+          <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']" />
         </div>
         <button (click)="removeElement()">Remove Him to the ashes of Hell</button>
+      </div>
+      <div>
+        <label> Position X:
+          <input type="text" name="X" min="0" max="80" [(ngModel)]="activeElement.style['left']" />
+        </label>
+        <label> Position Y:
+          <input type="text" name="Y" min="0" max="70" [(ngModel)]="activeElement.style['top']" />
+        </label>
       </div>
     </div>
   </div>

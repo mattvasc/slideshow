@@ -11,6 +11,10 @@ import { HostListener } from '@angular/core';
 })
 export class WorkspaceComponent implements OnInit {
 
+	event: MouseEvent;
+    clientX = 0;
+    clientY = 0;
+	
 	@Input() presentation;
 
 	@Input() activeSlide;
@@ -105,8 +109,27 @@ export class WorkspaceComponent implements OnInit {
 			1);
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-		console.log(this.activeElement);
 	}
+
+	getPosition(e) {
+		let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
+		let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
+		positionX = positionX/e.clientWidth;
+		positionY = positionY/e.clientHeight;
+		positionX = Math.ceil(positionX * 100);
+		positionY = Math.ceil(positionY * 100);
+		this.moveElement(positionX, positionY);
+	}
+
+	moveElement(X: number, Y: number) {
+		this.activeElement.style['left'] = `${X}%`;
+		this.activeElement.style['top'] = `${Y}%`;
+	}
+
+	changePosition(event: MouseEvent): void {
+        this.clientX = event.clientX;
+		this.clientY = event.clientY;
+    }
 
 	// funções notáveis
 	// ao clicar fora da pagina do slide, se há slide em modo de edição, renderizar e sair da edição
