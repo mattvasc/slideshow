@@ -3,7 +3,7 @@
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
 
-		<div draggable="true"*ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
+		<div draggable="true" *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
 		[ngStyle]="element.style" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
 		[innerHtml]="element.data" (click)="selectElement($event)">
 		</div>

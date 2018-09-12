@@ -14,6 +14,7 @@ export class WorkspaceComponent implements OnInit {
 	event: MouseEvent;
 	clientX = 0;
 	clientY = 0;
+	dragging = false;
 
 	@Input() presentation;
 
@@ -90,13 +91,14 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	getPosition(e) {
-		let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
-		let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
-		positionX = positionX / e.clientWidth;
-		positionY = positionY / e.clientHeight;
-		positionX = Math.ceil(positionX * 100);
-		positionY = Math.ceil(positionY * 100);
-		this.moveElement(positionX, positionY);
+			let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
+			let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
+			positionX = positionX / e.clientWidth;
+			positionY = positionY / e.clientHeight;
+			positionX = Math.ceil(positionX * 100);
+			positionY = Math.ceil(positionY * 100);
+			if(positionX <= 100 && positionY <= 100)
+				this.moveElement(positionX, positionY);
 	}
 
 	moveElement(X: number, Y: number) {
@@ -107,6 +109,10 @@ export class WorkspaceComponent implements OnInit {
 	changePosition(event: MouseEvent): void {
 		this.clientX = event.clientX;
 		this.clientY = event.clientY;
+	}
+
+	dragStart() {
+		this.dragging = true;
 	}
 
 	// funções notáveis
