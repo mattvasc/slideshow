@@ -19,8 +19,11 @@ $sizefont: $sizefontpx/14 + vw;
         top: ($height-workspace - 70vh)/2;
         font-size: $sizefont;
         transform: scale(1.2, 1.2);
+        float: left;
     }
 }
+
+
 
 .onEdit {
     position: absolute;

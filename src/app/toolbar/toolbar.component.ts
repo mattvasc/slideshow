@@ -140,10 +140,10 @@ export class ToolbarComponent implements OnInit {
 			hex = hex.substring(1);
 		}
 
-		var red = parseInt(hex.substring(0, 2), 16);
-		var green = parseInt(hex.substring(2, 4), 16);
-		var blue = parseInt(hex.substring(4), 16);
-		var rgb: number[] = [red, green, blue];
+		const red = parseInt(hex.substring(0, 2), 16);
+		const green = parseInt(hex.substring(2, 4), 16);
+		const blue = parseInt(hex.substring(4), 16);
+		const rgb: number[] = [red, green, blue];
 		return rgb;
 
 

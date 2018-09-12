@@ -30,9 +30,9 @@ $height-miniature: 70vh;
 }
 
 .slide-active {
-    -webkit-box-shadow:inset 0px 0px 0px 12px gray;
-    -moz-box-shadow:inset 0px 0px 0px 12px gray;
-    box-shadow:inset 0px 0px 0px 12px gray;
+    -webkit-box-shadow:inset 0 0 0 1em gray;
+    -moz-box-shadow:inset 0 0 0 1em gray;
+    box-shadow:inset 0 0 0 1em gray;
 }
 
 .miniature {

@@ -1,22 +1,24 @@
-<!-- <button (click)="debug()">debug</button> -->
-<app-thumbnails-menu 
-[presentation]='presentation'
- [(activeSlide)]='activeSlide'
- [hidden]="isFullscreen"
- (click)="unselectElement()"
- > </app-thumbnails-menu>
-<app-toolbar
-[presentation]='presentation'
-[(activeSlide)]='activeSlide'
-[(isFullscreen)]="isFullscreen"
-[hidden]="isFullscreen"
-[(activeElement)]='activeElement'
-[(activeToolbarElement)]='activeToolbarElement'
-></app-toolbar>
-<app-workspace 
-[presentation]='presentation'
-[activeSlide]='activeSlide'
-[(activeElement)]='activeElement'
-[(isFullscreen)]="isFullscreen"
-[(activeToolbarElement)]='activeToolbarElement'
-></app-workspace>
+<div class="container">
+	<!-- <button (click)=" debug()">debug</button> -->
+	<app-thumbnails-menu 
+	[presentation]='presentation'
+	[(activeSlide)]='activeSlide'
+	[hidden]="isFullscreen"
+	(click)="unselectElement()"
+	> </app-thumbnails-menu>
+	<app-toolbar
+	[presentation]='presentation'
+	[(activeSlide)]='activeSlide'
+	[(isFullscreen)]="isFullscreen"
+	[hidden]="isFullscreen"
+	[(activeElement)]='activeElement'
+	[(activeToolbarElement)]='activeToolbarElement'
+	></app-toolbar>
+	<app-workspace 
+	[presentation]='presentation'
+	[activeSlide]='activeSlide'
+	[(activeElement)]='activeElement'
+	[(isFullscreen)]="isFullscreen"
+	[(activeToolbarElement)]='activeToolbarElement'
+	></app-workspace>
+</div>

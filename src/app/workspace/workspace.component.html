@@ -10,7 +10,19 @@
 
 		<div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
 		[ngStyle]="element.style" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
-		[innerHtml]="element.data" (click)="selectElement($event)"></div>
+		[innerHtml]="element.data" (click)="selectElement($event)">
+		</div>
+
+	</div>
+	<div *ngIf="activeSlide+1<presentation.slides.length" id ="page"  [hidden]="!isFullscreen"
+	[style.background-color]="'rgb(' + presentation.slides[activeSlide+1].bgcolor.red +
+	 ', '+presentation.slides[activeSlide+1].bgcolor.green +
+	  ', ' + presentation.slides[activeSlide+1].bgcolor.blue + ')'">
+
+		<div id="element_{{i}}" *ngFor="let element of presentation.slides[activeSlide+1].elements; index as i" 
+		[ngStyle]="element.style" 
+		[innerHtml]="element.data" >
+		</div>
 
 	</div>
 </div>
