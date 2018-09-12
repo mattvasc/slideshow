@@ -9,7 +9,17 @@ $sizefont: $sizefontpx/14 + vw;
     
     /* THIS DIV DOWN HERE NEEDS WORK*/
 	#page {
-        /* position: fixed;
+       /*  position: relative;
+        width: 60%;
+        height: 0;
+        padding-bottom: 40%;
+        background-color: white;
+        overflow: hidden;
+        left: ($width-workspace - 50vw)/2;
+        top: ($height-workspace - 70vh)/2;
+        font-size: $sizefont; */
+
+        position: relative;
         width: 95vw;
         height: 90vh;
         margin-top: 5vh;
@@ -17,11 +27,11 @@ $sizefont: $sizefontpx/14 + vw;
         margin-left: 2.5vw;
         margin-right: 2.5vw;
         background-color: white;
-        overflow: hidden;
+        //overflow: hidden;
         font-size: $sizefont;
-        float: left; */
+        float: left;
 
-        position: fixed;
+        /* position: fixed;
         width: 95vw;
         height: 90vh;
         border-top: 5vh solid black;
@@ -31,7 +41,7 @@ $sizefont: $sizefontpx/14 + vw;
 
         overflow: hidden;
         font-size: $sizefont;
-        float: left;
+        float: left; */
 
 
 
