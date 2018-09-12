@@ -1,7 +1,36 @@
 <div class="toolbar-tools" (key.enter)="deleteElement()">
   <!-- <div class="toolbar-tabs">tabs</div> -->
   <div class="toolbar-body">
-    <button (click)="goFull()">Present!</button>
+    <div class="tabs">
+      <input class="input" name="tabs" type="button" id="tab-1" (click)="goFull()" />
+      <label class="label" for="tab-1">Present</label>
+
+      <input type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
+      <label class="label" for="tab-3">Add an Element</label>
+
+      <input type="radio" class="input" name="tabs" id="tab-2" [value]="toolbarActive.transition" [(ngModel)]="activeToolbarElement" />
+      <label class="label" for="tab-2">Slide Options</label>
+
+      <input *ngIf="activeToolbarElement === toolbarActive.editElement" type="radio" class="input" name="tabs" id="tab-4"
+        [value]="toolbarActive.editElement" [(ngModel)]="activeToolbarElement" />
+      <label *ngIf="activeToolbarElement === toolbarActive.editElement" class="label" for="tab-4">Edit Element</label>
+
+      <!-- <div class="panel">
+        <h1>Orange</h1>
+        <p>The orange (specifically, the sweet orange)</p>
+      </div>
+      
+      <div class="panel">
+        <h1>Tangerine</h1>
+        <p>The tangerine (Citrus tangerina) is an orange-colored cit.</p>
+      </div>
+     
+      <div class="panel">
+        <h1>Clemantine</h1>
+        <p>A clementine (Citrus ×clementina) is a hybrid between a </p>
+      </div> -->
+    </div>
+    <!-- <button (click)="goFull()">Present!</button>
     <button (click)="toogleMenu('transition')"> {{activeToolbarElement === toolbarActive.transition ? 'Hide this menu' : 'Choose Transition Effect'}}</button>
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
@@ -10,44 +39,48 @@
     </button>
     <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
     <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)"/>
-    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button>
+    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button> -->
 
-    <div [hidden]="activeToolbarElement !== toolbarActive.addElement">
+    <div *ngIf="activeToolbarElement === toolbarActive.addElement">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
     </div>
 
     <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
+      <label> Position X:
+        <input type="text" name="X" min="0" max="80" [(ngModel)]="activeElement.style['left']" />
+      </label>
+      <label> Position Y:
+        <input type="text" name="Y" min="0" max="70" [(ngModel)]="activeElement.style['top']" />
+      </label>
       <div>
-        <div *ngIf="activeElement.type == typeOfElement.image">
-          <button (click)="changeImage()">Change Image</button>
-        </div>
-        <div *ngIf="activeElement.type == typeOfElement.textfield ||
-        activeElement.type == typeOfElement.titlefield">
-          <button (click)="changeText()">Change Text</button>
-          <label for="element-background-color">Pick up element background color :</label> 
-          <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
-          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remove element background color</button>
+        <button *ngIf="activeElement.type == typeOfElement.image" (click)="changeImage()">Change Image</button>
+          <button *ngIf="activeElement.type == typeOfElement.textfield ||
+          activeElement.type == typeOfElement.titlefield" (click)="changeText()">Change Text</button>
+          <label *ngIf="activeElement.type == typeOfElement.textfield ||
+          activeElement.type == typeOfElement.titlefield"for="element-background-color">Pick up element background color :</label>
+          <input *ngIf="activeElement.type == typeOfElement.textfield ||
+          activeElement.type == typeOfElement.titlefield"id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']" />
+          <button *ngIf="activeElement.type == typeOfElement.textfield ||
+          activeElement.type == typeOfElement.titlefield" id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remove
+            element background color</button>
 
-          
-        </div>
+
         <button (click)="removeElement()">Remove Element</button>
       </div>
-      <div>
-        <label> Position X:
-          <input type="text" name="X" min="0" max="80" [(ngModel)]="activeElement.style['left']" />
-        </label>
-        <label> Position Y:
-          <input type="text" name="Y" min="0" max="70" [(ngModel)]="activeElement.style['top']" />
-        </label>
-      </div>
+
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
-      <select [(ngModel)]="presentation.slides[activeSlide].transition"> 
+      <button (click)="addNewSlide()">Add a new Slide</button>
+      <button (click)="removeSlide()">Remove Active Slide</button>
+      <label>Transiction Effect</label>
+      <select [(ngModel)]="presentation.slides[activeSlide].transition">
         <option value="{{transition.default}}">Default</option>
         <option value="{{transition.slideLeft}}">Slide Left</option>
-        <option value="{{transition.spinLeft}}">Spin Left</option>    
+        <option value="{{transition.spinLeft}}">Spin Left</option>
       </select>
     </div>
   </div>
+
+</div>
