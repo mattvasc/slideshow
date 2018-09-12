@@ -5,7 +5,7 @@
         (click)="changeCurrentSlide(i)" [style.background-color]="'rgb(' + presentation.slides[i].bgcolor.red +
     ', '+presentation.slides[i].bgcolor.green +
      ', ' + presentation.slides[i].bgcolor.blue + ')'" [style.bottom.vh]="fixPosition(i)">
-        <div *ngFor="let element of presentation.slides[i].elements" [innerHtml]="element.data"></div>
+        <div *ngFor="let element of presentation.slides[i].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
       </div>
   </div>
 

@@ -178,4 +178,10 @@ export class ToolbarComponent implements OnInit {
 	}
 
 
+	printPosition() {
+		console.log(this.activeElement.style['left']);
+		this.activeElement.style['left'] = `${this.activeElement.style['left']}%`;
+		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
+		console.log(this.activeElement.style['left']);
+	}
 }

@@ -34,6 +34,14 @@
         </div>
         <button (click)="removeElement()">Remove Element</button>
       </div>
+      <div>
+        <label> Position X:
+          <input type="text" name="X" min="0" max="80" [(ngModel)]="activeElement.style['left']" />
+        </label>
+        <label> Position Y:
+          <input type="text" name="Y" min="0" max="70" [(ngModel)]="activeElement.style['top']" />
+        </label>
+      </div>
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
       <select [(ngModel)]="presentation.slides[activeSlide].transition"> 
