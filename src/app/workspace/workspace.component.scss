@@ -9,17 +9,9 @@ $sizefont: $sizefontpx/14 + vw;
     
     /* THIS DIV DOWN HERE NEEDS WORK*/
 	#page {
-       /*  position: relative;
-        width: 60%;
-        height: 0;
-        padding-bottom: 40%;
-        background-color: white;
-        overflow: hidden;
-        left: ($width-workspace - 50vw)/2;
-        top: ($height-workspace - 70vh)/2;
-        font-size: $sizefont; */
 
-        position: relative;
+        //white border
+        /* position: relative;
         width: 95vw;
         height: 90vh;
         margin-top: 5vh;
@@ -27,52 +19,27 @@ $sizefont: $sizefontpx/14 + vw;
         margin-left: 2.5vw;
         margin-right: 2.5vw;
         background-color: white;
-        //overflow: hidden;
+        overflow: hidden;
         font-size: $sizefont;
-        float: left;
+        float: left; */
 
-        /* position: fixed;
+        //black border
+        position: relative;
         width: 95vw;
         height: 90vh;
         border-top: 5vh solid black;
         border-bottom: 5vh solid black;
         border-left: 2.5vw solid black;
         border-right: 2.5vw solid black;
-
         overflow: hidden;
         font-size: $sizefont;
-        float: left; */
+        float: left;
 
-
-
-
-
-        //padding-bottom: 40%;
-        
-        //left: ($width-workspace - 50vw)/2;
-        //top: ($height-workspace - 70vh)/2;
-        
-        //transform: scale(1.6, 1.6);
-        
-        //border-style: dashed;
-/* 
-        position: relative;
-        width: 40%;
-        margin-left: 2.5%;
-        margin-right: 2.5%;
-        margin-top: 2.5%;
-        //height: 100%;
-        padding-bottom: 30%;
-        //padding-top: 56.25%;
-        background-color: white;
-        overflow: hidden;
-        //left: ($width-workspace - 50vw)/2;
-        //top: ($height-workspace - 70vh)/2;
-        font-size: $sizefont;
-        transform: scale(1.8, 1.8);
-        float: left; */
         div{
-            transform: scale(1.5,1.5);
+            transform: scale(1.5,1.5)   ;
+            transform-origin: top left;
+            //without transform origin
+            //transform: translate(3vw, 4.6vh) scale(1.5,1.5)   ;
         }
     }
 }
