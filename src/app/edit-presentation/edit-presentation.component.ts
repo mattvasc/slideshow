@@ -36,7 +36,7 @@ export class EditPresentationComponent implements OnInit {
 				}
 				break;
 			// case 38: // Up Arrow
-			case 39: //Right Arrow
+			case 39: // Right Arrow
 				if (this.isFullscreen && this.activeSlide < this.presentation.slides.length - 1) {
 					this.activeSlide++;
 				}
@@ -74,7 +74,7 @@ export class EditPresentationComponent implements OnInit {
 		this.isFullscreen = false;
 
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
-		const first_slide: Slide = new Slide([], undefined, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
+		const first_slide: Slide = new Slide([], Transition.slideLeft, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
 		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2 id="title"> Meu Título</h2>`));
 		first_slide.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`,
 			0, 0, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue', 'display': 'inline-block' }));

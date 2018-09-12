@@ -36,8 +36,10 @@
       </div>
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
-      <select> 
-        <option *ngFor="let x of transition"></option>
+      <select [(ngModel)]="presentation.slides[activeSlide].transition"> 
+        <option value="{{transition.default}}">Default</option>
+        <option value="{{transition.slideLeft}}">Slide Left</option>
+        <option value="{{transition.spinLeft}}">Spin Left</option>    
       </select>
     </div>
   </div>

@@ -1,9 +1,9 @@
 import { Element } from './element';
 
 export enum Transition {
-	default = 'Default',
-	slideLeft = 'Slide Left',
-	spinleft = 'Spin Left'
+	default,
+	slideLeft,
+	spinLeft
 }
 
 
