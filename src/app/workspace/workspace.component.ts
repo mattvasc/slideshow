@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
-import { HostListener } from '@angular/core';
+import { ToolbarActive } from '../toolbar-active.enum';
 
 @Component({
 	selector: 'app-workspace',
@@ -22,22 +22,20 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeElement: Element = undefined;
 	@Output() public activeElementChange = new EventEmitter();
 
+	@Input() isFullscreen: boolean;
+	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
+
+	@Input() activeToolbarElement: ToolbarActive;
+	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
+
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
-		console.log(event);
-
 		if (event.keyCode === 46) {
 			this.removeElement();
 		}
 	}
 
-	lastActiveElement : Element = undefined;
 
-	@Input() hideColorPickerMenu: boolean;
-	@Output() hideColorPickerMenuChange = new EventEmitter();
-
-	@Input() hideAddNewElementMenu: boolean;
-	@Output() hideAddNewElementMenuChange = new EventEmitter();
 
 
 	constructor() { }
@@ -48,44 +46,24 @@ export class WorkspaceComponent implements OnInit {
 		// this.slide.render();
 	}
 	selectElement(event) {
-		//poderia procurar ultimo event.target também
-		this.lastActiveElement = this.activeElement;
-		
-		this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
-
-		this.selectedBorder(this.lastActiveElement, this.activeElement);
-
-		this.hideAddNewElementMenu = true;
-		this.hideColorPickerMenu = true;
+		// poderia procurar ultimo event.target também
+		if (event.target.parentElement.id !== 'page') {
+			this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+		}
+		this.activeToolbarElement = ToolbarActive.editElement;
 
 		this.activeElementChange.emit(this.activeElement);
-		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
-		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
+		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 	}
 	unselectElement(event) {
-		if (event.target.id === 'page' || event.target.id === 'workspace' ) {
-			//this.selectedBorder(this.activeElement, false);
-			if(this.activeElement != undefined) {
-				this.activeElement.style["border-style"] = 'none';
-			}
+		if (event.target.id === 'page' || event.target.id === 'workspace') {
 			this.activeElement = undefined;
 			this.activeElementChange.emit(this.activeElement);
-			
+			this.activeToolbarElement = ToolbarActive.none;
+			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 		}
 	}
 
-	//bordaSelecionado(activeElement, Boolean) {
-	selectedBorder(lastActiveElement, activeElement) {
-		if (lastActiveElement == activeElement){
-			console.log("nada muda");
-		}
-		else if(lastActiveElement != activeElement && lastActiveElement != undefined){
-			this.lastActiveElement.style["border-style"] = 'none';
-			console.log("mudou de volta");
-		}
-		this.activeElement.style["border-style"] = 'dotted';
-		
-	}
 
 	fireEventEditar(e) {
 		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
@@ -102,7 +80,7 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	removeElement() {
-		if(this.activeElement === undefined) return;
+		if (this.activeElement === undefined) {return; }
 
 		this.presentation.slides[this.activeSlide].elements.splice(
 			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),

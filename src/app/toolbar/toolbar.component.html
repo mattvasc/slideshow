@@ -1,45 +1,24 @@
 <div class="toolbar-tools" (key.enter)="deleteElement()">
   <!-- <div class="toolbar-tabs">tabs</div> -->
   <div class="toolbar-body">
+    <button (click)="goFull()">Present!</button>
+    <button>Choose Transition Effect</button>
     <button (click)="addNewSlide()">Add a new Slide</button>
     <button (click)="removeSlide()">Remove Active Slide</button>
     <button (click)="toogleMenu('element')">
-      {{hideAddNewElementMenu ? 'Add a new Element' : 'Hide Add Element Menu' }}
+      {{activeToolbarElement === toolbarActive.addElement ? 'Hide Add Element Menu' :'Add a new Element'  }}
     </button>
-    <button (click)="toogleMenu('bgcolor')">
-      {{hideColorPickerMenu ? 'Change Slide background Color' : 'Hide ColorPicker'}}
-    </button>
-    <div [hidden]="hideAddNewElementMenu">
+    <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
+    <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)"/>
+    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button>
+
+    <div [hidden]="activeToolbarElement !== toolbarActive.addElement">
       <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
     </div>
 
-    <!--
-        <label for="slide-background-color">Escolha a cor de fundo do slide :</label> 
-
-        <input id="slide-background-color" type="color" value="#ff0000" [(ngModel)]="presentation.slides[activeSlide].style['background-color']"/>
-    
-
-    -->
-
-    <div #colorpicker [hidden]="hideColorPickerMenu">
-
-      <label> Red
-        <input type="range" id="start" name="red" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.red" />
-      </label>
-      <label> Green
-        <input type="range" id="start" name="green" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.green"
-        />
-      </label>
-
-      <label> Blue
-        <input type="range" id="start" name="blue" min="0" max="255" [(ngModel)]="presentation.slides[activeSlide].bgcolor.blue"
-        />
-      </label>
-
-    </div>
-    <div *ngIf="activeElement">Opções do elemento ativo:
+    <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
       <div>
         <div *ngIf="activeElement.type == typeOfElement.image">
           <button (click)="changeImage()">Change Image</button>
@@ -47,11 +26,13 @@
         <div *ngIf="activeElement.type == typeOfElement.textfield ||
         activeElement.type == typeOfElement.titlefield">
           <button (click)="changeText()">Change Text</button>
-          <label for="element-background-color">Escolha a cor de fundo do elemento :</label>
+          <label for="element-background-color">Pick up element background color :</label> 
+          <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']"/>
+          <button id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remove element background color</button>
 
-          <input id="element-background-color" type="color" value="#ff0000" [(ngModel)]="activeElement.style['background-color']" />
+          
         </div>
-        <button (click)="removeElement()">Remove Him to the ashes of Hell</button>
+        <button (click)="removeElement()">Remove Element</button>
       </div>
       <div>
         <label> Position X:

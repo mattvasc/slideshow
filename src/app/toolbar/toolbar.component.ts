@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
-
+import { ToolbarActive } from '../toolbar-active.enum';
 @Component({
 	selector: 'app-toolbar',
 	templateUrl: './toolbar.component.html',
@@ -13,22 +13,37 @@ export class ToolbarComponent implements OnInit {
 	@Input() presentation: Presentation;
 
 	@Input() activeSlide: number;
-	@Output() public activeSlideChange = new EventEmitter();
+	@Output() public activeSlideChange: EventEmitter<number> = new EventEmitter();
 
 	@Input() activeElement: Element;
-	@Output() public activeElementChange = new EventEmitter();
+	@Output() public activeElementChange: EventEmitter<Element> = new EventEmitter();
 
 	@Input() hideColorPickerMenu: boolean;
-	@Output() hideColorPickerMenuChange = new EventEmitter();
+	@Output() hideColorPickerMenuChange: EventEmitter<boolean> = new EventEmitter();
 
 	@Input() hideAddNewElementMenu: boolean;
-	@Output() hideAddNewElementMenuChange = new EventEmitter();
+	@Output() hideAddNewElementMenuChange: EventEmitter<boolean> = new EventEmitter();
 
+	@Input() isFullscreen: boolean;
+	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
+
+	@Input() activeToolbarElement: ToolbarActive;
+	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
+
+	// Workaround to use enum on template:
+	public toolbarActive = ToolbarActive;
 	public typeOfElement = TypeOfElement;
+	// End of the workaround
+
+	private elem;
+
+
 
 	constructor() { }
 
+
 	ngOnInit() {
+		this.elem = document.documentElement;
 	}
 
 	addNewElement(type: TypeOfElement) {
@@ -107,8 +122,13 @@ export class ToolbarComponent implements OnInit {
 	toogleMenu(witch_one) {
 		switch (witch_one) {
 			case 'element':
-				this.hideAddNewElementMenu = !this.hideAddNewElementMenu;
-				this.hideColorPickerMenu = true;
+				if (this.activeToolbarElement === ToolbarActive.addElement) {
+					this.activeToolbarElement = ToolbarActive.none;
+				} else {
+					this.activeToolbarElement = ToolbarActive.addElement;
+				}
+
+				this.activeToolbarElementChange.emit(this.activeToolbarElement);
 				break;
 			case 'bgcolor':
 				this.hideColorPickerMenu = !this.hideColorPickerMenu;
@@ -121,6 +141,49 @@ export class ToolbarComponent implements OnInit {
 		this.hideAddNewElementMenuChange.emit(this.hideAddNewElementMenu);
 		this.hideColorPickerMenuChange.emit(this.hideColorPickerMenu);
 	}
+	hexToRGB(hex) {
+
+		if (hex.substring(0, 1) === '#') {
+			hex = hex.substring(1);
+		}
+
+		var red = parseInt(hex.substring(0,2),16);
+		var green = parseInt(hex.substring(2,4),16);
+		var blue = parseInt(hex.substring(4),16);
+		var rgb: number[] = [red,green,blue];
+		return rgb;
+
+		
+	}
+
+	rgbToHex(rgb){
+		var hex = "#" + ((1 << 24) + (rgb['red'] << 16) + (rgb['green'] << 8) + rgb['blue']).toString(16).slice(1);
+		return hex;
+	}
+
+	setRGB(hex){
+		var colors = this.hexToRGB(hex);
+		this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
+		this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
+		this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
+	}
+
+	/* Go to fullscreen */
+	goFull() {
+		this.isFullscreen = true;
+		this.isFullscreenChange.emit(this.isFullscreen);
+
+		if (this.elem.requestFullscreen) {
+			this.elem.requestFullscreen();
+		} else if (this.elem.mozRequestFullScreen) { /* Firefox */
+			this.elem.mozRequestFullScreen();
+		} else if (this.elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+			this.elem.webkitRequestFullscreen();
+		} else if (this.elem.msRequestFullscreen) { /* IE/Edge */
+			this.elem.msRequestFullscreen();
+		}
+	}
+
 
 	printPosition() {
 		console.log(this.activeElement.style['left']);
