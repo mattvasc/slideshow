@@ -115,10 +115,10 @@ export class EditPresentationComponent implements OnInit {
 	}
 	exitHandler() {
 
-		let fullOnFirefox = document.mozFullScreen;
-		let fullOnChrome = document.webkitIsFullScreen;
-		let fullOnMS = document.msFullscreenElement;
-		let fullOnW3 = document.fullscreen;
+		let fullOnFirefox = document['mozFullScreen'];
+		let fullOnChrome = document['webkitIsFullScreen'];
+		let fullOnMS = document['msFullscreenElement'];
+		let fullOnW3 = document['fullscreen'];
 
 		fullOnFirefox = (fullOnFirefox === undefined) ? false : fullOnFirefox;
 		fullOnChrome = (fullOnChrome === undefined) ? false : fullOnChrome;
