@@ -75,11 +75,11 @@ export class EditPresentationComponent implements OnInit {
 
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
 		const first_slide: Slide = new Slide([], Transition.slideLeft, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
-		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2 id="title"> Meu Título</h2>`));
+		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2> Meu Título </h2>`, 43, 15));
 		first_slide.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`,
-			0, 0, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue', 'display': 'inline-block' }));
+			43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue'}));
 
-		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">'));
+		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">', 43, 60));
 		this.presentation.addSlide(first_slide);
 		console.log(this.presentation);
 	}
