@@ -105,9 +105,11 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
 	}
-	deleteElement() {
-		console.log('lerigo');
-	}
+	removeActiveElementBgColor() {
+	delete this.activeElement.style['background-color'];
+}
+
+	
 	debug() {
 		console.log(this.presentation.slides[
 			this.activeSlide].elements[this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement)].type);

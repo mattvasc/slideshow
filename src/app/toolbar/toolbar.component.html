@@ -47,7 +47,7 @@
           
           <button *ngIf="activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield" 
             id="slide-background-color-default" 
-            (click)="activeElement.style['background-color'] = rgbToHex(presentation.slides[this.activeSlide].bgcolor)"
+            (click)="removeActiveElementBgColor()"
             [hidden]="activeElement.style['background-color'] === undefined || presentation.slides[activeSlide].bgcolor === activeElement.style['background-color']">Remove color <fa-icon [icon]="faPalette"></fa-icon> <fa-icon [icon]="faMinusSquare"></fa-icon></button>
 
 
