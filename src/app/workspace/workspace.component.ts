@@ -63,6 +63,7 @@ export class WorkspaceComponent implements OnInit {
 			this.activeToolbarElement = ToolbarActive.none;
 			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 		}
+		event.stopPropagation();
 	}
 
 
