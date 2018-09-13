@@ -12,6 +12,19 @@ import { ManagePresentationsComponent } from './manage-presentations/manage-pres
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+	{ path: 'edit',      component: EditPresentationComponent },
+	{ path: 'login',      component: LoginComponent },
+	{ path: 'manage',      component: ManagePresentationsComponent },
+	{ path: '',
+	redirectTo: '/login',
+	pathMatch: 'full'
+},
+{ path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
 	declarations: [
@@ -23,14 +36,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 		WorkspaceComponent,
 		ManagePresentationsComponent,
 		ToolbarComponent,
+		PageNotFoundComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		RouterModule.forRoot(  appRoutes  )
 	],
 	providers: [],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
+
