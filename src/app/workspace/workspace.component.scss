@@ -87,16 +87,16 @@ $sizefont: $sizefontpx/14 + vw;
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
 }
-
-// [draggable=true] {
-//    cursor: move;
-// }
-
-
-p{
-    position: absolute;
+ 
+.selected {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: dashed 5px black;
+    margin: -5px;
+    cursor: move;
 }
 
-.selected {
-    border-style: dashed;
+img .selected {
+    border: dashed 50px;
 }
