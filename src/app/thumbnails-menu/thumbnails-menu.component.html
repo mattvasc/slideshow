@@ -4,7 +4,7 @@
       <div class="slide miniature" *ngFor="let slide of presentation.slides; index as i" [ngClass]="{'slide-active': i==activeSlide}"
         (click)="changeCurrentSlide(i)" [style.background-color]="'rgb(' + presentation.slides[i].bgcolor.red +
     ', '+presentation.slides[i].bgcolor.green +
-     ', ' + presentation.slides[i].bgcolor.blue + ')'" [style.bottom.vh]="fixPosition(i)">
+     ', ' + presentation.slides[i].bgcolor.blue + ')'" [style.bottom.vh]="fixPosition(i)" [style.backgroundImage]="'url(' + presentation.background + ')'">
         <div *ngFor="let element of presentation.slides[i].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
       </div>
   </div>

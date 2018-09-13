@@ -47,12 +47,14 @@
           activeElement.type == typeOfElement.titlefield" id="slide-background-color-default" (click)="activeElement.style['background-color'] = rgbToHex(this.presentation.slides[this.activeSlide].bgcolor)">Remove
             element background color</button>
 
-
         <button (click)="removeElement()">Remove Element  <fa-icon [icon]="faMinusSquare"></fa-icon></button>
       </div>
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
-      <button (click)="addNewSlide()">Add a new Slide <fa-icon [icon]="faPlusSquare"></fa-icon></button>
+      <button (click)="addNewTSlide()">Add New Title Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
+      <button (click)="addNewTSSlide()">Add New Title+Sub Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
+      <button (click)="addNewTSTSlide()">Add New Title+Sub+Text Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
+      <button (click)="addNewBSlide()">Add New Blank Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
       <button (click)="removeSlide()">Remove Active Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
       <button onclick="document.getElementById('slide-background-color').click();">Background Color<fa-icon [icon]="faPalette"></fa-icon></button>
 
