@@ -48,13 +48,17 @@ export class WorkspaceComponent implements OnInit {
 	}
 	selectElement(event) {
 		// poderia procurar ultimo event.target também
-		if (event.target.parentElement.id !== 'page') {
-			this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
-		}
-		this.activeToolbarElement = ToolbarActive.editElement;
+		if(!this.isFullscreen){
+			if (event.target.parentElement.id !== 'page' ) {
+				this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+			}
+			this.activeToolbarElement = ToolbarActive.editElement;
+	
+			this.activeElementChange.emit(this.activeElement);
+			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 
-		this.activeElementChange.emit(this.activeElement);
-		this.activeToolbarElementChange.emit(this.activeToolbarElement);
+		}
+		
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
