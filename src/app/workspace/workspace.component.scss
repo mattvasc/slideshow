@@ -6,34 +6,37 @@ $sizefont: $sizefontpx/14 + vw;
 .onFull {
 	left: 0;
     top: 0;
-    
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
     /* THIS DIV DOWN HERE NEEDS WORK*/
 	#page {
 
-        //white border
-        /* position: relative;
+        //black background from workspace
+        position: relative;
         width: 95vw;
         height: 90vh;
         margin-top: 5vh;
         margin-bottom: 5vh;
         margin-left: 2.5vw;
         margin-right: 2.5vw;
-        background-color: white;
+        //background-color: white;
         overflow: hidden;
         font-size: $sizefont;
-        float: left; */
+        float: left;
 
-        //black border
-        position: relative;
-        width: 95vw;
-        height: 90vh;
+        //black border with border 
+        /* position: relative;
+        width: 100vw;
+        height: 100vh;
         border-top: 5vh solid black;
         border-bottom: 5vh solid black;
         border-left: 2.5vw solid black;
         border-right: 2.5vw solid black;
         overflow: hidden;
         font-size: $sizefont;
-        float: left;
+        float: left; */
 
         div{
             transform: scale(1.5,1.5)   ;
