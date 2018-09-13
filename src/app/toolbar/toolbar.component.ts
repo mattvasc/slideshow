@@ -4,7 +4,7 @@ import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
 import { faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
-, faMinusSquare} from '@fortawesome/free-solid-svg-icons';
+, faMinusSquare, faPalette} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-toolbar',
@@ -20,6 +20,7 @@ export class ToolbarComponent implements OnInit {
 	faImage = faImage;
 	faFont = faFont;
 	faSquare = faSquare;
+	faPalette = faPalette;
 	faMinusSquare = faMinusSquare;
 
 
