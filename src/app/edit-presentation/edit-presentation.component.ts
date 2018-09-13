@@ -81,7 +81,6 @@ export class EditPresentationComponent implements OnInit {
 
 		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">', 43, 60,));
 		this.presentation.addSlide(first_slide);
-		console.log(this.presentation);
 	}
 	unselectElement() {
 		this.activeElement = undefined;

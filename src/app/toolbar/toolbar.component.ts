@@ -54,7 +54,6 @@ export class ToolbarComponent implements OnInit {
 
 	ngOnInit() {
 		this.elem = document.documentElement;
-		console.log(this.transition);
 	}
 
 	addNewElement(type: TypeOfElement) {
