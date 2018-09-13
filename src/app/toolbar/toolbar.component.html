@@ -3,17 +3,17 @@
   <div class="toolbar-body">
     <div class="tabs">
       <input class="input" name="tabs" type="button" id="tab-1" (click)="goFull()" />
-      <label class="label" for="tab-1">Present</label>
+      <label class="label" for="tab-1">Present <fa-icon [icon]="faPlay"></fa-icon></label>
 
       <input type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
-      <label class="label" for="tab-3">Add an Element</label>
+      <label class="label" for="tab-3">Add an Element <fa-icon [icon]="faPlusSquare"></fa-icon></label>
 
       <input type="radio" class="input" name="tabs" id="tab-2" [value]="toolbarActive.transition" [(ngModel)]="activeToolbarElement" />
-      <label class="label" for="tab-2">Slide Options</label>
-
+      <label class="label" for="tab-2">Slide Options <fa-icon [icon]="faWrench"></fa-icon></label>
+      
       <input *ngIf="activeToolbarElement === toolbarActive.editElement" type="radio" class="input" name="tabs" id="tab-4"
         [value]="toolbarActive.editElement" [(ngModel)]="activeToolbarElement" />
-      <label *ngIf="activeToolbarElement === toolbarActive.editElement" class="label" for="tab-4">Edit Element</label>
+      <label *ngIf="activeToolbarElement === toolbarActive.editElement" class="label" for="tab-4">Edit Element <fa-icon [icon]="faPencilAlt"></fa-icon></label>
 
       <!-- <div class="panel">
         <h1>Orange</h1>
@@ -42,10 +42,12 @@
     <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button> -->
 
     <div *ngIf="activeToolbarElement === toolbarActive.addElement">
-      <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title</button>
-      <button (click)="addNewElement(typeOfElement.textfield)">Add a Text</button>
-      <button (click)="addNewElement(typeOfElement.image)">Add a image</button>
+      <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title <fa-icon [icon]="faPencilAlt"></fa-icon></button>
+      <button (click)="addNewElement(typeOfElement.textfield)">Add a Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
+      <button (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon> </button>
     </div>
+
+
 
     <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
       <label> Position X:
@@ -69,12 +71,14 @@
 
         <button (click)="removeElement()">Remove Element</button>
       </div>
-
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
-      <button (click)="addNewSlide()">Add a new Slide</button>
-      <button (click)="removeSlide()">Remove Active Slide</button>
-      <label>Transiction Effect</label>
+      <button (click)="addNewSlide()">Add a new Slide <fa-icon [icon]="faPlusSquare"></fa-icon></button>
+      <button (click)="removeSlide()">Remove Active Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+      <label for="slide-background-color"> Slide background color :
+    <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)"/></label> 
+    <button id="slide-background-color-default" (click)="setRGB('#c4c4c4')" style="background-color: #c4c4c4">Turn back to default color</button>
+      <label>Transiction Effect:</label>
       <select [(ngModel)]="presentation.slides[activeSlide].transition">
         <option value="{{transition.default}}">Default</option>
         <option value="{{transition.slideLeft}}">Slide Left</option>
@@ -82,5 +86,4 @@
       </select>
     </div>
   </div>
-
 </div>
