@@ -3,12 +3,27 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
+import { faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
+, faMinusSquare, faPalette} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
 	selector: 'app-toolbar',
 	templateUrl: './toolbar.component.html',
 	styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
+	// FontAwesome declarations:
+	faPlay = faPlay;
+	faPlusSquare = faPlusSquare;
+	faWrench = faWrench;
+	faPencilAlt = faPencilAlt;
+	faImage = faImage;
+	faFont = faFont;
+	faSquare = faSquare;
+	faPalette = faPalette;
+	faMinusSquare = faMinusSquare;
+
+
 
 	@Input() presentation: Presentation;
 
