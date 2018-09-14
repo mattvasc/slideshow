@@ -227,8 +227,4 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
 		console.log(this.activeElement.style['left']);
 	}
-
-	selectSlidePreset() {
-		const returno = prompt('Type the text:', this.activeElement.data);
-	}
 }
