@@ -36,7 +36,7 @@ export const PRESENTATIONS: Presentation[] = [
 											data: '<h2> Meu Título </h2>',
 											posX: 43,
 											posY: 15,
-											style: {'position': 'absolute', 'left': `${posX}%`, 'top': `${posY}%`},
+											style: {'position': 'absolute', 'left': `12%`, 'top': `15%`},
 										},
 									],
 							transition: Transition.slideLeft,

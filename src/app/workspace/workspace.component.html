@@ -1,4 +1,6 @@
+
 <div id="workspace" (mousedown)="unselectElement($event)" [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
 	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'" [style.backgroundImage]="'url(' + presentation.background + ')'">

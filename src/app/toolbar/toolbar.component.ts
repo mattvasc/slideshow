@@ -50,6 +50,8 @@ export class ToolbarComponent implements OnInit {
 	private elem;
 
 
+	public tempImgURL: String;
+	public tempText: String;
 
 	constructor() { }
 
@@ -151,10 +153,10 @@ export class ToolbarComponent implements OnInit {
 	}
 	changeImage() {
 		const regex = /src=\"(.*)\"/;
-		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<img src="${returno}"></img>`;
-		}
+		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
+	}
+	saveChangedImage() {
+		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;
 	}
 	toogleMenu(witch_one) {
 		switch (witch_one) {

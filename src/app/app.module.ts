@@ -15,6 +15,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TesteComponent } from './teste/teste.component';
+
 const appRoutes: Routes = [
 	{ path: 'edit',      component: EditPresentationComponent },
 	{ path: 'login',      component: LoginComponent },
@@ -36,16 +39,19 @@ const appRoutes: Routes = [
 		WorkspaceComponent,
 		ManagePresentationsComponent,
 		ToolbarComponent,
-		PageNotFoundComponent
+		PageNotFoundComponent,
+		TesteComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		FontAwesomeModule,
-		RouterModule.forRoot(  appRoutes  )
+		RouterModule.forRoot(  appRoutes  ),
+		NgbModule
 	],
 	providers: [],
+	entryComponents: [TesteComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
