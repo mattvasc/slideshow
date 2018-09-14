@@ -48,17 +48,17 @@ export class WorkspaceComponent implements OnInit {
 	}
 	selectElement(event) {
 		// poderia procurar ultimo event.target também
-		if(!this.isFullscreen){
-			if (event.target.parentElement.id !== 'page' ) {
+		if (!this.isFullscreen) {
+			if (event.target.parentElement.id !== 'page') {
 				this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 			}
 			this.activeToolbarElement = ToolbarActive.editElement;
-	
+
 			this.activeElementChange.emit(this.activeElement);
 			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 
 		}
-		
+
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
@@ -92,21 +92,22 @@ export class WorkspaceComponent implements OnInit {
 			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
 			1);
 		this.activeElement = undefined;
-		this.activeElementChange.emit(this.activeElement);
 	}
 
 	getPosition(e) {
-			let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
-			let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
-			positionX = positionX / e.clientWidth;
-			positionY = positionY / e.clientHeight;
-			positionX = Math.ceil(positionX * 100);
-			positionY = Math.ceil(positionY * 100);
-			if(positionX <= 100 && positionY <= 100)
-				this.moveElement(positionX, positionY);
+		if (this.activeElement === undefined) { return; }
+		let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
+		let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
+		positionX = positionX / e.clientWidth;
+		positionY = positionY / e.clientHeight;
+		positionX = Math.ceil(positionX * 100);
+		positionY = Math.ceil(positionY * 100);
+		if (positionX <= 100 && positionY <= 100)
+			this.moveElement(positionX, positionY);
 	}
 
 	moveElement(X: number, Y: number) {
+		if (this.activeElement === undefined) { return; }
 		this.activeElement.style['left'] = `${X}%`;
 		this.activeElement.style['top'] = `${Y}%`;
 	}
