@@ -10,7 +10,7 @@ export const USERS: User[] = [ new User('Mr.Nice', 'nicenice'),
 	// cada apresentação contem : - conjunto de slides - cada slide tem - elementos
 	// 							 - owner                               - transição
 	// 							 - visibilidade					       - conjunto de rgb
-export const PRESENTATIONS: Presentation[] = [
+/*export const PRESENTATIONS: Presentation[] = [
 		{
 			// conjunto de paginas
 			slides: [
@@ -105,3 +105,4 @@ export const PRESENTATIONS: Presentation[] = [
 			visibility: Visibility.public,
 		},
 	];
+*/

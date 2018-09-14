@@ -143,17 +143,11 @@ export class ToolbarComponent implements OnInit {
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
-		console.log(this.activeElement.data.toString());
-		console.log(regex.exec(this.activeElement.data.toString()));
-
-		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
-		}
+		this.tempText = regex.exec(this.activeElement.data.toString())[1];
 	}
-	changeImage() {
-		const regex = /src=\"(.*)\"/;
-		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
+	saveChangedText() {
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
 	}
 	saveChangedImage() {
 		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;

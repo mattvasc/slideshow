@@ -107,7 +107,7 @@
   }
   
   /* The Modal (background) ---------------------------------------------------*/
-.modal {
+.mymodal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -122,7 +122,7 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.mymodal-content {
   background-color: #fefefe;
   margin: 5px auto; /* 15% from the top and centered */
   border: 1px solid #888;
