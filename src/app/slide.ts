@@ -3,7 +3,8 @@ import { Element } from './element';
 export enum Transition {
 	default,
 	slideLeft,
-	spinLeft
+	spinLeft,
+	fadein
 }
 
 

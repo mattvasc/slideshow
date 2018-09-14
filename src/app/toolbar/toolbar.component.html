@@ -25,13 +25,8 @@
 
 
 
-    <div *ngIf="activeToolbarElement === toolbarActive.editElement">Options for the current element:
-      <label> Position X:
-        <input type="text" name="X" min="0" max="80" [(ngModel)]="activeElement.style['left']" />
-      </label>
-      <label> Position Y:
-        <input type="text" name="Y" min="0" max="70" [(ngModel)]="activeElement.style['top']" />
-      </label>
+    <div *ngIf="activeToolbarElement === toolbarActive.editElement">
+   
       <div>
         <button *ngIf="activeElement.type == typeOfElement.image" (click)="changeImage()">Change Image  <fa-icon [icon]="faImage"></fa-icon> </button>
           
@@ -66,6 +61,7 @@
         <option value="{{transition.default}}">Default</option>
         <option value="{{transition.slideLeft}}">Slide Left</option>
         <option value="{{transition.spinLeft}}">Spin Left</option>
+        <option value="{{transition.fadein}}">Fade in</option> 
       </select>
     </div>
   </div>

@@ -13,7 +13,7 @@ export class Element {
 		private posX: number = 40,
 		private posY: number = 35,
 		public style:  {} = {'position': 'absolute', 'left': `${posX}%`, 'top': `${posY}%`}
-		) { 
+		) {
 			this.style['position'] = 'absolute';
 			this.style['left'] = `${posX}%`;
 			this.style['top'] = `${posY}%`;
