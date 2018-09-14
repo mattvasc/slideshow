@@ -3,9 +3,9 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
-import {
-	faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
-	, faMinusSquare, faPalette
+import { faPlay, faPlusSquare, faWrench,
+	faPencilAlt, faImage, faFont, faSquare,
+	faMinusSquare, faPalette, faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,6 +24,7 @@ export class ToolbarComponent implements OnInit {
 	faSquare = faSquare;
 	faPalette = faPalette;
 	faMinusSquare = faMinusSquare;
+	faUser = faUser;
 
 
 
@@ -76,19 +77,19 @@ export class ToolbarComponent implements OnInit {
 	}
 
 	addNewTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		this.addNewSlide(X);
 	}
 	addNewTSSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		this.addNewSlide(X);
 	}
 	addNewTSTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
@@ -136,7 +137,6 @@ export class ToolbarComponent implements OnInit {
 	delete this.activeElement.style['background-color'];
 }
 
-	
 	debug() {
 		console.log(this.presentation.slides[
 			this.activeSlide].elements[this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement)].type);
@@ -230,6 +230,6 @@ export class ToolbarComponent implements OnInit {
 	}
 
 	selectSlidePreset() {
-		const returno = prompt('Type the text:', this.activeElement.data);
+		const returno = prompt('Type the text:', this.activeElement.data.toString());
 	}
 }
