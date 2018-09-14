@@ -73,7 +73,7 @@ export class EditPresentationComponent implements OnInit {
 		this.elem = document.documentElement;
 		this.isFullscreen = false;
 
-		this.presentation = new Presentation(undefined, 'Not logged yet', undefined);
+		this.presentation = new Presentation(undefined, 'Not logged yet', undefined, 'http://rugbyinafrica.org/2017/08/backgrounds-for-powerpoint/?showimage_zmdh=backgrounds+for+powerpoint.jpg');
 		const first_slide: Slide = new Slide([], Transition.slideLeft, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
 		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2> Meu Título </h2>`, 43, 15));
 		first_slide.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`,

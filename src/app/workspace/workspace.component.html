@@ -1,7 +1,7 @@
 <div id="workspace" (mousedown)="unselectElement($event)" [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
 	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
-	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'">
+	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'" [style.backgroundImage]="'url(' + presentation.background + ')'">
 		<div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
 		[ngStyle]="element.style" [ngClass]="'unselectable'" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
 		[innerHtml]="element.data" (mousedown)="selectElement($event)">

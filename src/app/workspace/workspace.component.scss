@@ -69,6 +69,8 @@ $sizefont: $sizefontpx/14 + vw;
         left: ($width-workspace - 50vw)/2;
         top: ($height-workspace - 70vh)/2;
         font-size: $sizefont;
+        background-size: cover;
+        background-position: center center;
     }
 }
 

@@ -3,8 +3,10 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
-import { faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
-, faMinusSquare, faPalette} from '@fortawesome/free-solid-svg-icons';
+import {
+	faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
+	, faMinusSquare, faPalette
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-toolbar',
@@ -73,8 +75,33 @@ export class ToolbarComponent implements OnInit {
 		}
 	}
 
-	addNewSlide() {
-		this.presentation.addSlide();
+	addNewTSlide() {
+		var X: Slide = new Slide()
+		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		this.addNewSlide(X);
+	}
+	addNewTSSlide() {
+		var X: Slide = new Slide()
+		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
+			15, 30, { 'font-size': '24px', 'color': 'blue' }));
+		this.addNewSlide(X);
+	}
+	addNewTSTSlide() {
+		var X: Slide = new Slide()
+		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
+			15, 30, { 'font-size': '24px', 'color': 'blue' }));
+		X.addElement(new Element(TypeOfElement.textfield, `<p> Text </p>`,
+			20, 45, { 'font-size': '15px', 'color': 'red' }));
+		this.addNewSlide(X);
+	}
+	addNewBSlide() {
+		this.addNewSlide();
+	}
+
+	addNewSlide(X: Slide = new Slide()) {
+		this.presentation.addSlide(X);
 		// Jumping to the last created slide:
 		this.activeSlide = this.presentation.slides.length - 1;
 		this.activeSlideChange.emit(this.activeSlide);
@@ -82,6 +109,7 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
 	}
+
 	removeSlide() {
 		this.presentation.slides.splice(this.activeSlide, 1);
 		if (this.activeSlide === this.presentation.slides.length && this.activeSlide !== 0) {
@@ -199,5 +227,9 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement.style['left'] = `${this.activeElement.style['left']}%`;
 		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
 		console.log(this.activeElement.style['left']);
+	}
+
+	selectSlidePreset() {
+		const returno = prompt('Type the text:', this.activeElement.data);
 	}
 }
