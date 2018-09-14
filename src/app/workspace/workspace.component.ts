@@ -51,19 +51,21 @@ export class WorkspaceComponent implements OnInit {
 		if (!this.isFullscreen) {
 			if (event.target.parentElement.id !== 'page') {
 				this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+				this.activeElementChange.emit(this.activeElement);
+
+				this.activeToolbarElement = undefined;
+				this.activeToolbarElementChange.emit();
+
+				this.activeToolbarElement = ToolbarActive.editElement;
+				this.activeToolbarElementChange.emit(this.activeToolbarElement);
+			} else {
 			}
-			this.activeToolbarElement = ToolbarActive.editElement;
-
-			this.activeElementChange.emit(this.activeElement);
-			this.activeToolbarElementChange.emit(this.activeToolbarElement);
-
 		}
-
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
 			this.activeElement = undefined;
-			this.activeElementChange.emit(this.activeElement);
+			this.activeElementChange.emit();
 			this.activeToolbarElement = ToolbarActive.none;
 			this.activeToolbarElementChange.emit(this.activeToolbarElement);
 		}
@@ -92,6 +94,7 @@ export class WorkspaceComponent implements OnInit {
 			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
 			1);
 		this.activeElement = undefined;
+		this.activeElementChange.emit();
 	}
 
 	getPosition(e) {
@@ -102,8 +105,9 @@ export class WorkspaceComponent implements OnInit {
 		positionY = positionY / e.clientHeight;
 		positionX = Math.ceil(positionX * 100);
 		positionY = Math.ceil(positionY * 100);
-		if (positionX <= 100 && positionY <= 100)
+		if (positionX <= 100 && positionY <= 100) {
 			this.moveElement(positionX, positionY);
+		}
 	}
 
 	moveElement(X: number, Y: number) {

@@ -76,19 +76,19 @@ export class ToolbarComponent implements OnInit {
 	}
 
 	addNewTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		this.addNewSlide(X);
 	}
 	addNewTSSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		this.addNewSlide(X);
 	}
 	addNewTSTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));

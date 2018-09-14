@@ -9,7 +9,7 @@ export class Presentation {
 	constructor(public slides: Slide[] = [],
 		public owner: String = 'Not logged Yet',
 		public visibility: Visibility = Visibility.public,
-		public background: String = ""
+		public background: String = ''
 	) { }
 
 	addSlide(X: Slide = new Slide()) {
