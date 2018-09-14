@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {TesteComponent} from '../teste/teste.component';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
+import { User } from '../user';
 
 @Component({
 	selector: 'app-login',
@@ -7,18 +9,18 @@ import {TesteComponent} from '../teste/teste.component';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-	animal: string;
-	name: string;
-	ngOnInit() {
-	}
-	constructor() { }
-	// constructor() { }
-	// openDialog(): void {
-	// 	const dialogRef = this.dialog.open(TesteComponent);
+	public user: User;
+	constructor(private apiService: ApiService, private router: Router) { }
 
-	// 	dialogRef.afterClosed().subscribe(result => {
-	// 		console.log('The dialog was closed');
-	// 		this.animal = result;
-	// 	});
-	// }
+	ngOnInit() {
+		this.user = new User('', '');
+	}
+
+	doLogin() {
+		if (this.apiService.login(this.user)) {
+			this.router.navigateByUrl('/manage');
+		} else {
+			alert('Login Incorreto');
+		}
+	}
 }
