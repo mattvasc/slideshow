@@ -10,8 +10,11 @@ $height-miniature: 70vh;
     position: absolute;
     float: left;
     overflow-y: auto;
-    padding-right: 20px;
+    padding-right: 40px;
     overflow-x: hidden;
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial
 }
 
 .slide {
@@ -21,6 +24,9 @@ $height-miniature: 70vh;
     min-height: $height-miniature;
     max-width: $width-miniature;
     max-height: $height-miniature;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
 }
 
 .slide-encapsulation {
@@ -39,3 +45,4 @@ $height-miniature: 70vh;
 .miniature {
     transform: scale(0.2);
 }
+

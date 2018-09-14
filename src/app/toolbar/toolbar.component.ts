@@ -51,6 +51,8 @@ export class ToolbarComponent implements OnInit {
 	private elem;
 
 
+	public tempImgURL: String;
+	public tempText: String;
 
 	constructor() { }
 
@@ -120,10 +122,8 @@ export class ToolbarComponent implements OnInit {
 		if (this.presentation.slides.length === 0) {
 			this.addNewSlide();
 		}
-
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-
 	}
 
 	removeElement() {
@@ -134,8 +134,8 @@ export class ToolbarComponent implements OnInit {
 		this.activeElementChange.emit(this.activeElement);
 	}
 	removeActiveElementBgColor() {
-	delete this.activeElement.style['background-color'];
-}
+		delete this.activeElement.style['background-color'];
+	}
 
 	debug() {
 		console.log(this.presentation.slides[
@@ -144,20 +144,14 @@ export class ToolbarComponent implements OnInit {
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
-		console.log(this.activeElement.data.toString());
-		console.log(regex.exec(this.activeElement.data.toString()));
-
-		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
-		}
+		this.tempText = regex.exec(this.activeElement.data.toString())[1];
 	}
-	changeImage() {
-		const regex = /src=\"(.*)\"/;
-		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<img src="${returno}"></img>`;
-		}
+	saveChangedText() {
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
+	}
+	saveChangedImage() {
+		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;
 	}
 	toogleMenu(witch_one) {
 		switch (witch_one) {
@@ -207,8 +201,12 @@ export class ToolbarComponent implements OnInit {
 
 	/* Go to fullscreen */
 	goFull() {
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
 		this.isFullscreen = true;
 		this.isFullscreenChange.emit(this.isFullscreen);
+		this.activeToolbarElement = this.toolbarActive.none;
+		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 
 		if (this.elem.requestFullscreen) {
 			this.elem.requestFullscreen();
@@ -227,9 +225,5 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement.style['left'] = `${this.activeElement.style['left']}%`;
 		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
 		console.log(this.activeElement.style['left']);
-	}
-
-	selectSlidePreset() {
-		const returno = prompt('Type the text:', this.activeElement.data.toString());
 	}
 }

@@ -1,3 +1,4 @@
+
 <div id="workspace" (mousedown)="unselectElement($event)" [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
 	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +

@@ -2,15 +2,14 @@
   <div class="toolbar-body">
     <div class="tabs">
       <input class="input" name="tabs" type="button" id="tab-1" (click)="goFull()" />
-      <label (click)="activeElement=undefined; activeElementChange.emit(activeElement);" class="label" for="tab-1">Present
-        <fa-icon [icon]="faPlay"></fa-icon></label>
+      <label class="label" for="tab-1">Present <fa-icon [icon]="faPlay"></fa-icon></label>
 
       <input type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
-      <label (click)="activeElement=undefined; activeElementChange.emit(activeElement);" class="label" for="tab-3">Add
+      <label (click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-3">Add
         an Element <fa-icon [icon]="faPlusSquare"></fa-icon></label>
 
       <input type="radio" class="input" name="tabs" id="tab-2" [value]="toolbarActive.transition" [(ngModel)]="activeToolbarElement" />
-      <label (click)="activeElement=undefined; activeElementChange.emit(activeElement);" class="label" for="tab-2">Slide
+      <label (click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-2">Slide
         Options <fa-icon [icon]="faWrench"></fa-icon></label>
 
       <input *ngIf="activeToolbarElement === toolbarActive.editElement" type="radio" class="input" name="tabs" id="tab-4"
@@ -27,16 +26,21 @@
 
 
     <div *ngIf="activeToolbarElement === toolbarActive.addElement">
-      <button (click)="addNewElement(typeOfElement.titlefield)">Add a Title <fa-icon [icon]="faPencilAlt"></fa-icon></button>
-      <button (click)="addNewElement(typeOfElement.textfield)">Add a Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
-      <button (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon> </button>
+      <button class="btn btn-default" (click)="addNewElement(typeOfElement.titlefield)">Add a Title <fa-icon [icon]="faPencilAlt"></fa-icon></button>
+      <button class="btn btn-default" (click)="addNewElement(typeOfElement.textfield)">Add a Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
+      <button class="btn btn-default" (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon>
+      </button>
     </div>
+    <!-- Button to open the modal login form -->
+    <!-- <button onclick="document.getElementById('modalLogin').style.display='block'">Login</button> -->
 
-
+    
+   
 
     <div *ngIf="activeToolbarElement === toolbarActive.editElement">
 
       <div>
+<<<<<<< HEAD
         <button *ngIf="activeElement.type == typeOfElement.image" (click)="changeImage()">Change Image <fa-icon [icon]="faImage"></fa-icon>
         </button>
 
@@ -53,6 +57,26 @@
           id="element-background-color" type="color" [(ngModel)]="activeElement.style['background-color']" />
 
         <button *ngIf="activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield"
+=======
+        <button class="btn btn-default" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image"
+          (click)="changeImage()" data-toggle="modal" data-target="#modalImage">Change Image <fa-icon [icon]="faImage"></fa-icon>
+        </button>
+
+        <button class="btn btn-default" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
+        (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)"
+          (click)="changeText()" data-toggle="modal" data-target="#modalText">Change Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
+
+        <button class="btn btn-default" (click)="removeElement()">Delete Element <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+
+        <button class="btn btn-default" onclick="document.getElementById('element-background-color').click();">Background
+          Color<fa-icon [icon]="faPalette"></fa-icon></button>
+
+        <input [hidden]="true" *ngIf="(activeElement !== undefined && activeElement.type === typeOfElement.textfield) ||
+          ( activeElement !== undefined && activeElement.type === typeOfElement.titlefield) || (activeElement !== undefined && activeElement.type === typeOfElement.image)"
+          id="element-background-color" type="color" [(ngModel)]="activeElement.style['background-color']" />
+
+        <button class="btn btn-default" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) || (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)"
+>>>>>>> dev
           id="slide-background-color-default" (click)="removeActiveElementBgColor()" [hidden]="activeElement.style['background-color'] === undefined || presentation.slides[activeSlide].bgcolor === activeElement.style['background-color']">Remove
           color <fa-icon [icon]="faPalette"></fa-icon>
           <fa-icon [icon]="faMinusSquare"></fa-icon>
@@ -61,6 +85,7 @@
       </div>
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition">
+<<<<<<< HEAD
       <button (click)="addNewTSlide()">Add New Title Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
       <button (click)="addNewTSSlide()">Add New Title+Sub Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
       <button (click)="addNewTSTSlide()">Add New Title+Sub+Text Slide<fa-icon [icon]="faPlusSquare"></fa-icon></button>
@@ -76,6 +101,95 @@
         <option value="{{transition.spinLeft}}">Spin Left</option>
         <option value="{{transition.fadein}}">Fade in</option>
       </select>
+=======
+      <div style="float:left">
+        <div>
+          <fa-icon [icon]="faPlusSquare"></fa-icon> Add a new Slide:
+        </div>
+        <button (click)="addNewTSlide()">Title Slide</button>
+        <button (click)="addNewTSSlide()">Title+Sub Slide</button>
+        <button (click)="addNewTSTSlide()">Title+Sub+Text Slide</button>
+        <button (click)="addNewBSlide()">Blank Slide</button>
+      </div>
+
+      <div>
+        <div>Active Slide Options:</div>
+        <button (click)="removeSlide()">Remove Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+        <button onclick="document.getElementById('slide-background-color').click();">Background Color<fa-icon [icon]="faPalette"></fa-icon></button>
+        <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
+        <label>Transiction Effect:</label>
+        <select [(ngModel)]="presentation.slides[activeSlide].transition">
+          <option value="{{transition.default}}">Default</option>
+          <option value="{{transition.slideLeft}}">Slide Left</option>
+          <option value="{{transition.spinLeft}}">Spin Left</option>
+          <option value="{{transition.fadein}}">Fade in</option>
+        </select>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- ##################### Ending the toolbar things starting to write the modals ################ -->
+
+<div class="modal fade" id="modalText" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Text</h4>
+      </div>
+      <div class="modal-body">
+        Value: <input type="text" [(ngModel)]="tempText">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="saveChangedText()">Save</button>
+      </div>
+>>>>>>> dev
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="modalImage" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Image</h4>
+      </div>
+      <div class="modal-body">
+        URL: <input type="text" [(ngModel)]="tempImgURL">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="saveChangedImage()">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- The Modal -->
+<div id="modalLogin" class="mymodal">
+  <span onclick="document.getElementById('modalLogin').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <!-- Modal Content -->
+  <form class="mymodal-content animate" action="/manage">
+      <div style="position:relative; top:20%;">
+        <label for="uname"><b>Username:</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required style="top:20vh">
+      </div>
+      <div style="position:relative; top:40%; ">
+        <label for="psw"><b>Password:</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+      </div>
+
+      <div style="position:relative; top:60%; left: 30%;">
+        <button routerLink="/manage">Login</button>
+        <button type="button" onclick="document.getElementById('modalLogin').style.display='none'" class="cancelbtn">Cancel</button>
+
+      </div>
+  </form>
 </div>
