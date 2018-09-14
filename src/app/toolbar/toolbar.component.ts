@@ -204,8 +204,12 @@ export class ToolbarComponent implements OnInit {
 
 	/* Go to fullscreen */
 	goFull() {
+		this.activeElement = undefined;
+		this.activeElementChange.emit(this.activeElement);
 		this.isFullscreen = true;
 		this.isFullscreenChange.emit(this.isFullscreen);
+		this.activeToolbarElement = this.toolbarActive.none;
+		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 
 		if (this.elem.requestFullscreen) {
 			this.elem.requestFullscreen();

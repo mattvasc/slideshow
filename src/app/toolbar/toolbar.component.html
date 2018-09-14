@@ -2,7 +2,7 @@
   <div class="toolbar-body">
     <div class="tabs">
       <input class="input" name="tabs" type="button" id="tab-1" (click)="goFull()" />
-      <label (click)="activeElement=undefined; activeElementChange.emit(activeElement);" class="label" for="tab-1">Present <fa-icon [icon]="faPlay"></fa-icon></label>
+      <label class="label" for="tab-1">Present <fa-icon [icon]="faPlay"></fa-icon></label>
 
       <input type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
       <label (click)="activeElement=undefined; activeElementChange.emit(activeElement);" class="label" for="tab-3">Add an Element <fa-icon [icon]="faPlusSquare"></fa-icon></label>
