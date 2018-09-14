@@ -119,10 +119,8 @@ export class ToolbarComponent implements OnInit {
 		if (this.presentation.slides.length === 0) {
 			this.addNewSlide();
 		}
-
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-
 	}
 
 	removeElement() {
@@ -133,10 +131,9 @@ export class ToolbarComponent implements OnInit {
 		this.activeElementChange.emit(this.activeElement);
 	}
 	removeActiveElementBgColor() {
-	delete this.activeElement.style['background-color'];
-}
+		delete this.activeElement.style['background-color'];
+	}
 
-	
 	debug() {
 		console.log(this.presentation.slides[
 			this.activeSlide].elements[this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement)].type);

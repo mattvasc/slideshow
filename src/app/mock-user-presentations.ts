@@ -6,7 +6,7 @@ import { Transition } from './slide';
 
 export const USERS: User[] = [
 		{ 	
-			name : "Mr.Nice",
+			name: 'Mr.Nice',
             password: 'nicenice',
             email:'',
             presentations: ''
@@ -17,7 +17,6 @@ export const USERS: User[] = [
             password: 'nicenice2',
             email:'',
             presentations: ''
-			
 		},
     ];
 	//cada apresentação contem : - conjunto de slides - cada slide tem - elementos																	

@@ -24,6 +24,9 @@ $height-miniature: 70vh;
     min-height: $height-miniature;
     max-width: $width-miniature;
     max-height: $height-miniature;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
 }
 
 .slide-encapsulation {
