@@ -32,8 +32,8 @@
     <div id="modalLogin" class="modal">
       <span onclick="document.getElementById('modalLogin').style.display='none'" class="close" title="Close Modal">&times;</span>
       <!-- Modal Content -->
-      <form class="modal-content animate" action="/manage">
-          <div style="position:relative; top:20%;">
+      <div class="modal-content animate">
+          <div style="position:relative; top:20%; box-align: center;">
             <label for="uname"><b>Username:</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
           </div>
@@ -42,12 +42,12 @@
             <input type="password" placeholder="Enter Password" name="psw" required>
           </div>
   
-          <div style="position:relative; top:60%; left: 30%;">
+          <div style="position:relative; top:60%; border:dashed;">
             <button routerLink="/manage">Login</button>
             <button type="button" onclick="document.getElementById('modalLogin').style.display='none'" class="cancelbtn">Cancel</button>
 
           </div>
-      </form>
+        </div>
     </div>
    
 
