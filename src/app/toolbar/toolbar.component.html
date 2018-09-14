@@ -22,8 +22,31 @@
       <button (click)="addNewElement(typeOfElement.textfield)">Add a Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
       <button (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon> </button>
     </div>
+    <!-- Button to open the modal login form -->
+    <button onclick="document.getElementById('modalLogin').style.display='block'">Login</button>
 
+    <!-- The Modal -->
+    <div id="modalLogin" class="modal">
+      <span onclick="document.getElementById('modalLogin').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <!-- Modal Content -->
+      <form class="modal-content animate" action="/manage">
+          <div style="position:relative; top:20%;">
+            <label for="uname"><b>Username:</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required style="top:20vh">
+          </div>
+          <div style="position:relative; top:40%; ">
+            <label for="psw"><b>Password:</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+          </div>
+  
+          <div style="position:relative; top:60%; left: 30%;">
+            <button routerLink="/manage">Login</button>
+            <button type="button" onclick="document.getElementById('modalLogin').style.display='none'" class="cancelbtn">Cancel</button>
 
+          </div>
+      </form>
+    </div>
+   
 
     <div *ngIf="activeToolbarElement === toolbarActive.editElement">
    
