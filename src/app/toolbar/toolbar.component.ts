@@ -150,6 +150,11 @@ export class ToolbarComponent implements OnInit {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
 	}
+	changeImage() {
+		const regex = new RegExp(`<img.* src="(.*)">`, 'imu');
+		console.log(this.activeElement.data.toString());
+		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
+	}
 	saveChangedImage() {
 		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;
 	}
