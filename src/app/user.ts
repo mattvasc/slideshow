@@ -1,7 +1,7 @@
 import { Presentation } from './presentation';
 export class User {
 	constructor(name: String,
-		private password: String,
+		public password: String,
 		public presentations: Presentation[] = [] ) {}
 
 	login() {
