@@ -3,9 +3,9 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
-import {
-	faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
-	, faMinusSquare, faPalette
+import { faPlay, faPlusSquare, faWrench,
+	faPencilAlt, faImage, faFont, faSquare,
+	faMinusSquare, faPalette, faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,6 +24,7 @@ export class ToolbarComponent implements OnInit {
 	faSquare = faSquare;
 	faPalette = faPalette;
 	faMinusSquare = faMinusSquare;
+	faUser = faUser;
 
 
 
@@ -50,6 +51,8 @@ export class ToolbarComponent implements OnInit {
 	private elem;
 
 
+	public tempImgURL: String;
+	public tempText: String;
 
 	constructor() { }
 
@@ -76,19 +79,19 @@ export class ToolbarComponent implements OnInit {
 	}
 
 	addNewTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		this.addNewSlide(X);
 	}
 	addNewTSSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		this.addNewSlide(X);
 	}
 	addNewTSTSlide() {
-		var X: Slide = new Slide()
+		const X: Slide = new Slide();
 		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
@@ -141,20 +144,19 @@ export class ToolbarComponent implements OnInit {
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
-		console.log(this.activeElement.data.toString());
-		console.log(regex.exec(this.activeElement.data.toString()));
-
-		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
-		}
+		this.tempText = regex.exec(this.activeElement.data.toString())[1];
+	}
+	saveChangedText() {
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
 	}
 	changeImage() {
-		const regex = /src=\"(.*)\"/;
-		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
-		if (returno != null) {
-			this.activeElement.data = `<img src="${returno}"></img>`;
-		}
+		const regex = new RegExp(`<img.* src="(.*)">`, 'imu');
+		console.log(this.activeElement.data.toString());
+		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
+	}
+	saveChangedImage() {
+		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;
 	}
 	toogleMenu(witch_one) {
 		switch (witch_one) {
