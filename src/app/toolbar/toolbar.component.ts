@@ -2,14 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
-import { DataStorageService } from '../data-storage.service';
-import { User } from '../user';
 import { ToolbarActive } from '../toolbar-active.enum';
 import {
-	faPlay, faPlusSquare, faWrench,
-	faPencilAlt, faImage, faFont, faSquare,
-	faMinusSquare, faPalette, faUser
+	faPlay, faPlusSquare, faWrench, faPencilAlt, faImage, faFont, faSquare
+	, faMinusSquare, faPalette
 } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../user';
 
 @Component({
 	selector: 'app-toolbar',
@@ -27,7 +25,6 @@ export class ToolbarComponent implements OnInit {
 	faSquare = faSquare;
 	faPalette = faPalette;
 	faMinusSquare = faMinusSquare;
-	faUser = faUser;
 
 
 
@@ -51,17 +48,15 @@ export class ToolbarComponent implements OnInit {
 	public transition = Transition;
 	// End of the workaround
 
+	name: string = '';
+	password: string = '';
+	user: User = new User(this.name,this.password);
+	
 	private elem;
 
 
-	public tempImgURL: String;
-	public tempText: String;
 
-	public user: User;
-
-	constructor(private _data: DataStorageService) {
-		this.user = _data.user;
-	}
+	constructor() { }
 
 
 	ngOnInit() {
@@ -151,19 +146,20 @@ export class ToolbarComponent implements OnInit {
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
-		this.tempText = regex.exec(this.activeElement.data.toString())[1];
-	}
-	saveChangedText() {
-		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
-		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
+		console.log(this.activeElement.data.toString());
+		console.log(regex.exec(this.activeElement.data.toString()));
+
+		const returno = prompt('Type the text:', regex.exec(this.activeElement.data.toString())[1]);
+		if (returno != null) {
+			this.activeElement.data = `<${tag}>${returno}</${tag}>`;
+		}
 	}
 	changeImage() {
-		const regex = new RegExp(`<img.* src="(.*)">`, 'imu');
-		console.log(this.activeElement.data.toString());
-		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
-	}
-	saveChangedImage() {
-		this.activeElement.data = `<img src="${this.tempImgURL}"></img>`;
+		const regex = /src=\"(.*)\"/;
+		const returno = prompt('Input the URL of the Image:', regex.exec(this.activeElement.data.toString())[1]);
+		if (returno != null) {
+			this.activeElement.data = `<img src="${returno}"></img>`;
+		}
 	}
 	toogleMenu(witch_one) {
 		switch (witch_one) {

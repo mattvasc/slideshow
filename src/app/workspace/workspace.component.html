@@ -1,22 +1,51 @@
-
-<div id="workspace" (mousedown)="unselectElement($event)" [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
-	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
+<div id="workspace" (mousedown)="unselectElement($event)"   [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
+	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)"  [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
 	 ', '+presentation.slides[activeSlide].bgcolor.green +
-	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'" [style.backgroundImage]="'url(' + presentation.background + ')'">
+	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'" [ngClass]="{slideLeft:this.presentation.slides[this.activeSlide].transition == '1' && isFullscreen && triggerTransition, rotateLeft:this.presentation.slides[this.activeSlide].transition == '2' && isFullscreen && triggerTransition}">
 		<div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
 		[ngStyle]="element.style" [ngClass]="'unselectable'" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
 		[innerHtml]="element.data" (mousedown)="selectElement($event)">
 		</div>
 
 	</div>
-	<div *ngIf="activeSlide+1<presentation.slides.length" id ="page"  [hidden]="!isFullscreen"
+	<div *ngIf="activeSlide+1<presentation.slides.length" [class.nextSlide]='true' id ="page2"   [hidden]="!isFullscreen"
 	[style.background-color]="'rgb(' + presentation.slides[activeSlide+1].bgcolor.red +
 	 ', '+presentation.slides[activeSlide+1].bgcolor.green +
-	  ', ' + presentation.slides[activeSlide+1].bgcolor.blue + ')'">
+	  ', ' + presentation.slides[activeSlide+1].bgcolor.blue + ')'" [ngClass]="{slideLeft:this.presentation.slides[this.activeSlide].transition == '1' && isFullscreen && triggerTransition, rotateLeft:this.presentation.slides[this.activeSlide].transition == '2' && isFullscreen && triggerTransition}">
 
 		<div id="element_{{i}}" *ngFor="let element of presentation.slides[activeSlide+1].elements; index as i" 
 		[ngStyle]="element.style" 
 		[innerHtml]="element.data" >
 		</div>
 	</div>
+
+	
+	<!--
+	<div *ngIf="activeSlide+1<presentation.slides.length" id ="page"  [ngClass]="{slideLeft:isTrue(),rotateLeft:getTransitionType(Transition.rotateLeft)}" [hidden]="!isFullscreen"
+		[style.background-color]="'rgb(' + presentation.slides[activeSlide+1].bgcolor.red +
+	 	', '+presentation.slides[activeSlide+1].bgcolor.green +
+	  	', ' + presentation.slides[activeSlide+1].bgcolor.blue + ')'">
+
+		<div id="element_{{i}}" *ngFor="let element of presentation.slides[activeSlide+1].elements; index as i" 
+		[ngStyle]="element.style" 
+		[innerHtml]="element.data" >
+		</div>
+	</div>
+
+	é renderizado ao lado 
+	para colocar proximo slide do lado
+	position absolute
+	left:100vw
+	ver a transition do activeSlide ao clicar para o lado
+	dependendo desse transition, aplicar classe com a animation referente à aquele transition no activeSlide+1
+	após entrar em posição,tornar o activeSlide +1 o activeSlide 
+	-->
+	
+	
+	<!--
+		<option value="{{transition.default}}">Default</option>
+          <option value="{{transition.slideLeft}}">Slide Left</option>
+          <option value="{{transition.spinLeft}}">Spin Left</option>
+          <option value="{{transition.fadein}}">Fade in</option>
+	-->
 </div>

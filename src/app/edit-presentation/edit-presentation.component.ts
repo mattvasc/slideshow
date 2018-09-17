@@ -17,6 +17,7 @@ export class EditPresentationComponent implements OnInit {
 	public test: any;
 	private elem;
 	public isFullscreen;
+	public triggerTransition;
 	public presentation: Presentation;
 	// The following enum dictates wich session of the template render
 	public activeToolbarElement: ToolbarActive = ToolbarActive.none;
@@ -35,9 +36,18 @@ export class EditPresentationComponent implements OnInit {
 					this.activeSlide--;
 				}
 				break;
+			case 32: // Space (test transition)
+				if (this.isFullscreen) {
+					this.triggerTransition = true;
+					
+					console.log("triggou");
+
+				}
+				break;
 			// case 38: // Up Arrow
 			case 39: // Right Arrow
 				if (this.isFullscreen && this.activeSlide < this.presentation.slides.length - 1) {
+
 					this.activeSlide++;
 				}
 				break;

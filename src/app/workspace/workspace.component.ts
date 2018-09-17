@@ -29,6 +29,8 @@ export class WorkspaceComponent implements OnInit {
 	@Input() activeToolbarElement: ToolbarActive;
 	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
 
+	@Input() triggerTransition: boolean;
+
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
 		if (event.keyCode === 46) {
@@ -125,6 +127,29 @@ export class WorkspaceComponent implements OnInit {
 		this.dragging = true;
 	}
 
+	getTransitionType(transitionType): boolean {
+		if(this.isFullscreen){
+			if (this.presentation.slides[this.activeSlide].presentation == transitionType){
+				return true;
+			}
+			else if(this.presentation.slides[this.activeSlide].presentation == transitionType){
+				console.log('acessou função 1');
+				return true;
+			}
+			else if(this.presentation.slides[this.activeSlide].presentation == transitionType){
+				console.log('acessou função 2');
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			console.log('acessou função nao ativo');
+			return false;
+		}
+		
+	}
 	// funções notáveis
 	// ao clicar fora da pagina do slide, se há slide em modo de edição, renderizar e sair da edição
 	// ao clicar em algum elemento, chamar função

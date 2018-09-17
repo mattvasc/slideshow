@@ -46,8 +46,36 @@ $sizefont: $sizefontpx/14 + vw;
         }
     }
 }
+.slideLeft{
+    -webkit-animation: fadeIn 3s ease-in-out;
+    -moz-animation: fadeIn 3s ease-in-out;
+    -o-animation: fadeIn 3s ease-in-out;
+    animation: fadeIn 3s ease-in-out;
+}
+.rotateLeft{
+    border:dashed;
+}
 
-
+#page2{
+        //black background from workspace
+        position: absolute;
+        width: 95vw;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+        //background-color: white;
+        overflow: hidden;
+        font-size: $sizefont;
+        float: left;
+        left:100vw;
+        top:0vh;
+        border:dotted;
+        
+    
+    
+}
 
 .onEdit {
     position: absolute;
@@ -104,4 +132,22 @@ $sizefont: $sizefontpx/14 + vw;
 
 img .selected {
     border: dashed 50px;
+}
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; } 
+}
+
+@-moz-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
