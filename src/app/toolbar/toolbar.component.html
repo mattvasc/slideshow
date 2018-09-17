@@ -20,7 +20,8 @@
       <div *ngIf="user" style="float:right; border-style: dashed">
         <fa-icon
           [icon]="faUser"></fa-icon> Olá {{user.username}},
-        <div><a routerLink="/">Log Out</a></div>
+        <div><a (click)="logout()">Log Out</a></div>
+        <div><a (click)="goToDash()">My Dashboard</a></div>
       </div>
     </div>
 
@@ -31,9 +32,6 @@
       <button class="btn btn-default" (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon>
       </button>
     </div>
-    <!-- Button to open the modal login form -->
-    <!-- <button onclick="document.getElementById('modalLogin').style.display='block'">Login</button> -->
-
     
    
 
@@ -135,24 +133,3 @@
   </div>
 </div>
 
-<!-- The Modal -->
-<div id="modalLogin" class="mymodal">
-  <span onclick="document.getElementById('modalLogin').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <!-- Modal Content -->
-  <form class="mymodal-content animate" action="/manage">
-      <div style="position:relative; top:20%;">
-        <label for="uname"><b>Username:</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required style="top:20vh">
-      </div>
-      <div style="position:relative; top:40%; ">
-        <label for="psw"><b>Password:</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-      </div>
-
-      <div style="position:relative; top:60%; left: 30%;">
-        <button routerLink="/manage">Login</button>
-        <button type="button" onclick="document.getElementById('modalLogin').style.display='none'" class="cancelbtn">Cancel</button>
-
-      </div>
-  </form>
-</div>

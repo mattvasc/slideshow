@@ -9,6 +9,9 @@ export class User {
 	}
 
 	addPresentation(x: Presentation) {
+		if (x.owner === undefined || x.owner === '') {
+			x.owner = this.name;
+		}
 		this.presentations.push(x);
 	}
 

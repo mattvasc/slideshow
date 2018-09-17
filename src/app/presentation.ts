@@ -7,7 +7,7 @@ export enum Visibility {
 
 export class Presentation {
 	constructor(public slides: Slide[] = [],
-		public owner: String = 'Not logged Yet',
+		public owner?: String,
 		public visibility: Visibility = Visibility.public,
 		public background: String = ''
 	) { }

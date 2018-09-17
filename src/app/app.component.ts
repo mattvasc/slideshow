@@ -7,7 +7,7 @@ import { EditPresentationComponent } from './edit-presentation/edit-presentation
 })
 export class AppComponent {/*
 	@HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
+  handleKeyboardEvent(event: KeyboardEvent) {
 	this.key = event.key;
   }*/
 }

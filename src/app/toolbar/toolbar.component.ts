@@ -5,6 +5,7 @@ import { Element, TypeOfElement } from '../element';
 import { DataStorageService } from '../data-storage.service';
 import { User } from '../user';
 import { ToolbarActive } from '../toolbar-active.enum';
+import { Router } from '@angular/router';
 import {
 	faPlay, faPlusSquare, faWrench,
 	faPencilAlt, faImage, faFont, faSquare,
@@ -59,7 +60,7 @@ export class ToolbarComponent implements OnInit {
 
 	public user: User;
 
-	constructor(private _data: DataStorageService) {
+	constructor(private _data: DataStorageService, private router: Router) {
 		this.user = _data.user;
 	}
 
@@ -238,4 +239,14 @@ export class ToolbarComponent implements OnInit {
 		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
 		console.log(this.activeElement.style['left']);
 	}
+	goToDash() {
+		this.router.navigate(['/manage']);
+	}
+
+	logout() {
+		this._data.user = undefined;
+		this.goToDash();
+
+	}
+
 }

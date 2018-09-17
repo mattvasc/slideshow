@@ -1,12 +1,66 @@
+<!-- Button to open the modal login form -->
+<button *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin">Login</button>
+<button *ngIf="_data.user" (click)="logout()">Logout</button>
+
+
+
 <div class="slide-encapsulation">
-        Search Presentations: <input type="text" name="Find"><br>
-        <button *ngIf="logged" routerLink="/edit">Create new presentation</button>
-    <div class="slide miniature" *ngFor="let presentation of P; index as i">
-            <button *ngIf="presentation.owner == user.name" (click)="deletePresentation(i)">Delete</button>
+    Search Presentations: <input type="text" name="Find"><br>
+    <div *ngIf="_data.user">
+        <button  routerLink="/edit">Create new presentation</button>
+        Suas Apresentações:
+
+    </div>
+    <div  *ngFor="let presentation of P; index as i" >
+        <div class="slide miniature" *ngIf="_data.user && presentation.owner === _data.user.name">
+            <button (click)="editPresentation(i)">Edit</button>
+            <button (click)="deletePresentation(i)">Delete</button>
             <button (click)="teste()">Present</button>
-            <button *ngIf="presentation.owner == user.name">Edit</button>
-        <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
-            <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+            <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+            </div>
         </div>
+    </div>
+    Apresentações de outros usuários:
+    <div *ngFor="let presentation of P; index as i" >
+        <div  class="slide miniature" *ngIf="!_data.user || presentation.owner !== _data.user.name">
+            <button (click)="deletePresentation(i)">Delete</button>
+            <button (click)="teste()">Present</button>
+            <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal bootstrap para login -->
+<div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Do Login</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="uname"><b>Username:</b></label>
+                    <input type="text" placeholder="Enter Username" [(ngModel)]="username" required style="top:20vh">
+                </div>
+                <div>
+                    <label for="psw"><b>Password:</b></label>
+                    <input type="password" placeholder="Enter Password" [(ngModel)]="password" required>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="login()">Login</button>
+            </div>
+        </div>
+
     </div>
 </div>

@@ -23,7 +23,7 @@ const appRoutes: Routes = [
 	{ path: 'login',      component: LoginComponent },
 	{ path: 'manage',      component: ManagePresentationsComponent },
 	{ path: '',
-	redirectTo: '/login',
+	redirectTo: '/manage',
 	pathMatch: 'full'
 },
 { path: '**', component: PageNotFoundComponent },
