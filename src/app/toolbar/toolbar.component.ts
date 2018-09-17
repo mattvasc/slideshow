@@ -2,8 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
+import { DataStorageService } from '../data-storage.service';
+import { User } from '../user';
 import { ToolbarActive } from '../toolbar-active.enum';
-import { faPlay, faPlusSquare, faWrench,
+import {
+	faPlay, faPlusSquare, faWrench,
 	faPencilAlt, faImage, faFont, faSquare,
 	faMinusSquare, faPalette, faUser
 } from '@fortawesome/free-solid-svg-icons';
@@ -54,7 +57,11 @@ export class ToolbarComponent implements OnInit {
 	public tempImgURL: String;
 	public tempText: String;
 
-	constructor() { }
+	public user: User;
+
+	constructor(private _data: DataStorageService) {
+		this.user = _data.user;
+	}
 
 
 	ngOnInit() {

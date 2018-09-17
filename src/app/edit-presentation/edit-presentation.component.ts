@@ -4,7 +4,7 @@ import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { ToolbarActive } from '../toolbar-active.enum';
-
+import { DataStorageService } from '../data-storage.service';
 @Component({
 	selector: 'app-edit-presentation',
 	templateUrl: './edit-presentation.component.html',
@@ -12,12 +12,12 @@ import { ToolbarActive } from '../toolbar-active.enum';
 })
 export class EditPresentationComponent implements OnInit {
 
-	public presentation: Presentation;
 	public activeSlide = 0;
 	public activeElement: Element = undefined;
 	public test: any;
 	private elem;
 	public isFullscreen;
+	public presentation: Presentation;
 	// The following enum dictates wich session of the template render
 	public activeToolbarElement: ToolbarActive = ToolbarActive.none;
 
@@ -63,7 +63,9 @@ export class EditPresentationComponent implements OnInit {
 
 
 
-	constructor() { }
+	constructor(private _data: DataStorageService) {
+		this.presentation = _data.presentation;
+	}
 
 	debug() {
 		this.isFullscreen = !this.isFullscreen;
@@ -73,14 +75,16 @@ export class EditPresentationComponent implements OnInit {
 		this.elem = document.documentElement;
 		this.isFullscreen = false;
 
-		this.presentation = new Presentation(undefined, 'Not logged yet', undefined, 'http://rugbyinafrica.org/2017/08/backgrounds-for-powerpoint/?showimage_zmdh=backgrounds+for+powerpoint.jpg');
+		this.presentation = new Presentation(undefined, 'Not logged yet', undefined,
+			'http://rugbyinafrica.org/2017/08/backgrounds-for-powerpoint/?showimage_zmdh=backgrounds+for+powerpoint.jpg');
 		const first_slide: Slide = new Slide([], Transition.slideLeft, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
 		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2> Meu Título </h2>`, 43, 15));
 		first_slide.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`,
-			43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue'}));
+			43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue' }));
 
-		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">', 43, 60,));
+		first_slide.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">', 43, 60));
 		this.presentation.addSlide(first_slide);
+		this._data.presentation = this.presentation;
 	}
 	unselectElement() {
 		this.activeElement = undefined;

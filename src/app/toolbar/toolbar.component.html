@@ -17,9 +17,9 @@
       <label *ngIf="activeToolbarElement === toolbarActive.editElement" class="label" for="tab-4">Edit Element <fa-icon
           [icon]="faPencilAlt"></fa-icon></label>
 
-      <div style="float:right; border-style: dashed">
+      <div *ngIf="user" style="float:right; border-style: dashed">
         <fa-icon
-          [icon]="faUser"></fa-icon> Olá Marilene,
+          [icon]="faUser"></fa-icon> Olá {{user.username}},
         <div><a routerLink="/">Log Out</a></div>
       </div>
     </div>
@@ -79,7 +79,7 @@
       <div>
         <div>Active Slide Options:</div>
         <button (click)="removeSlide()">Remove Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
-        <button onclick="document.getElementById('slide-background-color').click();">Background Color<fa-icon [icon]="faPalette"></fa-icon></button>
+        <button *ngIf="!presentation.background" onclick="document.getElementById('slide-background-color').click();">Background Color<fa-icon [icon]="faPalette"></fa-icon></button>
         <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
         <label>Transiction Effect:</label>
         <select [(ngModel)]="presentation.slides[activeSlide].transition">
