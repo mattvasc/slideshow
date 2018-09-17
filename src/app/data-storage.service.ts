@@ -32,7 +32,7 @@ export class DataStorageService {
 
 
 		this.Users[0].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação X </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação Y </h2>`, 43, 15),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue' }),
 			new Element(TypeOfElement.image, `<img src="https://picsum.photos/150/150?image=${Math.floor(Math.random() * 1084)}">`, 43, 60)
 			])], undefined, Visibility.public, backgrounds[Math.floor(Math.random() * backgrounds.length)]));
@@ -40,13 +40,13 @@ export class DataStorageService {
 
 
 		this.Users[1].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação X </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação Z </h2>`, 43, 15),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'orange' }),
 			new Element(TypeOfElement.image, `<img src="https://picsum.photos/150/150?image=${Math.floor(Math.random() * 1084)}">`, 43, 60)
 			])], undefined, Visibility.public, backgrounds[Math.floor(Math.random() * backgrounds.length)]));
 
 		this.Users[1].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação X </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação W </h2>`, 43, 15),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'brown' }),
 			new Element(TypeOfElement.image, `<img src="https://picsum.photos/150/150?image=${Math.floor(Math.random() * 1084)}">`, 43, 60)
 			])], undefined, Visibility.public, backgrounds[Math.floor(Math.random() * backgrounds.length)]
