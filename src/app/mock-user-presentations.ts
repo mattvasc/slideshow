@@ -14,7 +14,7 @@ new User('Mr.Nice2', 'nicenice2')
 
 export const mockedSlides: Slide = new Slide([], Transition.default);
 mockedSlides.addElement(new Element(TypeOfElement.titlefield, `<h2> Meu Título </h2>`, 43, 15));
-mockedSlides.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, 
+mockedSlides.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30,
 { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue' }));
 mockedSlides.addElement(new Element(TypeOfElement.image, '<img src="https://picsum.photos/150/150?random">', 43, 60));
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { mockedUsers, mockedPresentations, mockedPresentations2 } from '../mock-user-presentations';
 import { Presentation } from '../presentation';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
 	selector: 'app-manage-presentations',
@@ -10,10 +11,12 @@ import { Presentation } from '../presentation';
 })
 export class ManagePresentationsComponent implements OnInit {
 
-	public user: User = mockedUsers[0];
-	public logged: boolean = true;
+	public logged = true;
+	public user: User;
+	constructor(private _data: DataStorageService) {
+		this.user = this._data.user;
+	}
 
-	constructor() { }
 	P: Presentation[] = [mockedPresentations, mockedPresentations2];
 	ngOnInit() {
 	}
