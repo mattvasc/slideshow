@@ -79,7 +79,8 @@ export class ToolbarComponent implements OnInit {
 				break;
 			case TypeOfElement.image:
 				this.presentation.slides[this.activeSlide].addElement(
-					new Element(TypeOfElement.image, `<img src="https://picsum.photos/150/150?image=${Math.floor(Math.random() * 1084)}">`));
+					new Element(TypeOfElement.image,
+					`<img src="https://picsum.photos/150/150?image=${this._data.images[Math.floor(Math.random() * this._data.images.length)]}">`));
 				break;
 			case TypeOfElement.bulletlist:
 				break;
