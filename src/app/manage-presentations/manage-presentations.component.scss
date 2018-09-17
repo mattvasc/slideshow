@@ -4,7 +4,9 @@ $width-miniature: 55vw;
 $height-miniature: 70vh;
 
 .slide {
-    position: static;
+    position: relative;
+    right: 10%;
+    top: -10%;
     background-color: white;
     min-width: $width-miniature;
     min-height: $height-miniature;
@@ -16,7 +18,7 @@ $height-miniature: 70vh;
 }
 
 .slide-encapsulation {
-    background-color: coral;
+    background-color: rgb(224, 212, 207);
     -webkit-box-sizing: initial;
     -moz-box-sizing: initial;
     box-sizing: initial;
@@ -24,5 +26,31 @@ $height-miniature: 70vh;
 }
 
 .miniature {
-    transform: scale(0.8);
+    transform: scale(0.6);
+}
+
+header {
+    padding: 10px;
+    font-size: 40px;
+}
+header button {
+    float: right;
+}
+
+h4 {
+    padding: 10px;
+}
+
+h2 {
+    padding: 5px;
+}
+
+.presentations-user {
+    float: left;
+    width: 45%;
+}
+
+.presentations-all {
+    float: right;
+    width: 45%;
 }

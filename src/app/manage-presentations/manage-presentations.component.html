@@ -1,12 +1,43 @@
+<header>
+    OPUS internSlides
+    <button *ngIf="logged" routerLink="/edit">+</button>
+</header>
 <div class="slide-encapsulation">
-        Search Presentations: <input type="text" name="Find"><br>
-        <button *ngIf="logged" routerLink="/edit">Create new presentation</button>
-    <div class="slide miniature" *ngFor="let presentation of P; index as i">
-            <button *ngIf="presentation.owner == user.name" (click)="deletePresentation(i)">Delete</button>
-            <button (click)="teste()">Present</button>
-            <button *ngIf="presentation.owner == user.name">Edit</button>
-        <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
-            <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+
+    <div class="presentations-user" *ngIf="logged">
+        <h2>Your Presentations</h2>
+        <h4>
+            Search your Presentations:
+            <input type="text" name="Find">
+        </h4>
+        <div *ngFor="let presentation of P; index as i">
+            <div *ngIf="presentation.owner == user.name && i<4">
+                <button (click)="deletePresentation(i)">Delete</button>
+                <button (click)="teste()">Present</button>
+                <button>Edit</button>
+            </div>
+            <div class="slide miniature" *ngIf="presentation.owner == user.name && i<4">
+                <div *ngIf="presentation.owner == user.name" id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                    <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="presentations-all">
+        <h2>Popular Presentations</h2>
+        <h4>
+            Search Presentations:
+            <input type="text" name="Find">
+        </h4>
+        <div *ngFor="let presentation of P; index as i">
+            <div *ngIf="i<4">
+                <button (click)="teste()">Present</button>
+            </div>
+            <div *ngIf="i<4" class="slide miniature">
+                <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                    <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
