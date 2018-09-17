@@ -5,6 +5,11 @@ import { DataStorageService } from '../data-storage.service';
 import { Router } from '@angular/router';
 import { Element, TypeOfElement } from '../element';
 import { Slide, Transition } from '../slide';
+import {
+	faPlay, faPlusSquare, faWrench,
+	faPencilAlt, faImage, faFont, faSquare,
+	faMinusSquare, faPalette, faUser
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-manage-presentations',

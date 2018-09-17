@@ -1,10 +1,10 @@
 @import '../../styles.scss';
 $width-miniature: 55vw;
 $height-miniature: 70vh;
+
 .slide {
     position: relative;
-    right: 10%;
-    top: -10%;
+    right: 20%;
     background-color: white;
     min-width: $width-miniature;
     min-height: $height-miniature;
@@ -46,9 +46,23 @@ h2 {
 .presentations-user {
     float: left;
     width: 45%;
+    padding: 20px;
 }
 
 .presentations-all {
-    float: right;
+    float: left;
     width: 45%;
+    padding: 20px;
+}
+
+.slide-wrapper {
+    position: relative;
+    bottom: 13vh;
+}
+
+footer {
+    padding: 10px;
+    font-size: 20px;
+    font-style: italic;
+    background-color: white;
 }
