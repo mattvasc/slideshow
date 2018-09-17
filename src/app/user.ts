@@ -1,6 +1,6 @@
 import { Presentation } from './presentation';
 export class User {
-	constructor(name: String,
+	constructor(public name: String,
 		private password: String,
 		public presentations: Presentation[] = [] ) {}
 

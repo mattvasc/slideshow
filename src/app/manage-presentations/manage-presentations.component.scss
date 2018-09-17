@@ -1,0 +1,28 @@
+@import '../../styles.scss';
+
+$width-miniature: 55vw;
+$height-miniature: 70vh;
+
+.slide {
+    position: static;
+    background-color: white;
+    min-width: $width-miniature;
+    min-height: $height-miniature;
+    max-width: $width-miniature;
+    max-height: $height-miniature;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+}
+
+.slide-encapsulation {
+    background-color: coral;
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
+    overflow: hidden;
+}
+
+.miniature {
+    transform: scale(0.8);
+}
