@@ -1,9 +1,10 @@
 <header>
     OPUS internSlides
+    <button *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin">Login</button>
+    <button *ngIf="_data.user" (click)="logout()">Logout</button>
     <button *ngIf="_data.user" routerLink="/edit">+</button>
 </header>
-<button *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin">Login</button>
-<button *ngIf="_data.user" (click)="logout()">Logout</button>
+
 <div class="slide-encapsulation">
 
     <div class="presentations-user" *ngIf="_data.user">
@@ -18,9 +19,11 @@
                 <button (click)="teste()">Present</button>
                 <button (click)="editPresentation(i)">Edit</button>
             </div>
-            <div class="slide miniature" *ngIf="presentation.owner == _data.user.name && i<4">
-                <div *ngIf="presentation.owner == _data.user.name" id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
-                    <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+            <div class="slide-wrapper">
+                <div class="slide miniature" *ngIf="presentation.owner == _data.user.name && i<4" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                    <div *ngIf="presentation.owner == _data.user.name" id="page">
+                        <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,12 +38,12 @@
             <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)">
                 <button (click)="teste()">Present</button>
             </div>
-            <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)" class="slide miniature">
-                <div id="page" [style.backgroundImage]="'url(' + presentation.background + ')'">
-                    <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+            <div class="slide-wrapper">
+                <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)" class="slide miniature" [style.backgroundImage]="'url(' + presentation.background + ')'">
+                    <div id="page">
+                        <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style" [innerHtml]="element.data"></div>
+                    </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -55,11 +58,15 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <label for="uname"><b>Username:</b></label>
+                            <label for="uname">
+                                <b>Username:</b>
+                            </label>
                             <input type="text" placeholder="Enter Username" [(ngModel)]="username" required style="top:20vh">
                         </div>
                         <div>
-                            <label for="psw"><b>Password:</b></label>
+                            <label for="psw">
+                                <b>Password:</b>
+                            </label>
                             <input type="password" placeholder="Enter Password" [(ngModel)]="password" required>
                         </div>
 
@@ -70,3 +77,12 @@
                         <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="login()">Login</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <footer>
+                Contact us at 383 and 384
+                <br> opusIntern ltd.
+        </footer>
+    </div>
+
+</div>
