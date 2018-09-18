@@ -170,3 +170,15 @@
 .brokek_a {
   cursor:pointer;
 }
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateX(0%); }
+}
+
+.btn-extra{
+  margin: 0em 1.5em 0em 0em;
+}
