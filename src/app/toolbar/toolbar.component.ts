@@ -43,9 +43,6 @@ export class ToolbarComponent implements OnInit {
 	@Input() isFullscreen: boolean;
 	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
-	@Input() activeToolbarElement: ToolbarActive;
-	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
-
 	// Workaround to use enum on template:
 	public toolbarActive = ToolbarActive;
 	public typeOfElement = TypeOfElement;
@@ -166,13 +163,13 @@ export class ToolbarComponent implements OnInit {
 	toogleMenu(witch_one) {
 		switch (witch_one) {
 			case 'element':
-				this.activeToolbarElement = (this.activeToolbarElement === ToolbarActive.addElement)
+				this._data.activeToolbarElement = (this._data.activeToolbarElement === ToolbarActive.addElement)
 					? ToolbarActive.none
 					: ToolbarActive.addElement;
 				break;
 			case 'transition':
 
-				this.activeToolbarElement = (this.activeToolbarElement === ToolbarActive.transition)
+				this._data.activeToolbarElement = (this._data.activeToolbarElement === ToolbarActive.transition)
 					? ToolbarActive.none
 					: ToolbarActive.transition;
 				break;
@@ -180,7 +177,6 @@ export class ToolbarComponent implements OnInit {
 		}
 		this.activeElement = undefined;
 		this.activeElementChange.emit(this.activeElement);
-		this.activeToolbarElementChange.emit(this.activeToolbarElement);
 	}
 	hexToRGB(hex) {
 
@@ -215,8 +211,7 @@ export class ToolbarComponent implements OnInit {
 		this.activeElementChange.emit(this.activeElement);
 		this.isFullscreen = true;
 		this.isFullscreenChange.emit(this.isFullscreen);
-		this.activeToolbarElement = this.toolbarActive.none;
-		this.activeToolbarElementChange.emit(this.activeToolbarElement);
+		this._data.activeToolbarElement = this.toolbarActive.none;
 
 		if (this.elem.requestFullscreen) {
 			this.elem.requestFullscreen();

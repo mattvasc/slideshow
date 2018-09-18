@@ -1,8 +1,11 @@
 <header>
     OPUS internSlides
-    <button class="btn btn-default" *ngIf="_data.user" data-toggle="modal" data-target="#modalCreate" (click)="openModalCreate()">New presentation <fa-icon [icon]="faPlusSquare"></fa-icon></button>
-    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalSignUp" (click)="openModalCreate()">Sign up <fa-icon [icon]="faUserPlus"></fa-icon></button>
-    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin" (click)="openModalLogin()">Sign in <fa-icon [icon]="faSignInAlt"></fa-icon></button>
+    <button class="btn btn-default" *ngIf="_data.user" data-toggle="modal" data-target="#modalCreate" (click)="openModalCreate()">New
+        presentation <fa-icon [icon]="faPlusSquare"></fa-icon></button>
+    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalSignUp" (click)="openModalCreate()">Sign
+        up <fa-icon [icon]="faUserPlus"></fa-icon></button>
+    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin" (click)="openModalLogin()">Sign
+        in <fa-icon [icon]="faSignInAlt"></fa-icon></button>
     <button class="btn btn-default" *ngIf="_data.user" (click)="logout()">Logout <fa-icon [icon]="faSignOutAlt"></fa-icon></button>
     <!-- <div *ngIf="_data.user">Olá {{_data.user.name}}</div> -->
 </header>
@@ -11,14 +14,14 @@
     <div class="presentations-user" *ngIf="_data.user">
         <h2>Your Presentations</h2>
         <div *ngFor="let presentation of P; index as i">
-            <div   class="presentation-buttons-user" *ngIf="presentation.owner == _data.user.name">
+            <div class="presentation-buttons-user" *ngIf="presentation.owner == _data.user.name">
                 <button class="btn btn-default" (click)="present(i)">Present <fa-icon [icon]="faPlay"></fa-icon></button>
                 <button class="btn btn-default" (click)="editPresentation(i)">Edit <fa-icon [icon]="faPencilAlt"></fa-icon></button>
-                <button class="btn btn-default" data-toggle="modal" data-target="#modalDelete" (click)="indexDelete = i">Delete <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modalDelete" (click)="indexDelete = i">Delete
+                    <fa-icon [icon]="faMinusSquare"></fa-icon></button>
             </div>
             <div class="slide-wrapper">
-                <div class="slide miniature" *ngIf="presentation.owner == _data.user.name"
-                    [style.backgroundImage]="'url(' + presentation.background + ')'">
+                <div class="slide miniature" *ngIf="presentation.owner == _data.user.name" [style.backgroundImage]="'url(' + presentation.background + ')'">
                     <div *ngIf="presentation.owner == _data.user.name" id="page">
                         <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style"
                             [innerHtml]="element.data"></div>
@@ -118,7 +121,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal" (click)="deletePresentation(indexDelete)">Yes, Delete.</button>
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal" (click)="deletePresentation(indexDelete)">Yes,
+                    Delete.</button>
             </div>
         </div>
     </div>
@@ -126,29 +130,27 @@
 
 <!-- Modal bootstrap para SignUp -->
 <div class="modal fade" id="modalSignUp" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create a New Account</h4>
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create a New Account</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="uname"><b>Name:</b></label>
+                    <input type="text" placeholder="Enter Username" #modalusername [(ngModel)]="username" style="top:20vh">
                 </div>
-                <div class="modal-body">
-                    <div>
-                        <label for="uname"><b>Name:</b></label>
-                        <input type="text" placeholder="Enter Username" #modalusername [(ngModel)]="username" style="top:20vh">
-                    </div>
-                    <div>
-                        <label for="psw"><b>Password:</b></label>
-                        <input type="password" placeholder="Enter Password" (keyup.enter)="signUp()" [(ngModel)]="password">
-                    </div>
-    
-    
+                <div>
+                    <label for="psw"><b>Password:</b></label>
+                    <input type="password" placeholder="Enter Password" (keyup.enter)="signUp()" [(ngModel)]="password">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" id="dismiss" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="signUp()">Create</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="dismiss" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="signUp()">Create</button>
             </div>
         </div>
     </div>
+</div>

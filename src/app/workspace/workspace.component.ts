@@ -26,18 +26,12 @@ export class WorkspaceComponent implements OnInit {
 	@Input() isFullscreen: boolean;
 	@Output() isFullscreenChange: EventEmitter<boolean> = new EventEmitter();
 
-	@Input() activeToolbarElement: ToolbarActive;
-	@Output() activeToolbarElementChange: EventEmitter<ToolbarActive> = new EventEmitter();
-
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
 		if (event.keyCode === 46) {
 			this.removeElement();
 		}
 	}
-
-
-
 
 	constructor(private _data: DataStorageService, private router: Router) { }
 
@@ -53,21 +47,20 @@ export class WorkspaceComponent implements OnInit {
 				this.activeElement = this._data.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 				this.activeElementChange.emit(this.activeElement);
 
-				this.activeToolbarElement = undefined;
-				this.activeToolbarElementChange.emit();
+				this._data.activeToolbarElement = undefined;
 
-				this.activeToolbarElement = ToolbarActive.editElement;
-				this.activeToolbarElementChange.emit(this.activeToolbarElement);
+				this._data.activeToolbarElement = ToolbarActive.editElement;
 			} else {
 			}
 		}
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
+			console.log(event);
 			this.activeElement = undefined;
 			this.activeElementChange.emit();
-			this.activeToolbarElement = ToolbarActive.none;
-			this.activeToolbarElementChange.emit(this.activeToolbarElement);
+			console.log(this._data.activeToolbarElement);
+			this._data.activeToolbarElement = ToolbarActive.none;
 		}
 		event.stopPropagation();
 	}
