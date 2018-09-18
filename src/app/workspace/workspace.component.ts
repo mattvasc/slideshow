@@ -3,6 +3,7 @@ import { Presentation, Visibility } from '../presentation';
 import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
 	selector: 'app-workspace',
@@ -15,8 +16,6 @@ export class WorkspaceComponent implements OnInit {
 	clientX = 0;
 	clientY = 0;
 	dragging = false;
-
-	@Input() presentation;
 
 	@Input() activeSlide;
 
@@ -39,9 +38,11 @@ export class WorkspaceComponent implements OnInit {
 
 
 
-	constructor() { }
+	constructor(private _data: DataStorageService) { }
 
 	ngOnInit() {
+		console.log('vamo ver as bagaça');
+		console.log(this._data.presentation);
 	}
 	render() {
 		// this.slide.render();
@@ -50,7 +51,7 @@ export class WorkspaceComponent implements OnInit {
 		// poderia procurar ultimo event.target também
 		if (!this.isFullscreen) {
 			if (event.target.parentElement.id !== 'page') {
-				this.activeElement = this.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
+				this.activeElement = this._data.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 				this.activeElementChange.emit(this.activeElement);
 
 				this.activeToolbarElement = undefined;
@@ -90,8 +91,8 @@ export class WorkspaceComponent implements OnInit {
 	removeElement() {
 		if (this.activeElement === undefined) { return; }
 
-		this.presentation.slides[this.activeSlide].elements.splice(
-			this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
+		this._data.presentation.slides[this.activeSlide].elements.splice(
+			this._data.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
 			1);
 		this.activeElement = undefined;
 		this.activeElementChange.emit();

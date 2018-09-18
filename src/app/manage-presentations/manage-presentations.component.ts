@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import { Element, TypeOfElement } from '../element';
 import { Slide, Transition } from '../slide';
 import {
-	faPlay, faPlusSquare, faWrench,
-	faPencilAlt, faImage, faFont, faSquare,
-	faMinusSquare, faPalette, faUser
+	faPlay, faPlusSquare, faSignOutAlt,
+	faPencilAlt,
+	faMinusSquare,  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,6 +18,15 @@ import {
 })
 
 export class ManagePresentationsComponent implements OnInit {
+	faPlay = faPlay;
+	faPlusSquare = faPlusSquare;
+	faPencilAlt = faPencilAlt;
+	faUser = faUser;
+	faMinusSquare = faMinusSquare;
+	faSignOutAlt = faSignOutAlt;
+
+
+
 
 	@ViewChild('modalusername') modalusername: ElementRef;
 	public user: User;

@@ -1,20 +1,20 @@
 
 <div id="workspace" (mousedown)="unselectElement($event)" [class.onFull]="isFullscreen" [class.onEdit]="!isFullscreen">
-	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + presentation.slides[activeSlide].bgcolor.red +
-	 ', '+presentation.slides[activeSlide].bgcolor.green +
-	  ', ' + presentation.slides[activeSlide].bgcolor.blue + ')'" [style.backgroundImage]="'url(' + presentation.background + ')'">
-		<div *ngFor="let element of presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
-		[ngStyle]="element.style" [ngClass]="'unselectable'" [class.selected]="presentation.slides[activeSlide].elements[i] === activeElement" 
+	<div id="page" (mouseup)="changePosition($event);getPosition($event.target)" [style.background-color]="'rgb(' + _data.presentation.slides[activeSlide].bgcolor.red +
+	 ', '+_data.presentation.slides[activeSlide].bgcolor.green +
+	  ', ' + _data.presentation.slides[activeSlide].bgcolor.blue + ')'" [style.backgroundImage]="'url(' + _data.presentation.background + ')'">
+		<div *ngFor="let element of _data.presentation.slides[activeSlide].elements; index as i" id="element_{{i}}"
+		[ngStyle]="element.style" [ngClass]="'unselectable'" [class.selected]="_data.presentation.slides[activeSlide].elements[i] === activeElement" 
 		[innerHtml]="element.data" (mousedown)="selectElement($event)">
 		</div>
 
 	</div>
-	<div *ngIf="activeSlide+1<presentation.slides.length" id ="page"  [hidden]="!isFullscreen"
-	[style.background-color]="'rgb(' + presentation.slides[activeSlide+1].bgcolor.red +
-	 ', '+presentation.slides[activeSlide+1].bgcolor.green +
-	  ', ' + presentation.slides[activeSlide+1].bgcolor.blue + ')'">
+	<div *ngIf="activeSlide+1<_data.presentation.slides.length" id ="page"  [hidden]="!isFullscreen"
+	[style.background-color]="'rgb(' + _data.presentation.slides[activeSlide+1].bgcolor.red +
+	 ', '+_data.presentation.slides[activeSlide+1].bgcolor.green +
+	  ', ' + _data.presentation.slides[activeSlide+1].bgcolor.blue + ')'">
 
-		<div id="element_{{i}}" *ngFor="let element of presentation.slides[activeSlide+1].elements; index as i" 
+		<div id="element_{{i}}" *ngFor="let element of _data.presentation.slides[activeSlide+1].elements; index as i" 
 		[ngStyle]="element.style" 
 		[innerHtml]="element.data" >
 		</div>
