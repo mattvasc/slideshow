@@ -198,11 +198,18 @@ export class ToolbarComponent implements OnInit {
 		return hex;
 	}
 
-	setRGB(hex) {
-		const colors = this.hexToRGB(hex);
-		this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
-		this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
-		this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
+	setRGB(hex, which = 'slide') {
+		switch (which) {
+			case 'slide':
+				const colors = this.hexToRGB(hex);
+				this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
+				this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
+				this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
+				break;
+			case 'font':
+				this.activeElement.style['color'] = hex;
+				break;
+		}
 	}
 
 	/* Go to fullscreen */

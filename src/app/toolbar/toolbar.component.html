@@ -6,7 +6,6 @@
 
       <input *ngIf="router.url === '/edit'" type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement"
         [(ngModel)]="_data.activeToolbarElement" />
-      <!-- <input  *ngIf="router.url === '/edit'" type="radio" class="input" name="tabs" [value]="toolbarActive.none" [(ngModel)]="_data.activeToolbarElement" [hidden]="true" /> -->
       <label *ngIf="router.url === '/edit'" (click)="activeElement=undefined; activeElementChange.emit();" class="label"
         for="tab-3">Add
         an Element <fa-icon [icon]="faPlusSquare"></fa-icon></label>
@@ -51,13 +50,19 @@
           (click)="changeImage()" data-toggle="modal" data-target="#modalImage">Change Image <fa-icon [icon]="faImage"></fa-icon>
         </button>
 
-        <button class="btn btn-default" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
-        (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)"
+        <button class="btn btn-default" 
+        *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
           (click)="changeText()" data-toggle="modal" data-target="#modalText">Change Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
 
         <button class="btn btn-default" (click)="removeElement()">Delete Element <fa-icon [icon]="faMinusSquare"></fa-icon></button>
-        <button class="btn btn-default" (click)="removeElement()">Change Size <fa-icon [icon]="faFont"></fa-icon></button>
-        <button class="btn btn-default" (click)="removeElement()">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
+        <button *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)" class="btn btn-default" (click)="removeElement()">Change Size <fa-icon [icon]="faFont"></fa-icon></button>
+        
+        <input
+        *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
+        type="color" id='font-background-color' (change)="setRGB($event.target.value, 'font')" [hidden]="true" />
+        <button 
+        *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
+        class="btn btn-default" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
 
         <button *ngIf="!presentation.background || presentation.background ===''" class="btn btn-default" onclick="document.getElementById('element-background-color').click();">Background
           Color<fa-icon [icon]="faPalette"></fa-icon></button>
