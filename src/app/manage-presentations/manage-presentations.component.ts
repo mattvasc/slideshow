@@ -4,11 +4,11 @@ import { Presentation } from '../presentation';
 import { DataStorageService } from '../data-storage.service';
 import { Router } from '@angular/router';
 import { Element, TypeOfElement } from '../element';
-import { Slide, Transition } from '../slide';
+import { Slide } from '../slide';
 import {
 	faPlay, faPlusSquare, faSignOutAlt,
 	faPencilAlt,
-	faMinusSquare,  faUser
+	faMinusSquare, faSignInAlt, faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,9 +21,10 @@ export class ManagePresentationsComponent implements OnInit {
 	faPlay = faPlay;
 	faPlusSquare = faPlusSquare;
 	faPencilAlt = faPencilAlt;
-	faUser = faUser;
+	faSignInAlt = faSignInAlt;
 	faMinusSquare = faMinusSquare;
 	faSignOutAlt = faSignOutAlt;
+	faUserPlus = faUserPlus;
 
 
 
@@ -64,12 +65,12 @@ export class ManagePresentationsComponent implements OnInit {
 		const temp = new User(this.username, this.password);
 		console.log(temp);
 		if (this._data.login(temp)) {
-			let element = document.getElementById('dismiss') as HTMLElement;
+			const element = document.getElementById('dismiss') as HTMLElement;
 			element.click();
 		} else {
 			alert('Login Incorreto!');
 		}
-		
+
 	}
 	logout() {
 		this._data.user = undefined;
