@@ -90,7 +90,7 @@ export class ManagePresentationsComponent implements OnInit {
 		const p = new Presentation(
 			[new Slide(
 				[
-					new Element(TypeOfElement.titlefield, `<h2> Apresentação X </h2>`, 43, 15)
+					new Element(TypeOfElement.titlefield, `<p> ${this.username} </p>`, 43, 15, {'font-size': '30px'})
 				])],
 			this._data.user.name,
 			undefined,
