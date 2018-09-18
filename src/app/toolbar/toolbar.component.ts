@@ -69,10 +69,10 @@ export class ToolbarComponent implements OnInit {
 	addNewElement(type: TypeOfElement) {
 		switch (type) {
 			case TypeOfElement.textfield:
-				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.textfield, `<p>Lorem Ipsum</p>`));
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.textfield, `<p>New Text</p>`));
 				break;
 			case TypeOfElement.titlefield:
-				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<h2>Lorem Ipsum</h2>`));
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<h2>New Title</h2>`));
 				break;
 			case TypeOfElement.image:
 				this.presentation.slides[this.activeSlide].addElement(

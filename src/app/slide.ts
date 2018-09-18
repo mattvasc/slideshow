@@ -38,5 +38,16 @@ export class Slide {
 		this.bgcolor['blue'] = parseInt(hex.substring(4), 16);
 
 	}
+	public bgcolorToHex(): String {
+		return '#' + this.rgbToHex(this.bgcolor.red) + this.rgbToHex(this.bgcolor.green) + this.rgbToHex(this.bgcolor.blue);
+	}
+
+	private rgbToHex(rgb) {
+		let hex = Number(rgb).toString(16);
+		if (hex.length < 2) {
+			hex = '0"' + hex;
+		}
+		return hex;
+	};
 }
 

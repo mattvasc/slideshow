@@ -46,7 +46,7 @@ export class WorkspaceComponent implements OnInit {
 			if (event.target.parentElement.id !== 'page') {
 				this.activeElement = this._data.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 				this.activeElementChange.emit(this.activeElement);
-
+				console.log(this.activeElement.style['background-color']);
 				this._data.activeToolbarElement = undefined;
 
 				this._data.activeToolbarElement = ToolbarActive.editElement;
@@ -56,10 +56,8 @@ export class WorkspaceComponent implements OnInit {
 	}
 	unselectElement(event) {
 		if (event.target.id === 'page' || event.target.id === 'workspace') {
-			console.log(event);
 			this.activeElement = undefined;
 			this.activeElementChange.emit();
-			console.log(this._data.activeToolbarElement);
 			this._data.activeToolbarElement = ToolbarActive.none;
 		}
 		event.stopPropagation();
