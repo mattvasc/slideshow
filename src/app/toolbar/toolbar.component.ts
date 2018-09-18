@@ -54,6 +54,7 @@ export class ToolbarComponent implements OnInit {
 
 	public tempImgURL: String;
 	public tempText: String;
+	public tempSize: String;
 
 	public user: User;
 
@@ -149,6 +150,18 @@ export class ToolbarComponent implements OnInit {
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
 		this.tempText = regex.exec(this.activeElement.data.toString())[1];
 	}
+
+	changeSize() {
+		if(this.activeElement.style['fontSize'] !== 'undefined') {
+			this.tempSize = this.activeElement.style['fontSize'];
+		}
+	}
+
+	saveChangedSize() {
+		this.activeElement.style['fontSize'] = `${this.tempSize}px`;
+		console.log(this.activeElement);
+	}
+
 	saveChangedText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
