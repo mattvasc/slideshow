@@ -26,6 +26,8 @@ export class ManagePresentationsComponent implements OnInit {
 	faSignOutAlt = faSignOutAlt;
 	faUserPlus = faUserPlus;
 
+	indexDelete:number = undefined;
+
 
 
 
@@ -55,6 +57,7 @@ export class ManagePresentationsComponent implements OnInit {
 
 	deletePresentation(i: number) {
 		this.P.splice(i, 1);
+		this.indexDelete = undefined;
 	}
 	editPresentation(i: number) {
 		this._data.presentation = this.P[i];
