@@ -153,7 +153,7 @@ export class ToolbarComponent implements OnInit {
 
 	changeSize() {
 		if(this.activeElement.style['fontSize'] !== 'undefined') {
-			this.tempSize = this.activeElement.style['fontSize'];
+			this.tempSize = this.activeElement.style['fontSize'].substring(0, (this.activeElement.style['fontSize'].length-2));
 		}
 	}
 
