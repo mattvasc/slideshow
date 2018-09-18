@@ -81,7 +81,7 @@
         *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
         class="btn btn-default" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
 
-        <button *ngIf="!presentation.background || presentation.background ===''" class="btn btn-default" onclick="document.getElementById('element-background-color').click();">Background Color
+        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default" onclick="document.getElementById('element-background-color').click();">Background Color
           <fa-icon [icon]="faPalette"></fa-icon>
         </button>
 
