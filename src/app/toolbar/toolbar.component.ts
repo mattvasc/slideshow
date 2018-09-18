@@ -72,7 +72,7 @@ export class ToolbarComponent implements OnInit {
 				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.textfield, `<p>New Text</p>`));
 				break;
 			case TypeOfElement.titlefield:
-				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<h2>New Title</h2>`));
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<p>New Title</p>`));
 				break;
 			case TypeOfElement.image:
 				this.presentation.slides[this.activeSlide].addElement(
@@ -86,19 +86,19 @@ export class ToolbarComponent implements OnInit {
 
 	addNewTSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		this.addNewSlide(X);
 	}
 	addNewTSSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		this.addNewSlide(X);
 	}
 	addNewTSTSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		X.addElement(new Element(TypeOfElement.textfield, `<p> Text </p>`,

@@ -77,7 +77,7 @@ export class DataStorageService {
 		new User('teste', 'teste')];
 
 		this.Users[0].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação X </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<p> Apresentação X </p>`, 43, 15, {'font-size': '30px'}),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'green' }),
 			new Element(TypeOfElement.image,
 			`<img src="https://picsum.photos/150/150?image=${this.images[Math.floor(Math.random() * this.images.length)]}">`, 43, 60)
@@ -86,7 +86,7 @@ export class DataStorageService {
 
 
 		this.Users[0].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação Y </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<p> Apresentação Y </p>`, 43, 15, {'font-size': '30px'}),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue' }),
 			new Element(TypeOfElement.image,
 			`<img src="https://picsum.photos/150/150?image=${this.images[Math.floor(Math.random() * this.images.length)]}">`, 43, 60)
@@ -95,14 +95,14 @@ export class DataStorageService {
 
 
 		this.Users[1].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação Z </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<p> Apresentação Z </p>`, 43, 15, {'font-size': '30px'}),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'orange' }),
 			new Element(TypeOfElement.image,
 			`<img src="https://picsum.photos/150/150?image=${this.images[Math.floor(Math.random() * this.images.length)]}">`, 43, 60)
 			])], undefined, Visibility.public, backgrounds[Math.floor(Math.random() * backgrounds.length)]));
 
 		this.Users[1].addPresentation(
-			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<h2> Apresentação W </h2>`, 43, 15),
+			new Presentation([new Slide([new Element(TypeOfElement.titlefield, `<p> Apresentação W </p>`, 43, 15, {'font-size': '30px'}),
 			new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`, 43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'brown' }),
 			new Element(TypeOfElement.image,
 			`<img src="https://picsum.photos/150/150?image=${this.images[Math.floor(Math.random() * this.images.length)]}">`, 43, 60)
@@ -112,7 +112,7 @@ export class DataStorageService {
 		this.presentation = new Presentation(undefined, 'Not logged yet', undefined,
 			'http://rugbyinafrica.org/2017/08/backgrounds-for-powerpoint/?showimage_zmdh=backgrounds+for+powerpoint.jpg');
 		const first_slide: Slide = new Slide([], Transition.slideLeft, { 'red': 196, 'green': 196, 'blue': 196 }); // ffaabb
-		first_slide.addElement(new Element(TypeOfElement.titlefield, `<h2> Meu Título </h2>`, 43, 15));
+		first_slide.addElement(new Element(TypeOfElement.titlefield, `<p> Meu Título </p>`, 43, 15));
 		first_slide.addElement(new Element(TypeOfElement.textfield, `<p> Lorem Ipsum </p>`,
 			43, 30, { 'font-size': '24px', 'font-weight': 'bold', 'color': 'blue' }));
 
