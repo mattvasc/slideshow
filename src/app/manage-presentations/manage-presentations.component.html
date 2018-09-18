@@ -1,10 +1,9 @@
 <header>
     OPUS internSlides
-    <button *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin">Login</button>
+    <button *ngIf="_data.user" data-toggle="modal" data-target="#modalCreate" (click)="openModalCreate()" >+</button>
+    <button *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin" (click)="openModalLogin()">Login</button>
     <button *ngIf="_data.user" (click)="logout()">Logout</button>
-    <button *ngIf="_data.user" routerLink="/edit">+</button>
 </header>
-
 <div class="slide-encapsulation">
 
     <div class="presentations-user" *ngIf="_data.user">
@@ -49,43 +48,62 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal bootstrap para login -->
-        <div class="modal fade" id="modalLogin" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Do Login</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <label for="uname">
-                                <b>Username:</b>
-                            </label>
-                            <input type="text" placeholder="Enter Username" [(ngModel)]="username" required style="top:20vh">
-                        </div>
-                        <div>
-                            <label for="psw">
-                                <b>Password:</b>
-                            </label>
-                            <input type="password" placeholder="Enter Password" [(ngModel)]="password" required>
-                        </div>
+    </div>
+</div>
+<!-- Modal bootstrap para login -->
+<div class="modal fade" id="modalLogin" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Do Login</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="uname"><b>Username:</b></label>
+                    <input type="text" placeholder="Enter Username" #modalusername [(ngModel)]="username"  style="top:20vh">
+                </div>
+                <div>
+                    <label for="psw"><b>Password:</b></label>
+                    <input type="password" placeholder="Enter Password" (keyup.enter)="login()" [(ngModel)]="password" >
+                </div>
 
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="login()">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal bootstrap para add novo slide -->
+<div class="modal fade" id="modalCreate" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Presentation</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="uname"><b>Name:</b></label>
+                        <input type="text" placeholder="Enter Presentation Name" [(ngModel)]="username"  style="top:20vh">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="login()">Login</button>
+                    <div>
+                        <label for="psw"><b>Background Image URL:</b></label>
+                        <input type="text" placeholder="Empty for None" (keyup.enter)="newPresentation()" [(ngModel)]="password" >
                     </div>
+    
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default btn-primary" data-dismiss="modal" (click)="newPresentation()">Create</button>
                 </div>
             </div>
         </div>
-        <footer>
-                Contact us at 383 and 384
-                <br> opusIntern ltd.
-        </footer>
     </div>
-
-</div>

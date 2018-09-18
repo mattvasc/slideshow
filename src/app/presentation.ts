@@ -9,8 +9,8 @@ export class Presentation {
 	constructor(public slides: Slide[] = [],
 		public owner?: String,
 		public visibility: Visibility = Visibility.public,
-		public background: String = ''
-	) { }
+		public background: String = '',
+		public name: String = ''	) { }
 
 	addSlide(X: Slide = new Slide()) {
 		this.slides.push(X);

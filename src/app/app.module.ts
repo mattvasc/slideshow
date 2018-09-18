@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ThumbnailsMenuComponent } from './thumbnails-menu/thumbnails-menu.component';
 import { UserComponent } from './user/user.component';
 import { EditPresentationComponent } from './edit-presentation/edit-presentation.component';
-import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ManagePresentationsComponent } from './manage-presentations/manage-presentations.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -20,7 +19,6 @@ import { TesteComponent } from './teste/teste.component';
 
 const appRoutes: Routes = [
 	{ path: 'edit',      component: EditPresentationComponent },
-	{ path: 'login',      component: LoginComponent },
 	{ path: 'manage',      component: ManagePresentationsComponent },
 	{ path: '',
 	redirectTo: '/manage',
@@ -35,7 +33,6 @@ const appRoutes: Routes = [
 		ThumbnailsMenuComponent,
 		UserComponent,
 		EditPresentationComponent,
-		LoginComponent,
 		WorkspaceComponent,
 		ManagePresentationsComponent,
 		ToolbarComponent,
