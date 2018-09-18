@@ -73,7 +73,7 @@ export class ToolbarComponent implements OnInit {
 				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.textfield, `<p>New Text</p>`));
 				break;
 			case TypeOfElement.titlefield:
-				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<h2>New Title</h2>`));
+				this.presentation.slides[this.activeSlide].addElement(new Element(TypeOfElement.titlefield, `<p>New Title</p>`));
 				break;
 			case TypeOfElement.image:
 				this.presentation.slides[this.activeSlide].addElement(
@@ -87,19 +87,19 @@ export class ToolbarComponent implements OnInit {
 
 	addNewTSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 45, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		this.addNewSlide(X);
 	}
 	addNewTSSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		this.addNewSlide(X);
 	}
 	addNewTSTSlide() {
 		const X: Slide = new Slide();
-		X.addElement(new Element(TypeOfElement.titlefield, `<h2> Title </h2>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
+		X.addElement(new Element(TypeOfElement.titlefield, `<p> Title </p>`, 10, 15, { 'font-size': '30px', 'font-weight': 'bold' }));
 		X.addElement(new Element(TypeOfElement.titlefield, `<p> Subtitle </p>`,
 			15, 30, { 'font-size': '24px', 'color': 'blue' }));
 		X.addElement(new Element(TypeOfElement.textfield, `<p> Text </p>`,
@@ -211,11 +211,18 @@ export class ToolbarComponent implements OnInit {
 		return hex;
 	}
 
-	setRGB(hex) {
-		const colors = this.hexToRGB(hex);
-		this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
-		this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
-		this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
+	setRGB(hex, which = 'slide') {
+		switch (which) {
+			case 'slide':
+				const colors = this.hexToRGB(hex);
+				this.presentation.slides[this.activeSlide].bgcolor['red'] = colors[0];
+				this.presentation.slides[this.activeSlide].bgcolor['green'] = colors[1];
+				this.presentation.slides[this.activeSlide].bgcolor['blue'] = colors[2];
+				break;
+			case 'font':
+				this.activeElement.style['color'] = hex;
+				break;
+		}
 	}
 
 	/* Go to fullscreen */
