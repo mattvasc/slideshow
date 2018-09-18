@@ -4,6 +4,7 @@ import { Slide, Transition } from '../slide';
 import { Element, TypeOfElement } from '../element';
 import { ToolbarActive } from '../toolbar-active.enum';
 import { DataStorageService } from '../data-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-workspace',
@@ -38,18 +39,16 @@ export class WorkspaceComponent implements OnInit {
 
 
 
-	constructor(private _data: DataStorageService) { }
+	constructor(private _data: DataStorageService, private router: Router) { }
 
 	ngOnInit() {
-		console.log('vamo ver as bagaça');
-		console.log(this._data.presentation);
 	}
 	render() {
 		// this.slide.render();
 	}
 	selectElement(event) {
 		// poderia procurar ultimo event.target também
-		if (!this.isFullscreen) {
+		if (!this.isFullscreen &&  this.router.url === '/edit') {
 			if (event.target.parentElement.id !== 'page') {
 				this.activeElement = this._data.presentation.slides[this.activeSlide].elements[event.target.parentElement.id.match(/[0-9]/)[0]];
 				this.activeElementChange.emit(this.activeElement);
@@ -74,22 +73,8 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 
-	fireEventEditar(e) {
-		// Gera bloco de texto editavel com as mesmas dimensões e posição que o <p> por cima para editar ou gerar modal no meio da tela
-		console.log(e.clientX);
-		console.log(e.clientY);
-	}
-	fireEventMover(e) {
-		// pegar posição do mouse global e verificar se a posição é uma das bordas do elemento
-		// caso seja chamar função de redimensionar(?) - extra (?)
-		console.log(e.clientX);
-		console.log(e.screenX);
-		console.log(e.clientY);
-		console.log(e.screenY);
-	}
-
 	removeElement() {
-		if (this.activeElement === undefined) { return; }
+		if (this.activeElement === undefined || this.router.url !== '/edit') { return; }
 
 		this._data.presentation.slides[this.activeSlide].elements.splice(
 			this._data.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement),
@@ -99,7 +84,7 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	getPosition(e) {
-		if (this.activeElement === undefined) { return; }
+		if (this.activeElement === undefined || this.router.url !== '/edit') { return; }
 		let positionY = this.clientY - e.offsetTop - e.offsetParent.offsetTop;
 		let positionX = this.clientX - e.offsetLeft - e.offsetParent.offsetLeft;
 		positionX = positionX / e.clientWidth;
@@ -112,7 +97,7 @@ export class WorkspaceComponent implements OnInit {
 	}
 
 	moveElement(X: number, Y: number) {
-		if (this.activeElement === undefined) { return; }
+		if (this.activeElement === undefined || this.router.url !== '/edit') { return; }
 		this.activeElement.style['left'] = `${X}%`;
 		this.activeElement.style['top'] = `${Y}%`;
 	}

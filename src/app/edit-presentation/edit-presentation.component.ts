@@ -18,6 +18,7 @@ export class EditPresentationComponent implements OnInit {
 	private elem;
 	public isFullscreen;
 	public presentation: Presentation;
+	public hiddenAll = false;
 	// The following enum dictates wich session of the template render
 	public activeToolbarElement: ToolbarActive = ToolbarActive.none;
 
@@ -31,6 +32,7 @@ export class EditPresentationComponent implements OnInit {
 				break;
 			// case 40: // Down Arrow
 			case 37: // Left Arrow
+				this.hiddenAll = false;
 				if (this.isFullscreen && this.activeSlide > 0) {
 					this.activeSlide--;
 				}
@@ -39,7 +41,13 @@ export class EditPresentationComponent implements OnInit {
 			case 39: // Right Arrow
 				if (this.isFullscreen && this.activeSlide < this.presentation.slides.length - 1) {
 					this.activeSlide++;
+				} else if (this.isFullscreen && this.activeSlide === this.presentation.slides.length - 1) {
+					this.hiddenAll = true;
 				}
+
+				break;
+			case 27: // ESC
+				this.hiddenAll = false;
 				break;
 
 		}
@@ -63,7 +71,7 @@ export class EditPresentationComponent implements OnInit {
 
 
 
-	constructor(private _data: DataStorageService) {
+	constructor(public _data: DataStorageService) {
 		this.presentation = _data.presentation;
 	}
 
@@ -76,6 +84,9 @@ export class EditPresentationComponent implements OnInit {
 		this.isFullscreen = false;
 
 		this._data.presentation = this.presentation;
+		// if (this._data.present) {
+			// this.toolbar.goFull();
+		// }
 	}
 	unselectElement() {
 		this.activeElement = undefined;
@@ -122,6 +133,7 @@ export class EditPresentationComponent implements OnInit {
 
 		if (!fullOnChrome && !fullOnFirefox && !fullOnMS && !fullOnW3) {
 			this.isFullscreen = false;
+			this.hiddenAll = false;
 		}
 	}
 }

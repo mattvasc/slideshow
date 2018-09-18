@@ -146,10 +146,7 @@ export class ToolbarComponent implements OnInit {
 		delete this.activeElement.style['background-color'];
 	}
 
-	debug() {
-		console.log(this.presentation.slides[
-			this.activeSlide].elements[this.presentation.slides[this.activeSlide].elements.indexOf(this.activeElement)].type);
-	}
+
 	changeText() {
 		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
@@ -161,7 +158,6 @@ export class ToolbarComponent implements OnInit {
 	}
 	changeImage() {
 		const regex = new RegExp(`<img.* src="(.*)">`, 'imu');
-		console.log(this.activeElement.data.toString());
 		this.tempImgURL = regex.exec(this.activeElement.data.toString())[1];
 	}
 	saveChangedImage() {
@@ -235,10 +231,8 @@ export class ToolbarComponent implements OnInit {
 
 
 	printPosition() {
-		console.log(this.activeElement.style['left']);
 		this.activeElement.style['left'] = `${this.activeElement.style['left']}%`;
 		this.activeElement.style['top'] = `${this.activeElement.style['top']}%`;
-		console.log(this.activeElement.style['left']);
 	}
 	goToDash() {
 		this.router.navigate(['/manage']);

@@ -64,10 +64,12 @@ export class ManagePresentationsComponent implements OnInit {
 		const temp = new User(this.username, this.password);
 		console.log(temp);
 		if (this._data.login(temp)) {
-
+			let element = document.getElementById('dismiss') as HTMLElement;
+			element.click();
 		} else {
 			alert('Login Incorreto!');
 		}
+		
 	}
 	logout() {
 		this._data.user = undefined;
@@ -95,5 +97,9 @@ export class ManagePresentationsComponent implements OnInit {
 		this._data.user.addPresentation(p);
 		this._data.presentation = p;
 		this.router.navigate(['/edit']);
+	}
+	present(i: number) {
+		this._data.presentation = this.P[i];
+		this.router.navigate(['/present']);
 	}
 }

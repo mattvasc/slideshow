@@ -1,16 +1,16 @@
-<div>
+<div class="last-div">
 	<!-- <button (click)=" debug()">debug</button> -->
 	<app-thumbnails-menu 
 	[presentation]='presentation'
 	[(activeSlide)]='activeSlide'
-	[hidden]="isFullscreen"
+	[hidden]="isFullscreen || hiddenAll "
 	(click)="unselectElement()"
 	> </app-thumbnails-menu>
 	<app-toolbar
 	[presentation]='presentation'
 	[(activeSlide)]='activeSlide'
 	[(isFullscreen)]="isFullscreen"
-	[hidden]="isFullscreen"
+	[hidden]="isFullscreen || hiddenAll "
 	[(activeElement)]='activeElement'
 	[(activeToolbarElement)]='activeToolbarElement'
 	></app-toolbar>
@@ -19,5 +19,6 @@
 	[(activeElement)]='activeElement'
 	[(isFullscreen)]="isFullscreen"
 	[(activeToolbarElement)]='activeToolbarElement'
+	[hidden]="hiddenAll "
 	></app-workspace>
 </div>
