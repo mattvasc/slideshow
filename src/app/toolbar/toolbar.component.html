@@ -16,7 +16,8 @@
         [value]="toolbarActive.editElement" [(ngModel)]="activeToolbarElement" />
       <label *ngIf="activeToolbarElement === toolbarActive.editElement && router.url ==='/edit'" class="label" for="tab-4">Edit Element <fa-icon
           [icon]="faPencilAlt"></fa-icon></label>
-      <div style="float:right; border-style: dashed">
+
+      <div style="position:absolute; top:0;right: 0;">
         <div *ngIf="user"><fa-icon 
           [icon]="faUser"></fa-icon> Olá {{_data.user.name}}, </div>
         <div *ngIf="user"><a class="brokek_a" (click)="logout()">Log Out</a></div>
@@ -63,19 +64,19 @@
       </div>
     </div>
     <div *ngIf="activeToolbarElement === toolbarActive.transition && router.url === '/edit'">
-      <div style="float:left">
+      <div style="float:left; background-color:azure ;color: #7f7f7f; text-align: center">
         <div>
           <fa-icon [icon]="faPlusSquare"></fa-icon> Add a new Slide:
         </div>
-        <button (click)="addNewTSlide()">Title Slide</button>
-        <button (click)="addNewTSSlide()">Title+Sub Slide</button>
-        <button (click)="addNewTSTSlide()">Title+Sub+Text Slide</button>
-        <button (click)="addNewBSlide()">Blank Slide</button>
+        <button (click)="addNewTSlide()" class="btn btn-default">Title Slide</button>
+        <button (click)="addNewTSSlide()" class="btn btn-default">Title+Sub Slide</button>
+        <button (click)="addNewTSTSlide()" class="btn btn-default">Title+Sub+Text Slide</button>
+        <button (click)="addNewBSlide()" class="btn btn-default">Blank Slide</button>
       </div>
 
-      <div>
-        <div>Active Slide Options:</div>
-        <button (click)="removeSlide()">Remove Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+      <div style="float:right; margin-right: 20%; background-color: aliceblue; text-align: center;">
+        <div >Active Slide Options:</div>
+        <button (click)="removeSlide()"class="btn btn-default">Remove Slide <fa-icon [icon]="faMinusSquare"></fa-icon></button>
         <button *ngIf="!presentation.background" onclick="document.getElementById('slide-background-color').click();">Background Color<fa-icon [icon]="faPalette"></fa-icon></button>
         <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
         <label>Transiction Effect:</label>
