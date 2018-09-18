@@ -52,7 +52,7 @@
 
 
 
-    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block;">
+    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block; padding-right: 1.5em;">
 
       <div>
         <button class="btn btn-default btn-extra-left" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image" (click)="changeImage()"
@@ -79,9 +79,9 @@
         type="color" id='font-background-color' (change)="setRGB($event.target.value, 'font')" [hidden]="true" />
         <button 
         *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
-        class="btn btn-default btn-extra-right" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
+        class="btn btn-default btn-extra-left" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
 
-        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default btn-extra-right-only" onclick="document.getElementById('element-background-color').click();">Background Color
+        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default btn-extra-left" onclick="document.getElementById('element-background-color').click();">Background Color
           <fa-icon [icon]="faPalette"></fa-icon>
         </button>
 
@@ -106,8 +106,10 @@
         <button *ngIf="!presentation.background" class="btn btn-default btn-extra-right-only" onclick="document.getElementById('slide-background-color').click();">Background Color
           <fa-icon [icon]="faPalette"></fa-icon>
         </button>
+        <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
+        
         <!--
-            <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
+            
             <label>Transiction Effect:</label>
             <select [(ngModel)]="presentation.slides[activeSlide].transition">
                 <option value="{{transition.default}}">Default</option>
