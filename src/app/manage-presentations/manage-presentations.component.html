@@ -12,7 +12,7 @@
             <div   class="presentation-buttons-user" *ngIf="presentation.owner == _data.user.name">
                 <button class="btn btn-default" (click)="present(i)">Present <fa-icon [icon]="faPlay"></fa-icon></button>
                 <button class="btn btn-default" (click)="editPresentation(i)">Edit <fa-icon [icon]="faPencilAlt"></fa-icon></button>
-                <button class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete <fa-icon [icon]="faMinusSquare"></fa-icon></button>
+                <button class="btn btn-default" data-toggle="modal" data-target="#modalDelete" (click)="indexDelete = i">Delete <fa-icon [icon]="faMinusSquare"></fa-icon></button>
             </div>
             <div class="slide-wrapper">
                 <div class="slide miniature" *ngIf="presentation.owner == _data.user.name"
@@ -116,7 +116,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal" (click)="deletePresentation(i)">Yes, Delete.</button>
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal" (click)="deletePresentation(indexDelete)">Yes, Delete.</button>
             </div>
         </div>
     </div>
