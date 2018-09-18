@@ -3,8 +3,6 @@ $width-miniature: 55vw;
 $height-miniature: 70vh;
 
 .slide {
-    position: relative;
-    right: 20%;
     background-color: white;
     min-width: $width-miniature;
     min-height: $height-miniature;
@@ -58,6 +56,9 @@ h2 {
 .slide-wrapper {
     position: relative;
     bottom: 13vh;
+    right: 17vh;
+    width: 0%;
+    height: 0%;
 }
 
 footer {
@@ -65,4 +66,7 @@ footer {
     font-size: 20px;
     font-style: italic;
     background-color: white;
+}
+
+button {
 }

@@ -29,10 +29,13 @@
         </div>
     </div>
     <div class="presentations-all">
+
         <h2>Popular Presentations</h2>
+
         <h4>
             Search Presentations:
             <input type="text" name="Find">
+            <button>Teste</button>
         </h4>
         <div *ngFor="let presentation of P; index as i">
             <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)">
