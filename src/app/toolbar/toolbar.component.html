@@ -18,7 +18,7 @@
           [icon]="faPencilAlt"></fa-icon></label>
       <div style="float:right; border-style: dashed">
         <div *ngIf="user"><fa-icon 
-          [icon]="faUser"></fa-icon> Olá {{user.username}}, </div>
+          [icon]="faUser"></fa-icon> Olá {{_data.user.name}}, </div>
         <div *ngIf="user"><a class="brokek_a" (click)="logout()">Log Out</a></div>
         <div><a class="brokek_a"(click)="goToDash()">Go back to Dashboard</a></div>
       </div>
