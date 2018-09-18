@@ -26,7 +26,6 @@ $height-miniature: 70vh;
     max-height: $height-miniature;
     background-size: cover;
     background-position: center center;
-    overflow: hidden;
 }
 
 .slide-encapsulation {
@@ -44,5 +43,15 @@ $height-miniature: 70vh;
 
 .miniature {
     transform: scale(0.2);
+}
+
+h1 { 
+    position: relative;
+    left: -101%;
+    top: 29%;
+    color: white;
+    font-size: 17vh;
+    padding-left: 5%;
+    text-align: right;
 }
 
