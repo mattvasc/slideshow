@@ -72,6 +72,7 @@
     font-size: 14px;
     color: #7f7f7f;
     transition: background 0.1s, color 0.1s;
+    margin-bottom: 0px;
   }
   .label:hover {
     background: #d8d8d8;
@@ -86,6 +87,7 @@
   .input:checked + .label {
     background: #fff;
     color: #000;
+
   }
   @media (min-width: 600px) {
     .label {
@@ -179,6 +181,26 @@
   100% { -webkit-transform: translateX(0%); }
 }
 
-.btn-extra{
-  margin: 0em 1.5em 0em 0em;
+.btn-extra-left{
+  margin: 0.9em 0em 0em 1.5em;
+}
+
+.btn-extra-right{
+  margin: 0.9em 1.5em 0em 1.5em;
+}
+
+.btn-extra-right-only{
+  margin: 0.9em 1.5em 0em 0em;
+}
+
+.toolbar-sub{
+  animation: slide-in 0.5s forwards;
+  background-color: #fff;
+  padding-bottom: 1.3em;
+}
+.toolbar-login{
+  font-size:13px;
+  position:absolute; 
+  top:0;
+  right: 0;
 }

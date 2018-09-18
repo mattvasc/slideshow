@@ -24,7 +24,7 @@
         <fa-icon [icon]="faPencilAlt"></fa-icon>
       </label>
 
-      <div style="position:absolute; top:0;right: 0;">
+      <div class="toolbar-login" >
         <div *ngIf="user">
           <fa-icon [icon]="faUser"></fa-icon> Olá {{_data.user.name}},
         </div>
@@ -38,40 +38,40 @@
     </div>
 
 
-    <div *ngIf="_data.activeToolbarElement === toolbarActive.addElement && router.url === '/edit'" style="transform: translateX(-100%); animation:slide-in 0.5s forwards;">
-      <button class="btn btn-default btn-extra" (click)="addNewElement(typeOfElement.titlefield)">Add a Title
+    <div *ngIf="_data.activeToolbarElement === toolbarActive.addElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block;">
+      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.titlefield)">Add a Title
         <fa-icon [icon]="faPencilAlt"></fa-icon>
       </button>
-      <button class="btn btn-default btn-extra" (click)="addNewElement(typeOfElement.textfield)">Add a Text
+      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.textfield)">Add a Text
         <fa-icon [icon]="faPencilAlt"></fa-icon>
       </button>
-      <button class="btn btn-default btn-extra" (click)="addNewElement(typeOfElement.image)">Add a image
+      <button class="btn btn-default btn-extra-right" (click)="addNewElement(typeOfElement.image)">Add a image
         <fa-icon [icon]="faImage"></fa-icon>
       </button>
     </div>
 
 
 
-    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'">
+    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block;">
 
       <div>
-        <button class="btn btn-default" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image" (click)="changeImage()"
+        <button class="btn btn-default btn-extra-left" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image" (click)="changeImage()"
           data-toggle="modal" data-target="#modalImage">Change Image
           <fa-icon [icon]="faImage"></fa-icon>
         </button>
 
-        <button class="btn btn-default" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
+        <button class="btn btn-default btn-extra-left" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
         (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)" (click)="changeText()" data-toggle="modal"
           data-target="#modalText">Change Text
           <fa-icon [icon]="faPencilAlt"></fa-icon>
         </button>
-        <button class="btn btn-default" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
+        <button class="btn btn-default btn-extra-left" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
         (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)" (click)="changeSize()" data-toggle="modal"
           data-target="#modalSize">Change Size
           <fa-icon [icon]="faFont"></fa-icon>
         </button>
 
-        <button class="btn btn-default" (click)="removeElement()">Delete Element
+        <button class="btn btn-default btn-extra-left" (click)="removeElement()">Delete Element
           <fa-icon [icon]="faMinusSquare"></fa-icon>
         </button>
         <input
@@ -79,9 +79,9 @@
         type="color" id='font-background-color' (change)="setRGB($event.target.value, 'font')" [hidden]="true" />
         <button 
         *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
-        class="btn btn-default" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
+        class="btn btn-default btn-extra-right" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
 
-        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default" onclick="document.getElementById('element-background-color').click();">Background Color
+        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default btn-extra-right-only" onclick="document.getElementById('element-background-color').click();">Background Color
           <fa-icon [icon]="faPalette"></fa-icon>
         </button>
 
@@ -91,32 +91,32 @@
       </div>
     </div>
     <div *ngIf="_data.activeToolbarElement === toolbarActive.transition && router.url === '/edit'">
-      <div style="float:left; background-color:azure ;color: #7f7f7f; text-align: center; border-style:solid; border-width: 3px;border-color: rgb(223, 255, 255);transform: translateX(-100%); animation:slide-in 0.5s forwards;">
-        <div>
-          <fa-icon [icon]="faPlusSquare"></fa-icon> Add a new Slide:
-        </div>
-        <button (click)="addNewTSlide()" class="btn btn-default btn-extra">Title Slide</button>
-        <button (click)="addNewTSSlide()" class="btn btn-default btn-extra">Title+Sub Slide</button>
-        <button (click)="addNewTSTSlide()" class="btn btn-default btn-extra">Title+Sub+Text Slide</button>
-        <button (click)="addNewBSlide()" class="btn btn-default">Blank Slide</button>
+      <div class="toolbar-sub" style="float:left; background-color:#fff ;  transform: translateX(-100%);">
+        <button (click)="addNewTSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title Slide</button>
+        <button (click)="addNewTSSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title+Sub Slide</button>
+        <button (click)="addNewTSTSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title+Sub+Text Slide</button>
+        <button (click)="addNewBSlide()" class="btn btn-default btn-extra-right"><fa-icon [icon]="faPlusSquare"></fa-icon> Blank Slide</button>
       </div>
 
-      <div style="float:right; margin-right: 5%; color: #7f7f7f; background-color: aliceblue; text-align: center; border-style:solid; border-width: 3px;border-color: rgb(224, 239, 255);transform: translateX(100%); animation:slide-in 0.5s forwards;">
-        <div>Active Slide Options:</div>
-        <button (click)="removeSlide()" class="btn btn-default btn-extra">Remove Slide
+      <div class="toolbar-sub" style="float:right; margin-right: 0%; background-color: red;  transform: translateX(100%);">
+
+        <button (click)="removeSlide()" class="btn btn-default btn-extra-right">Remove Slide
           <fa-icon [icon]="faMinusSquare"></fa-icon>
         </button>
-        <button *ngIf="!presentation.background" onclick="document.getElementById('slide-background-color').click();">Background Color
+        <button *ngIf="!presentation.background" class="btn btn-default btn-extra-right-only" onclick="document.getElementById('slide-background-color').click();">Background Color
           <fa-icon [icon]="faPalette"></fa-icon>
         </button>
-        <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
-        <label>Transiction Effect:</label>
-        <select [(ngModel)]="presentation.slides[activeSlide].transition">
-          <option value="{{transition.default}}">Default</option>
-          <option value="{{transition.slideLeft}}">Slide Left</option>
-          <option value="{{transition.spinLeft}}">Spin Left</option>
-          <option value="{{transition.fadein}}">Fade in</option>
-        </select>
+        <!--
+            <input id="slide-background-color" type="color" value="#c4c4c4" (change)="setRGB($event.target.value)" [hidden]="true" />
+            <label>Transiction Effect:</label>
+            <select [(ngModel)]="presentation.slides[activeSlide].transition">
+                <option value="{{transition.default}}">Default</option>
+                <option value="{{transition.slideLeft}}">Slide Left</option>
+                <option value="{{transition.spinLeft}}">Spin Left</option>
+                <option value="{{transition.fadein}}">Fade in</option>
+            </select>
+        -->
+        
       </div>
     </div>
   </div>
