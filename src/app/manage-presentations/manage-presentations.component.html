@@ -1,9 +1,10 @@
 <header>
     OPUS internSlides
     <button class="btn btn-default" *ngIf="_data.user" data-toggle="modal" data-target="#modalCreate" (click)="openModalCreate()">New presentation <fa-icon [icon]="faPlusSquare"></fa-icon></button>
-    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalSignUp" (click)="openModalLogin()">Sign up <fa-icon [icon]="faUserPlus"></fa-icon></button>
+    <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalSignUp" (click)="openModalCreate()">Sign up <fa-icon [icon]="faUserPlus"></fa-icon></button>
     <button class="btn btn-default" *ngIf="!_data.user" data-toggle="modal" data-target="#modalLogin" (click)="openModalLogin()">Sign in <fa-icon [icon]="faSignInAlt"></fa-icon></button>
     <button class="btn btn-default" *ngIf="_data.user" (click)="logout()">Logout <fa-icon [icon]="faSignOutAlt"></fa-icon></button>
+    <!-- <div *ngIf="_data.user">Olá {{_data.user.name}}</div> -->
 </header>
 <div class="slide-encapsulation">
 
@@ -139,7 +140,7 @@
                     </div>
                     <div>
                         <label for="psw"><b>Password:</b></label>
-                        <input type="password" placeholder="Enter Password" (keyup.enter)="login()" [(ngModel)]="password">
+                        <input type="password" placeholder="Enter Password" (keyup.enter)="signUp()" [(ngModel)]="password">
                     </div>
     
     

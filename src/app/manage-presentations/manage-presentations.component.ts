@@ -26,7 +26,7 @@ export class ManagePresentationsComponent implements OnInit {
 	faSignOutAlt = faSignOutAlt;
 	faUserPlus = faUserPlus;
 
-	indexDelete:number = undefined;
+	indexDelete: number = undefined;
 
 
 
@@ -66,7 +66,6 @@ export class ManagePresentationsComponent implements OnInit {
 
 	login() {
 		const temp = new User(this.username, this.password);
-		console.log(temp);
 		if (this._data.login(temp)) {
 			const element = document.getElementById('dismiss') as HTMLElement;
 			element.click();
@@ -105,5 +104,10 @@ export class ManagePresentationsComponent implements OnInit {
 	present(i: number) {
 		this._data.presentation = this.P[i];
 		this.router.navigate(['/present']);
+	}
+	signUp () {
+		const u = new User(this.username, this.password);
+		this._data.Users.push(u);
+		this._data.user = this._data.Users[this._data.Users.length - 1];
 	}
 }
