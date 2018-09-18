@@ -107,6 +107,10 @@ export class ManagePresentationsComponent implements OnInit {
 	}
 	signUp () {
 		const u = new User(this.username, this.password);
+		if (this._data.Users.find(x => x.name === u.name)) {
+			alert('Erro, usuário Já Cadastrado!');
+			return;
+		}
 		this._data.Users.push(u);
 		this._data.user = this._data.Users[this._data.Users.length - 1];
 	}
