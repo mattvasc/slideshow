@@ -64,10 +64,12 @@ export class ManagePresentationsComponent implements OnInit {
 		const temp = new User(this.username, this.password);
 		console.log(temp);
 		if (this._data.login(temp)) {
-
+			let element = document.getElementById('dismiss') as HTMLElement;
+			element.click();
 		} else {
 			alert('Login Incorreto!');
 		}
+		
 	}
 	logout() {
 		this._data.user = undefined;
