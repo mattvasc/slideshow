@@ -13,13 +13,13 @@
             <input type="text" name="Find">
         </h4>
         <div *ngFor="let presentation of P; index as i">
-            <div *ngIf="presentation.owner == _data.user.name && i<4">
-                <button class="btn btn-default" (click)="teste()">Present <fa-icon [icon]="faPlay"></fa-icon></button>
+            <div *ngIf="presentation.owner == _data.user.name">
+                <button class="btn btn-default" (click)="present(i)">Present <fa-icon [icon]="faPlay"></fa-icon></button>
                 <button class="btn btn-default" (click)="editPresentation(i)">Edit <fa-icon [icon]="faPencilAlt"></fa-icon></button>
                 <button class="btn btn-default" data-toggle="modal" data-target="#modalDelete">Delete <fa-icon [icon]="faMinusSquare"></fa-icon></button>
             </div>
             <div class="slide-wrapper">
-                <div class="slide miniature" *ngIf="presentation.owner == _data.user.name && i<4"
+                <div class="slide miniature" *ngIf="presentation.owner == _data.user.name"
                     [style.backgroundImage]="'url(' + presentation.background + ')'">
                     <div *ngIf="presentation.owner == _data.user.name" id="page">
                         <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style"
@@ -39,11 +39,11 @@
             <button>Teste</button>
         </h4>
         <div *ngFor="let presentation of P; index as i">
-            <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)">
-                <button class="btn btn-default" (click)="teste()">Present <fa-icon [icon]="faPlay"></fa-icon></button>
+            <div *ngIf=" (!_data.user || _data.user.name !== presentation.owner)">
+                <button class="btn btn-default" (click)="present(i)">Present <fa-icon [icon]="faPlay"></fa-icon></button>
             </div>
             <div class="slide-wrapper">
-                <div *ngIf="i<4 && (!_data.user || _data.user.name !== presentation.owner)" class="slide miniature"
+                <div *ngIf=" (!_data.user || _data.user.name !== presentation.owner)" class="slide miniature"
                     [style.backgroundImage]="'url(' + presentation.background + ')'">
                     <div id="page">
                         <div *ngFor="let element of presentation.slides[0].elements" [ngStyle]="element.style"

@@ -16,12 +16,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TesteComponent } from './teste/teste.component';
-import { PresentComponent } from './present/present.component';
 
 const appRoutes: Routes = [
 	{ path: 'edit',      component: EditPresentationComponent },
 	{ path: 'manage',      component: ManagePresentationsComponent },
-	{ path: 'present',      component: PresentComponent },
+	{ path: 'present',      component: EditPresentationComponent },
 	{ path: '',
 	redirectTo: '/manage',
 	pathMatch: 'full'
@@ -40,7 +39,6 @@ const appRoutes: Routes = [
 		ToolbarComponent,
 		PageNotFoundComponent,
 		TesteComponent,
-		PresentComponent
 	],
 	imports: [
 		BrowserModule,

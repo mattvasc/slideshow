@@ -4,29 +4,28 @@
       <input class="input" name="tabs" type="button" id="tab-1" (click)="goFull()" />
       <label class="label" for="tab-1">Present <fa-icon [icon]="faPlay"></fa-icon></label>
 
-      <input type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
-      <label (click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-3">Add
+      <input  *ngIf="router.url === '/edit'" type="radio" class="input" name="tabs" id="tab-3" [value]="toolbarActive.addElement" [(ngModel)]="activeToolbarElement" />
+      <label *ngIf="router.url === '/edit'"(click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-3">Add
         an Element <fa-icon [icon]="faPlusSquare"></fa-icon></label>
 
-      <input type="radio" class="input" name="tabs" id="tab-2" [value]="toolbarActive.transition" [(ngModel)]="activeToolbarElement" />
-      <label (click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-2">Slide
+      <input *ngIf="router.url === '/edit'"type="radio" class="input" name="tabs" id="tab-2" [value]="toolbarActive.transition" [(ngModel)]="activeToolbarElement" />
+      <label *ngIf="router.url === '/edit'"(click)="activeElement=undefined; activeElementChange.emit();" class="label" for="tab-2">Slide
         Options <fa-icon [icon]="faWrench"></fa-icon></label>
 
-      <input *ngIf="activeToolbarElement === toolbarActive.editElement" type="radio" class="input" name="tabs" id="tab-4"
+      <input *ngIf="activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" type="radio" class="input" name="tabs" id="tab-4"
         [value]="toolbarActive.editElement" [(ngModel)]="activeToolbarElement" />
-      <label *ngIf="activeToolbarElement === toolbarActive.editElement" class="label" for="tab-4">Edit Element <fa-icon
+      <label *ngIf="activeToolbarElement === toolbarActive.editElement && router.url ==='/edit'" class="label" for="tab-4">Edit Element <fa-icon
           [icon]="faPencilAlt"></fa-icon></label>
-
-      <div *ngIf="user" style="float:right; border-style: dashed">
-        <fa-icon
-          [icon]="faUser"></fa-icon> Olá {{user.username}},
-        <div><a class="brokek_a" (click)="logout()">Log Out</a></div>
-        <div><a class="brokek_a"(click)="goToDash()">My Dashboard</a></div>
+      <div style="float:right; border-style: dashed">
+        <div *ngIf="user"><fa-icon 
+          [icon]="faUser"></fa-icon> Olá {{user.username}}, </div>
+        <div *ngIf="user"><a class="brokek_a" (click)="logout()">Log Out</a></div>
+        <div><a class="brokek_a"(click)="goToDash()">Go back to Dashboard</a></div>
       </div>
     </div>
 
 
-    <div *ngIf="activeToolbarElement === toolbarActive.addElement">
+    <div *ngIf="activeToolbarElement === toolbarActive.addElement && router.url === '/edit'">
       <button class="btn btn-default" (click)="addNewElement(typeOfElement.titlefield)">Add a Title <fa-icon [icon]="faPencilAlt"></fa-icon></button>
       <button class="btn btn-default" (click)="addNewElement(typeOfElement.textfield)">Add a Text <fa-icon [icon]="faPencilAlt"></fa-icon></button>
       <button class="btn btn-default" (click)="addNewElement(typeOfElement.image)">Add a image <fa-icon [icon]="faImage"></fa-icon>
@@ -35,7 +34,7 @@
     
    
 
-    <div *ngIf="activeToolbarElement === toolbarActive.editElement">
+    <div *ngIf="activeToolbarElement === toolbarActive.editElement && router.url === '/edit'">
 
       <div>
         <button class="btn btn-default" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image"
@@ -63,7 +62,7 @@
 
       </div>
     </div>
-    <div *ngIf="activeToolbarElement === toolbarActive.transition">
+    <div *ngIf="activeToolbarElement === toolbarActive.transition && router.url === '/edit'">
       <div style="float:left">
         <div>
           <fa-icon [icon]="faPlusSquare"></fa-icon> Add a new Slide:

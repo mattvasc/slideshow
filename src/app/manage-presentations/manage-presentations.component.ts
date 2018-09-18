@@ -96,4 +96,8 @@ export class ManagePresentationsComponent implements OnInit {
 		this._data.presentation = p;
 		this.router.navigate(['/edit']);
 	}
+	present(i: number) {
+		this._data.presentation = this.P[i];
+		this.router.navigate(['/present']);
+	}
 }
