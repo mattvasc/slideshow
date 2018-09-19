@@ -146,7 +146,7 @@ export class ToolbarComponent implements OnInit {
 
 
 	changeText() {
-		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'p';
 		const regex = new RegExp(`<${tag}.*>(.*)<\/${tag}>`, 'imu');
 		this.tempText = regex.exec(this.activeElement.data.toString())[1];
 	}
@@ -163,7 +163,7 @@ export class ToolbarComponent implements OnInit {
 	}
 
 	saveChangedText() {
-		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'h2';
+		const tag = (this.activeElement.type === TypeOfElement.textfield) ? 'p' : 'p';
 		this.activeElement.data = `<${tag}>${this.tempText}</${tag}>`;
 	}
 	changeImage() {
