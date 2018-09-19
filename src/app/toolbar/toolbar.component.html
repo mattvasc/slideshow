@@ -38,51 +38,51 @@
     </div>
 
 
-    <div *ngIf="_data.activeToolbarElement === toolbarActive.addElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block;">
-      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.titlefield)">Add a Title
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
+    <div *ngIf="_data.activeToolbarElement === toolbarActive.addElement && router.url === '/edit'" class="toolbar-sub toolbar-sub-element-add">
+      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.titlefield)">
+        <fa-icon [icon]="faPencilAlt"></fa-icon> Title
       </button>
-      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.textfield)">Add a Text
-        <fa-icon [icon]="faPencilAlt"></fa-icon>
+      <button class="btn btn-default btn-extra-left" (click)="addNewElement(typeOfElement.textfield)">
+        <fa-icon [icon]="faPencilAlt"></fa-icon> Text
       </button>
-      <button class="btn btn-default btn-extra-right" (click)="addNewElement(typeOfElement.image)">Add a image
-        <fa-icon [icon]="faImage"></fa-icon>
+      <button class="btn btn-default btn-extra-right" (click)="addNewElement(typeOfElement.image)">
+        <fa-icon [icon]="faImage"></fa-icon> Image
       </button>
     </div>
 
 
 
-    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" class="toolbar-sub" style="transform: translateX(-100%);display: inline-block; padding-right: 1.5em;">
+    <div *ngIf="_data.activeToolbarElement === toolbarActive.editElement && router.url === '/edit'" class="toolbar-sub toolbar-sub-element-edit">
 
       <div>
         <button class="btn btn-default btn-extra-left" *ngIf="activeElement !== undefined && activeElement.type == typeOfElement.image" (click)="changeImage()"
-          data-toggle="modal" data-target="#modalImage">Change Image
-          <fa-icon [icon]="faImage"></fa-icon>
+          data-toggle="modal" data-target="#modalImage">
+          <fa-icon [icon]="faImage"></fa-icon> Change Image
         </button>
 
         <button class="btn btn-default btn-extra-left" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
         (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)" (click)="changeText()" data-toggle="modal"
-          data-target="#modalText">Change Text
-          <fa-icon [icon]="faPencilAlt"></fa-icon>
+          data-target="#modalText">
+          <fa-icon [icon]="faPencilAlt"></fa-icon> Change Text
         </button>
         <button class="btn btn-default btn-extra-left" *ngIf="(activeElement !== undefined && activeElement.type == typeOfElement.textfield) ||
         (activeElement !== undefined && activeElement.type == typeOfElement.titlefield)" (click)="changeSize()" data-toggle="modal"
-          data-target="#modalSize">Change Size
-          <fa-icon [icon]="faFont"></fa-icon>
+          data-target="#modalSize">
+          <fa-icon [icon]="faFont"></fa-icon> Change Size
         </button>
 
-        <button class="btn btn-default btn-extra-left" (click)="removeElement()">Delete Element
-          <fa-icon [icon]="faMinusSquare"></fa-icon>
+        <button class="btn btn-default btn-extra-left" (click)="removeElement()">
+          <fa-icon [icon]="faMinusSquare"></fa-icon> Delete Element
         </button>
         <input
         *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
         type="color" id='font-background-color' (change)="setRGB($event.target.value, 'font')" [hidden]="true" />
         <button 
         *ngIf="activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield)"
-        class="btn btn-default btn-extra-left" onclick="document.getElementById('font-background-color').click();">Change Font Color <fa-icon [icon]="faPalette"></fa-icon></button>
+        class="btn btn-default btn-extra-left" onclick="document.getElementById('font-background-color').click();"> <fa-icon [icon]="faPalette"></fa-icon>Change Font Color</button> 
 
-        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default btn-extra-left" onclick="document.getElementById('element-background-color').click();">Background Color
-          <fa-icon [icon]="faPalette"></fa-icon>
+        <button *ngIf="!presentation.background || presentation.background ==='' && (activeElement !== undefined && (activeElement.type == typeOfElement.textfield || activeElement.type == typeOfElement.titlefield))" class="btn btn-default btn-extra-left" onclick="document.getElementById('element-background-color').click();">
+          <fa-icon [icon]="faPalette"></fa-icon> Background Color
         </button>
 
         <input [hidden]="true" *ngIf="activeElement" id="element-background-color" type="color" [(ngModel)]="activeElement.style['background-color']"
@@ -91,14 +91,14 @@
       </div>
     </div>
     <div *ngIf="_data.activeToolbarElement === toolbarActive.transition && router.url === '/edit'">
-      <div class="toolbar-sub" style="float:left; background-color:#fff ;  transform: translateX(-100%);">
+      <div class="toolbar-sub toolbar-sub-slide-left">
         <button (click)="addNewTSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title Slide</button>
         <button (click)="addNewTSSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title+Sub Slide</button>
         <button (click)="addNewTSTSlide()" class="btn btn-default btn-extra-left"><fa-icon [icon]="faPlusSquare"></fa-icon> Title+Sub+Text Slide</button>
         <button (click)="addNewBSlide()" class="btn btn-default btn-extra-right"><fa-icon [icon]="faPlusSquare"></fa-icon> Blank Slide</button>
       </div>
 
-      <div class="toolbar-sub" style="float:right; margin-right: 0%; background-color: red;  transform: translateX(100%);">
+      <div class="toolbar-sub toolbar-sub-slide-right">
 
         <button (click)="removeSlide()" class="btn btn-default btn-extra-right">Remove Slide
           <fa-icon [icon]="faMinusSquare"></fa-icon>

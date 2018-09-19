@@ -204,3 +204,24 @@
   top:0;
   right: 0;
 }
+.toolbar-sub-element-edit{
+  transform: translateX(-100%);
+  display: inline-block; 
+  padding-right: 1.5em;
+}
+.toolbar-sub-element-add{
+  transform: translateX(-100%);
+  display: inline-block;
+
+}
+.toolbar-sub-slide-left{
+  float:left; 
+  background-color:#fff ;  
+  transform: translateX(-100%);
+}
+.toolbar-sub-slide-right{
+  float:right;
+  margin-right: 0%; 
+  background-color: lightslategray;  
+  transform: translateX(100%);
+}
