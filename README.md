@@ -6,7 +6,7 @@
 ## Authors:
 ### Lucas Kimura
 ### João Pedro Moura
-### Mateus Vasconcelos~
+### Mateus Vasconcelos
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 # Slideshow
